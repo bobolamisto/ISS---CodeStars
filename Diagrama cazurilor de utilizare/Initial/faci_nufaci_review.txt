@@ -1,0 +1,22 @@
+-Nume caz: Faci/nu faci review
+-Actori: PC member (reviewer)
+-Fluxul de evenimente:
+	1. PC memberul se conecteaza la contul lui cu username si password
+
+		2. Dupa conectarea cu succes, apare o fereastra cu o lista de lucrari care
+		   inca nu au fost analizate de catre utilizatorul respectiv
+		   (in cazul in care asemenea lucrari exista)
+
+	3. Utilizatorul da click pe unul dintre lucrari
+
+		4. Apare inca o fereastra cu abstractul lucrarii respective si cu trei posibilitati
+		   de alegere: "mi-as dori sa fac review", "as accepta sa fac review", "nu fac review"
+
+	5. Utilizatorul alege una dintre cele trei posibilitati sau inchide fereastra cu
+	   abstractul lucrarii respective, urmand sa ia o decizie ulterior
+
+	6. Daca utilizatorul decide asupra unei lucrari, acea lucrare dispare din lista
+	   lucrarilor neanalizate de catre el
+
+	7. Utilizatorul va avea permisiunea de a trece la alte activitati doar dupa ce a decis
+	   asupra fiecarei lucrari aparute in lista mentionata

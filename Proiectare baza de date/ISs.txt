@@ -1,0 +1,5 @@
+Cont: id_cont, username, password, firstname, lastname, email, web-page
+Tipuri de cont: chair, co-chair, reviewer, session chair, author(speaker), listener
+Nu cred ca trebuie sa adaugam atributele astea in Cont pentru ca o pers poate fi mai multe chestii in
+functie de conferinta => tine mai mult de conferinta rolul unui user => se adauga in relatia contului cu
+conferinta rolul pe care il are in cadrul acesteia. :*
