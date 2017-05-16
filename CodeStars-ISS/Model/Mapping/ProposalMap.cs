@@ -1,0 +1,26 @@
+﻿using Model.Domain;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Model.Mapping
+{
+    internal class ProposalMap:EntityTypeConfiguration<Proposal>
+    {
+        public ProposalMap()
+        {
+            ToTable("Proposals");
+            HasKey(p => p.Id);
+            Property(p => p.Title);
+            Property(p => p.Subject);
+            Property(p => p.Abstract);
+            Property(p => p.FullPaper);
+            Property(p => p.Keywords);
+            Property(p => p.ParticipationId);
+            HasRequired(p => p.Participation).WithMany().HasForeignKey(p => p.ParticipationId);
+        }
+    }
+}

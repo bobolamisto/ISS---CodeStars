@@ -18,6 +18,8 @@ namespace Model.Mapping
             Property(c => c.StartDate);
             Property(c => c.EndDate);
             Property(c => c.Domain);
+            Property(c => c.AbstractDeadline);
+            Property(c => c.FullPaperDeadline);
             HasMany(c => c.Participations).WithRequired(uc => uc.Conference).HasForeignKey(uc => uc.ConferenceId);
         }
     }

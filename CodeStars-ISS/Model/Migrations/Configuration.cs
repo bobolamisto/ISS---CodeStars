@@ -24,14 +24,36 @@ namespace Model.Migrations
 
             var conferences = new Conference[]
             {
-                new Conference {Id=1, Name="Conferinta1",StartDate=new DateTime(2017,10,3,10,3,40), EndDate= new DateTime(2017,12,4,20,40,20), Domain="Science"},
-                new Conference {Id=2, Name="Conferinta2",StartDate=new DateTime(2016,9,3,10,4,30), EndDate= new DateTime(2017,3,4,20,20,20), Domain="IT"}
+                new Conference {Id=1, Name="Conferinta1",StartDate=new DateTime(2017,10,3,10,3,40), EndDate= new DateTime(2017,12,4,20,40,20), AbstractDeadline=new DateTime(2017,12,4,20,40,20),FullPaperDeadline=new DateTime(2017,12,4,20,40,20), Domain="Science"},
+                new Conference {Id=2, Name="Conferinta2",StartDate=new DateTime(2016,9,3,10,4,30), EndDate= new DateTime(2017,3,4,20,20,20),AbstractDeadline= new DateTime(2017,3,4,20,20,20),FullPaperDeadline= new DateTime(2017,3,4,20,20,20), Domain="IT"}
             };
 
             var participations = new User_Conference[]
             {
                 new User_Conference{Id=1,UserId=1,ConferenceId=1,Role=UserRole.Chair},
-                new User_Conference{Id=2,UserId=1,ConferenceId=2,Role=UserRole.Listener}
+                new User_Conference{Id=2,UserId=1,ConferenceId=2,Role=UserRole.Speaker},
+                new User_Conference{Id=3,UserId=2,ConferenceId=1,Role=UserRole.Speaker},
+                new User_Conference{Id=4,UserId=2,ConferenceId=2,Role=UserRole.Speaker}
+            };
+
+            var tickets = new Ticket[]
+            {
+                new Ticket{Id=1,Price=30.5f,ParticipationId=2},
+                new Ticket{Id=2,Price=500f,ParticipationId=1},
+                new Ticket{Id=3,Price=30.5f,ParticipationId=3},
+                new Ticket{Id=4,Price=30.5f,ParticipationId=4},
+            };
+
+            var proposals = new Proposal[]
+            {
+                new Proposal{Id=1,Title="Proposal1",Subject="Subject1",Abstract="url",FullPaper="url",Keywords="k1,k2",ParticipationId=2},
+                new Proposal{Id=2,Title="Proposal2",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=3}
+            };
+
+            var reviews = new Review[]
+            {
+                new Review{Id=1,Mark=Mark.BorderlinePaper,ReviewerId=1,ProposalId=1},
+                new Review{Id=2,Mark=Mark.Accept,ReviewerId=1,ProposalId=2}
             };
 
             foreach (var p in participations)
@@ -40,6 +62,9 @@ namespace Model.Migrations
             context.Users.AddOrUpdate(users);
             context.Conferences.AddOrUpdate(conferences);
             context.ConferenceParticipations.AddOrUpdate(participations);
+            context.Tickets.AddOrUpdate(tickets);
+            context.Proposals.AddOrUpdate(proposals);
+            context.Reviews.AddOrUpdate(reviews);
         }
     }
 }

@@ -63,9 +63,15 @@
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="Domain\Conference.cs" />
+    <Compile Include="Domain\Proposal.cs" />
+    <Compile Include="Domain\Review.cs" />
+    <Compile Include="Domain\Ticket.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\User_Conference.cs" />
     <Compile Include="Mapping\ConferenceMap.cs" />
+    <Compile Include="Mapping\ProposalMap.cs" />
+    <Compile Include="Mapping\ReviewMap.cs" />
+    <Compile Include="Mapping\TicketMap.cs" />
     <Compile Include="Mapping\UserConferenceMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Migrations\Configuration.cs" />
