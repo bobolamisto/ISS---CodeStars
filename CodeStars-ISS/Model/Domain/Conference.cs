@@ -13,6 +13,8 @@ namespace Model.Domain
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Domain { get; set; }
+        public DateTime AbstractDeadline { get; set; }
+        public DateTime FullPaperDeadline { get; set; }
         public virtual ICollection<User_Conference> Participations { get; set; }
 
         public Conference()
