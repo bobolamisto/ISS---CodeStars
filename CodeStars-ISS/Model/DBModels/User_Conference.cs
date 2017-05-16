@@ -10,7 +10,8 @@ namespace Model.Domain
         Chair=1,
         CoChair,
         Listener,
-        Speaker
+        Speaker,
+        Proposer
     }
     public class User_Conference
     {
