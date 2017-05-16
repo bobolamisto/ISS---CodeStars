@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using services.Services;
 using Model.Domain;
 using Persistence.Repository;
 
-namespace services.Services
+namespace server.ServicesImplementation
 {
     public class UserService : IUserService
     {

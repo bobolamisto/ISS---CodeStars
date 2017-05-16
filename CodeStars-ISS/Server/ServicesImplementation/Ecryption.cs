@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using services.Services;
 
-namespace services.Services
+namespace server.ServicesImplementation
 {
     public class Ecryption : IEncryption
     {

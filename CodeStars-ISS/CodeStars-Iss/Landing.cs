@@ -13,8 +13,10 @@ namespace CodeStars_Iss
 {
     public partial class Landing : Form
     {
-        public Landing()
+        private ClientController ctrl;
+        public Landing(ClientController c)
         {
+            ctrl = c;
             InitializeComponent();
         }
 

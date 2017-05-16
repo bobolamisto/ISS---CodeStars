@@ -13,9 +13,10 @@ namespace CodeStars_Iss
 {
     public partial class UserRegistration : Form
     {
-        private UserController uc;
-        public UserRegistration()
+        private ClientController uc;
+        public UserRegistration(ClientController ctrl)
         {
+            this.uc = ctrl;
             InitializeComponent();
         }
 
@@ -43,7 +44,7 @@ namespace CodeStars_Iss
             {
                 MessageBox.Show("Account created successfully. Wait for confirmation.");
                 this.Hide();
-                LogIn l = new LogIn();
+                LogIn l = new LogIn(uc);
                 l.Show();
 
 
@@ -53,7 +54,7 @@ namespace CodeStars_Iss
 
         private void UserRegistration_Load(object sender, EventArgs e)
         {
-            uc = new UserController();
+            
         }
     }
 }
