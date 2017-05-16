@@ -7,41 +7,42 @@ using Model.Domain;
 using services.Services;
 namespace CodeStars_Iss.Controller
 {
-    public class UserController
+    public class ClientController : MarshalByRefObject, IClientService
     {
-        public IUserService service;
-        public UserController()
+        private IServerService _server;
+        public ClientController(IServerService srv)
         {
-            this.service = new UserService();
+            _server = srv;
         }
 
         public User findUser(int id)
         {
-            User user= service.findUser(id);
+            User user = _server.findUser(id);
             return user;
         }
 
-        public User createAccount( string username, string password, string firstname, string lastname, string email, string webpage)
+        public User createAccount(string username, string password, string firstname, string lastname, string email, string webpage)
         {
             User user = new User { Id = 0, Username = username, Password = password, FirstName = firstname, LastName = lastname, Email = email, WebPage = webpage, Admin = false };
-            return service.createAccount(user);
-            
+            return _server.createAccount(user);
+
         }
 
         public User removeAccount(int id)
         {
-            return service.removeAccount(id);
+            return _server.removeAccount(id);
         }
 
         public Boolean logIn(string username, string password)
         {
-            return service.logIn(username, password);
+            return _server.logIn(username, password);
         }
 
         public User updateAccount(int id, string username, string password, string firstname, string lastname, string email, string webpage, Boolean admin)
         {
             User user = new User { Id = id, Username = username, Password = password, FirstName = firstname, LastName = lastname, Email = email, WebPage = webpage, Admin = admin };
-            return service.updateAccount(user);
+            return _server.updateAccount(user);
         }
     }
 }
+

@@ -15,9 +15,10 @@ namespace CodeStars_Iss
 {
     public partial class LogIn : Form
     {
-        private UserController uc;
-        public LogIn()
+        private ClientController uc;
+        public LogIn(ClientController ctrl)
         {
+            uc = ctrl;
             InitializeComponent();
         }
 
@@ -27,7 +28,7 @@ namespace CodeStars_Iss
             string password = textBoxPassword.Text;
             if (uc.logIn(user, password))
             {
-                Landing l = new Landing();
+                Landing l = new Landing(uc);
                 l.Show();
                 this.Hide();
             }
@@ -39,7 +40,7 @@ namespace CodeStars_Iss
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            UserRegistration f = new UserRegistration();
+            UserRegistration f = new UserRegistration(uc);
             f.Show();
             this.Hide();
 
@@ -47,7 +48,6 @@ namespace CodeStars_Iss
 
         private void LogIn_Load(object sender, EventArgs e)
         {
-            uc = new UserController();
         }
     }
 

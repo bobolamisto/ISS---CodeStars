@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+namespace services.Services
 {
-    class Program
+    public interface IClientService
     {
-        static void Main(string[] args)
-        {
-            
-        }
     }
 }
