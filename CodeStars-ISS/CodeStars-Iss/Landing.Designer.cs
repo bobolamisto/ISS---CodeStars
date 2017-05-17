@@ -37,8 +37,6 @@
             this.PanelCoChair = new System.Windows.Forms.Panel();
             this.ButtonCoChair = new System.Windows.Forms.Button();
             this.ButtonAddConference = new System.Windows.Forms.Button();
-            this.CheckBoxListener = new System.Windows.Forms.CheckBox();
-            this.CheckBoxSpeaker = new System.Windows.Forms.CheckBox();
             this.PanelCoChair.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,37 +135,11 @@
             this.ButtonAddConference.UseVisualStyleBackColor = true;
             this.ButtonAddConference.Click += new System.EventHandler(this.ButtonAddConference_Click);
             // 
-            // CheckBoxListener
-            // 
-            this.CheckBoxListener.AutoSize = true;
-            this.CheckBoxListener.Checked = true;
-            this.CheckBoxListener.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CheckBoxListener.Location = new System.Drawing.Point(75, 186);
-            this.CheckBoxListener.Name = "CheckBoxListener";
-            this.CheckBoxListener.Size = new System.Drawing.Size(73, 19);
-            this.CheckBoxListener.TabIndex = 9;
-            this.CheckBoxListener.Text = "Listener";
-            this.CheckBoxListener.UseVisualStyleBackColor = true;
-            this.CheckBoxListener.CheckedChanged += new System.EventHandler(this.CheckBoxListener_CheckedChanged);
-            // 
-            // CheckBoxSpeaker
-            // 
-            this.CheckBoxSpeaker.AutoSize = true;
-            this.CheckBoxSpeaker.Location = new System.Drawing.Point(75, 211);
-            this.CheckBoxSpeaker.Name = "CheckBoxSpeaker";
-            this.CheckBoxSpeaker.Size = new System.Drawing.Size(72, 19);
-            this.CheckBoxSpeaker.TabIndex = 10;
-            this.CheckBoxSpeaker.Text = "Speaker";
-            this.CheckBoxSpeaker.UseVisualStyleBackColor = true;
-            this.CheckBoxSpeaker.CheckedChanged += new System.EventHandler(this.CheckBoxSpeaker_CheckedChanged);
-            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 461);
-            this.Controls.Add(this.CheckBoxSpeaker);
-            this.Controls.Add(this.CheckBoxListener);
             this.Controls.Add(this.ButtonAddConference);
             this.Controls.Add(this.PanelCoChair);
             this.Controls.Add(this.ButtonBuyTicket);
@@ -200,8 +172,6 @@
         private System.Windows.Forms.Panel PanelCoChair;
         private System.Windows.Forms.Button ButtonCoChair;
         private System.Windows.Forms.Button ButtonAddConference;
-        private System.Windows.Forms.CheckBox CheckBoxListener;
-        private System.Windows.Forms.CheckBox CheckBoxSpeaker;
     }
 }
 

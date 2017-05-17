@@ -70,12 +70,7 @@ namespace CodeStars_Iss
 
         private void ButtonBuyTicket_Click(object sender, EventArgs e)
         {
-            if (CheckBoxSpeaker.Checked)
-            {
-                BuyTicketSpeaker b = new BuyTicketSpeaker();
-                b.Show();
-
-            }
+           
         }
 
         private void ButtonCoChair_Click(object sender, EventArgs e)
@@ -83,20 +78,6 @@ namespace CodeStars_Iss
 
         }
 
-        private void CheckBoxListener_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CheckBoxListener.Checked)
-            {
-                CheckBoxSpeaker.Checked = false;
-            }
-        }
-
-        private void CheckBoxSpeaker_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CheckBoxSpeaker.Checked)
-            {
-                CheckBoxListener.Checked = false;
-            }
-        }
+        
     }
 }
