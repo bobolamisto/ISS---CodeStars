@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.Domain;
+using Persistence.Repository;
+using System.Data.Entity.Validation;
 
 namespace Server.ServicesImplementation
 {
@@ -14,7 +16,7 @@ namespace Server.ServicesImplementation
 
         public ServerService(IUserService userservice)
         {
-            _userService = userservice;
+            _userService = userservice;            
         }
         public User createAccount(User user)
         {

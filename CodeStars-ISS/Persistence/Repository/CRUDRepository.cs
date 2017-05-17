@@ -18,7 +18,7 @@ namespace Persistence.Repository
         public void save(E item)
         {
             context.Set<E>().Add(item);
-            context.SaveChanges();
+            //context.SaveChanges();
         }
 
         public IEnumerable<E> getAll()
@@ -36,14 +36,14 @@ namespace Persistence.Repository
         {
             E existing = get(id);
             context.Set<E>().Remove(existing);
-            context.SaveChanges();
+            //context.SaveChanges();
         }
 
         public void update(int id, E newItem)
         {
             E oldItem = get(id);
             context.Entry(oldItem).CurrentValues.SetValues(newItem);
-            context.SaveChanges();
+           // context.SaveChanges();
         }
     }
 
