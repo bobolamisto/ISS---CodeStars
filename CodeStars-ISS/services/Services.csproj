@@ -62,10 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdminConferenceService.cs" />
+    <Compile Include="Services\IAdminConferenceService.cs" />
     <Compile Include="Services\IClientService.cs" />
     <Compile Include="Services\IEncryption.cs" />
     <Compile Include="Services\IServerService.cs" />
+    <Compile Include="Services\IUserConferenceService.cs" />
     <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\UserConferenceService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
