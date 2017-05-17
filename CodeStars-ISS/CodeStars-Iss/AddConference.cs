@@ -12,9 +12,13 @@ using System.Windows.Forms;
 namespace CodeStars_Iss
 {
     //TextBoxName
-    //TextBoxGenre
-    //TextBoxDate
+    //TextBoxStartDate - masked
+    //TextBoxEndDate - masked
     //ButtonAddConference - pentru a adauga
+    //TextBoxDomain
+    //TextBoxAbstractDeadeline - masked
+    //TextBoxFullPaperDeadline - masked
+    //TextBoxMainDescription
     public partial class AddConference : Form
     {
         private ClientController ctrl;
@@ -26,12 +30,17 @@ namespace CodeStars_Iss
 
         private void AddConference_Load(object sender, EventArgs e)
         {
-
+            TextBoxStartDate.Mask= "00.00.0000";
+            TextBoxEndDate.Mask= "00.00.0000";
+            TextBoxAbstractDeadline.Mask= "00.00.0000";
+            TextBoxFullPaperDeadline.Mask= "00.00.0000"; 
         }
 
         private void ButtonAddConference_Click(object sender, EventArgs e)
         {
 
         }
+
+        
     }
 }
