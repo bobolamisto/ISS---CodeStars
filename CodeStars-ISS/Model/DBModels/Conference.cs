@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace Model.Domain
 {
+    public enum ConferenceState
+    {
+        Proposed,
+        Building,
+        Accepted,
+        Declined //in cazul in care nu stergem direct o conferinta daca e refuzata     
+    }
+
     public class Conference
     {
         public int Id { get; set; }
@@ -15,6 +23,8 @@ namespace Model.Domain
         public string Domain { get; set; }
         public DateTime AbstractDeadline { get; set; }
         public DateTime FullPaperDeadline { get; set; }
+        public string MainDescription { get; set; }
+        public ConferenceState State { get; set; }
         public virtual ICollection<User_Conference> Participations { get; set; }
 
         public Conference()
