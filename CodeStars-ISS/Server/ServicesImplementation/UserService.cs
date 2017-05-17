@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 using services.Services;
 using Model.Domain;
 using Persistence.Repository;
+using Model;
 
 namespace server.ServicesImplementation
 {
     public class UserService : IUserService
     {
         IEncryption _ecrypt;
+        
         public UserService()
         {
             _ecrypt = new Ecryption();
+            
         }
         public User findUser(int id)
         {
@@ -80,6 +83,14 @@ namespace server.ServicesImplementation
                 repo.update(user.Id,user);
                 uow.saveChanges();
                 return user;
+            }
+        }
+
+        public IEnumerable<User> findAll()
+        {
+            using (var uow = new UnitOfWork())
+            {
+                return uow.getRepository<User>().getAll();
             }
         }
     }

@@ -23,6 +23,11 @@ namespace Server.ServicesImplementation
             return _userService.createAccount(user);
         }
 
+        public IEnumerable<User> findAll()
+        {
+            return _userService.findAll();
+        }
+
         public User findUser(int id)
         {
             return _userService.findUser(id);
