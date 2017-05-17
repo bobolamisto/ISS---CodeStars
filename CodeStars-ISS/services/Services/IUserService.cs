@@ -14,5 +14,6 @@ namespace services.Services
         User createAccount(User user);
         User removeAccount(int idUser);
         User updateAccount(User user);
+        IEnumerable<User> findAll();
     }
 }

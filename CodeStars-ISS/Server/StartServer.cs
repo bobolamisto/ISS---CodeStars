@@ -1,4 +1,5 @@
-﻿using server.ServicesImplementation;
+﻿using Model;
+using server.ServicesImplementation;
 using Server.ServicesImplementation;
 using services.Services;
 using System;
@@ -25,7 +26,7 @@ namespace Server
             props["port"] = 55555;
             TcpChannel channel = new TcpChannel(props, clientProv, serverProv);
             ChannelServices.RegisterChannel(channel, false);
-
+           
             IUserService userService = new UserService();
             var server = new ServerService(userService);
             RemotingServices.Marshal(server, "server");
