@@ -71,6 +71,7 @@
       <DependentUpon>AddConference.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\ClientController.cs" />
+    <Compile Include="Controller\UserConferenceController.cs" />
     <Compile Include="Landing.cs">
       <SubType>Form</SubType>
     </Compile>

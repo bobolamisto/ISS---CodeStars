@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.Domain;
 using services.Services;
+
 namespace CodeStars_Iss.Controller
 {
     public class ClientController : MarshalByRefObject, IClientService
