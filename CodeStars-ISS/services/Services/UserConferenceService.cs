@@ -56,7 +56,7 @@ namespace services.Services
             using (var uow = new UnitOfWork())
             {
                 var conferenceRepo = uow.getRepository<Conference>();
-                return conferenceRepo.getAll();
+                return conferenceRepo.getAll().Where(conference => conference.State == ConferenceState.Accepted);
             }
         }
 
