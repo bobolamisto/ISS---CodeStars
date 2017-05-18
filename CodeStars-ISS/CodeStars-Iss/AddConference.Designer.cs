@@ -106,7 +106,7 @@
             this.TextBoxName.Location = new System.Drawing.Point(176, 36);
             this.TextBoxName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TextBoxName.Name = "TextBoxName";
-            this.TextBoxName.Size = new System.Drawing.Size(262, 25);
+            this.TextBoxName.Size = new System.Drawing.Size(149, 25);
             this.TextBoxName.TabIndex = 11;
             // 
             // TextBoxDomain
