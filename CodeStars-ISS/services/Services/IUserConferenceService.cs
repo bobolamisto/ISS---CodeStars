@@ -36,10 +36,10 @@ namespace services.Services
         IEnumerable<Conference> GetAllConferences();
 
         /// <summary>
-        /// Used for modyfing the description of a conference.
+        /// Used for modyfing the description of a conference. The conference Id MUST BE SET before calling this method.
         /// If the user is not the owner/proposer of the conference, the method will have no efect.
         /// If the conference has no current description, the method wil add a new description.
         /// </summary>
-        void ModifyDescription(int idUser, Conference conference, UserRole description);
+        void ModifyDescription(int idUser, Conference conference);
     }
 }

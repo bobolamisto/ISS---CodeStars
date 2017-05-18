@@ -13,18 +13,18 @@ namespace services.Services
         /// <summary>
         /// Changes the State of the Conference from Proposed to Building
         /// </summary>
-        void AcceptConferenceProposal(Conference conference);
+        void AcceptConferenceProposal(int idConference);
 
         /// <summary>
         /// Changes the State of the Conference from Proposed/Building to Rejected
         /// Reason: Conferences can be rejected even after they were put in the Building state
         /// </summary>
-        void DeclineConferencProposal(Conference conference);
+        void DeclineConferencProposal(int idConference);
 
         /// <summary>
         /// Changes the State of the Conference from Building to Accepted.
         /// </summary>
-        void AcceptFullConference(Conference conference);
+        void AcceptFullConference(int idConference);
 
         /// <summary>
         ///  Gets all the conferences that are in a specific state.

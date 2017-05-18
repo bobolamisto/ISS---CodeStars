@@ -8,19 +8,19 @@ namespace services.Services
 {
     public class AdminConferenceService : IAdminConferenceService
     {
-        public void AcceptConferenceProposal(Conference conference)
+        public void AcceptConferenceProposal(int idConference)
         {
-            ChangeConferenceState(conference, ConferenceState.Building);
+            ChangeConferenceState(idConference, ConferenceState.Building);
         }
 
-        public void DeclineConferencProposal(Conference conference)
+        public void DeclineConferencProposal(int idConference)
         {
-            ChangeConferenceState(conference, ConferenceState.Declined);
+            ChangeConferenceState(idConference, ConferenceState.Declined);
         }
 
-        public void AcceptFullConference(Conference conference)
+        public void AcceptFullConference(int idConference)
         {
-            ChangeConferenceState(conference, ConferenceState.Accepted);
+            ChangeConferenceState(idConference, ConferenceState.Accepted);
         }
 
         public IEnumerable<Conference> GetFilteredConferences(ConferenceState conferenceState)
@@ -32,11 +32,13 @@ namespace services.Services
             }
         }
 
-        private void ChangeConferenceState(Conference conference, ConferenceState conferenceState)
+        private void ChangeConferenceState(int idConference, ConferenceState conferenceState)
         {
             using (var uow = new UnitOfWork())
             {
-                conference.State = conferenceState;
+                var conferenceRepo = uow.getRepository<Conference>();
+                var conferenceFromRepo = conferenceRepo.get(idConference);
+                conferenceFromRepo.State = conferenceState;
                 uow.saveChanges();
             }
         }
