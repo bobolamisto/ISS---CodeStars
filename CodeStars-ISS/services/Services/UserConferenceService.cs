@@ -17,6 +17,7 @@ namespace services.Services
                 //adaugare in tabela conferinta
                 var conferenceRepo = uow.getRepository<Conference>();
                 conferenceRepo.save(conference);
+                uow.saveChanges();
 
                 //adaugare in tabela de legatuara
                 var userConfereceRepo = uow.getRepository<User_Conference>();
@@ -27,6 +28,7 @@ namespace services.Services
                     UserId = idUser
                 };
                 userConfereceRepo.save(new User_Conference());
+                uow.saveChanges();
             }
         }
 
@@ -58,20 +60,24 @@ namespace services.Services
             }
         }
 
-        public void ModifyDescription(int idUser, Conference conference, UserRole role)
+        public void ModifyDescription(int idUser, Conference conference)
         {
             using (var uow = new UnitOfWork())
             {
                 var userConferenceRepo = uow.getRepository<User_Conference>();
                 var isUserProposer =
                     userConferenceRepo.getAll()
-                        .Any(userConference => userConference.UserId == idUser && userConference.Role == role);
+                        .Any(userConference => userConference.UserId == idUser && 
+                        userConference.Role == UserRole.Proposer && 
+                        userConference.ConferenceId == conference.Id);
                 //verific daca userul care modifica conferinta este cel care a propus
                 if (!isUserProposer)
                     return;
 
                 var conferenceRepo = uow.getRepository<Conference>();
                 conferenceRepo.update(conference.Id, conference);
+
+                uow.saveChanges();
             }
         }
     }
