@@ -28,7 +28,9 @@ namespace Server
             ChannelServices.RegisterChannel(channel, false);
            
             IUserService userService = new UserService();
-            var server = new ServerService(userService);
+            IUserConferenceService userConferenceService = new UserConferenceService();
+            IAdminConferenceService adminConferenceService = new AdminConferenceService();
+            var server = new ServerService(userService, userConferenceService, adminConferenceService);
             RemotingServices.Marshal(server, "server");
             Console.WriteLine("Server started ...");
             Console.WriteLine("Press <enter> to exit...");
