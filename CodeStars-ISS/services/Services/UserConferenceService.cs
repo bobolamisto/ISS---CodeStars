@@ -27,7 +27,7 @@ namespace services.Services
                     Role = UserRole.Proposer,
                     UserId = idUser
                 };
-                userConfereceRepo.save(new User_Conference());
+                userConfereceRepo.save(userConference);
                 uow.saveChanges();
             }
         }
