@@ -17,6 +17,7 @@ namespace Model.Mapping
             Property(r => r.Mark);
             Property(r => r.ProposalId);
             Property(r => r.ReviewerId);
+            Property(r => r.Recommendation);
             HasRequired(r => r.Proposal).WithMany().HasForeignKey(r => r.ProposalId);
             HasRequired(r => r.Reviewer).WithMany().HasForeignKey(r => r.ReviewerId);
         }

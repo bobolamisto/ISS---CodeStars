@@ -21,6 +21,7 @@ namespace Model.Mapping
             Property(u => u.Email);
             Property(u => u.WebPage);
             Property(u => u.Admin);
+            Property(u => u.Validation);
             HasMany(u => u.ConferenceParticipations).WithRequired(uc => uc.User).HasForeignKey(uc => uc.UserId);
         }
     }

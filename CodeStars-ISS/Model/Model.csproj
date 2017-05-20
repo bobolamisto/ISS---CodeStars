@@ -62,11 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="DBModels\Conference.cs" />
-    <Compile Include="DBModels\Proposal.cs" />
-    <Compile Include="DBModels\Review.cs" />
-    <Compile Include="DBModels\User.cs" />
-    <Compile Include="DBModels\User_Conference.cs" />
+    <Compile Include="DTOModels\EnumObject.cs" />
+    <Compile Include="POCOModels\Conference.cs" />
+    <Compile Include="POCOModels\Proposal.cs" />
+    <Compile Include="POCOModels\Review.cs" />
+    <Compile Include="POCOModels\User.cs" />
+    <Compile Include="POCOModels\User_Conference.cs" />
     <Compile Include="DTOModels\ConferenceDTO.cs" />
     <Compile Include="DTOModels\ProposalDTO.cs" />
     <Compile Include="DTOModels\ReviewDTO.cs" />

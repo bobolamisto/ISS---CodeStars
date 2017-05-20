@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model.Domain
 {
+    public enum AccountState
+    {
+        Validated=1,
+        Wainting,
+        Unvalidated
+    }
     public class User
     {
         public User()
@@ -20,6 +26,7 @@ namespace Model.Domain
         public string Email { get; set; }
         public string WebPage { get; set; }
         public bool Admin { get; set; }
+        public AccountState Validation { get; set; }
         public virtual ICollection<User_Conference> ConferenceParticipations { get; set; }
 
     }
