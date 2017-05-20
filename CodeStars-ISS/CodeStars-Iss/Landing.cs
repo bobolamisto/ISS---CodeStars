@@ -28,10 +28,27 @@ namespace CodeStars_Iss
             ctrl = c;
             InitializeComponent();
             PanelCoChair.Visible = false;
+
+        }
+
+        private void initiateData()
+        {
+            var list = ctrl.getAllConferences();
+            foreach (var conf in list)
+            {
+                ListViewItem newItem = new ListViewItem();
+                newItem.SubItems.Add(conf.Name);
+                newItem.SubItems.Add(conf.StartDate.ToString());
+                newItem.SubItems.Add(conf.EndDate.ToString());
+                newItem.SubItems.Add(conf.Domain);
+                ConferencesList.Items.Add(newItem);
+
+            }
         }
 
         private void Landing_Load(object sender, EventArgs e)
         {
+            initiateData();
         }
 
         private void FullScreenButton_Click(object sender, EventArgs e)
@@ -78,6 +95,9 @@ namespace CodeStars_Iss
 
         }
 
-        
+        private void ConferencesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

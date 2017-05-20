@@ -18,12 +18,15 @@ namespace Model.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Edition { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Domain { get; set; }
         public DateTime AbstractDeadline { get; set; }
         public DateTime FullPaperDeadline { get; set; }
         public string MainDescription { get; set; }
+
+        public float Price { get; set; }
         public ConferenceState State { get; set; }
         public virtual ICollection<User_Conference> Participations { get; set; }
 

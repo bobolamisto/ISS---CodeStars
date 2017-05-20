@@ -59,6 +59,7 @@
             this.ConferencesList.Size = new System.Drawing.Size(269, 316);
             this.ConferencesList.TabIndex = 1;
             this.ConferencesList.UseCompatibleStateImageBehavior = false;
+            this.ConferencesList.SelectedIndexChanged += new System.EventHandler(this.ConferencesList_SelectedIndexChanged);
             // 
             // label2
             // 

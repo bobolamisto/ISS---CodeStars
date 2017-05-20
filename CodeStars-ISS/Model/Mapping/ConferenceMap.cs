@@ -22,6 +22,8 @@ namespace Model.Mapping
             Property(c => c.FullPaperDeadline);
             Property(c => c.MainDescription);
             Property(c => c.State);
+            Property(c => c.Price);
+            Property(c => c.Edition);
             HasMany(c => c.Participations).WithRequired(uc => uc.Conference).HasForeignKey(uc => uc.ConferenceId);
         }
     }

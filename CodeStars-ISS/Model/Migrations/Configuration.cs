@@ -24,8 +24,8 @@ namespace Model.Migrations
 
             var conferences = new Conference[]
             {
-                new Conference {Id=1, Name="Conferinta1",StartDate=new DateTime(2017,2,1), EndDate= new DateTime(2017,4,5), AbstractDeadline=new DateTime(2017,1,1),FullPaperDeadline=new DateTime(2017,1,5), Domain="Science"},
-                new Conference {Id=2, Name="Conferinta2",StartDate=new DateTime(2016,5,23), EndDate= new DateTime(2016,7,23),AbstractDeadline= new DateTime(2016,5,2),FullPaperDeadline= new DateTime(2016,5,3), Domain="IT"}
+                new Conference {Id=1, Name="Conferinta",StartDate=new DateTime(2017,2,1), EndDate= new DateTime(2017,4,5), AbstractDeadline=new DateTime(2017,1,1),FullPaperDeadline=new DateTime(2017,1,5), Domain="IT",Price=55.5f,Edition=2},
+                new Conference {Id=2, Name="Conferinta",StartDate=new DateTime(2016,5,23), EndDate= new DateTime(2016,7,23),AbstractDeadline= new DateTime(2016,5,2),FullPaperDeadline= new DateTime(2016,5,3), Domain="IT",Price=56.7f,Edition=1}
             };
 
             var participations = new User_Conference[]
@@ -36,13 +36,7 @@ namespace Model.Migrations
                 new User_Conference{Id=4,UserId=2,ConferenceId=2,Role=UserRole.Speaker}
             };
 
-            var tickets = new Ticket[]
-            {
-                new Ticket{Id=1,Price=30.5f,ParticipationId=2},
-                new Ticket{Id=2,Price=500f,ParticipationId=1},
-                new Ticket{Id=3,Price=30.5f,ParticipationId=3},
-                new Ticket{Id=4,Price=30.5f,ParticipationId=4},
-            };
+          
 
             var proposals = new Proposal[]
             {
@@ -62,7 +56,6 @@ namespace Model.Migrations
             context.Users.AddOrUpdate(users);
             context.Conferences.AddOrUpdate(conferences);
             context.ConferenceParticipations.AddOrUpdate(participations);
-            context.Tickets.AddOrUpdate(tickets);
             context.Proposals.AddOrUpdate(proposals);
             context.Reviews.AddOrUpdate(reviews);
         }

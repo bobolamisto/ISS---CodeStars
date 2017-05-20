@@ -38,7 +38,7 @@ namespace CodeStars_Iss
 
         private void ButtonAddConference_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         
