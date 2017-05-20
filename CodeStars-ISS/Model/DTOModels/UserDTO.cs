@@ -17,6 +17,7 @@ namespace Model.DTOModels
         public string Email { get; set; }
         public string WebPage { get; set; }
         public bool Admin { get; set; }
+        public string Validation { get; set; }
 
         public UserDTO() { }
 

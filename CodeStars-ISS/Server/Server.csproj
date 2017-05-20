@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelConverterServices\ConferenceConverterService.cs" />
+    <Compile Include="ModelConverterServices\ProposalConverterService.cs" />
+    <Compile Include="ModelConverterServices\ReviewConverterService.cs" />
+    <Compile Include="ModelConverterServices\UserConverterService.cs" />
+    <Compile Include="ModelConverterServices\User_ConferenceConverterService.cs" />
+    <Compile Include="ServicesImplementation\EnumGetDataService.cs" />
     <Compile Include="StartServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesImplementation\Ecryption.cs" />

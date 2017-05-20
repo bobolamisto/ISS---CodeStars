@@ -11,6 +11,7 @@ namespace Model.DTOModels
     {
         public int Id { get; set; }
         public string Mark { get; set; }
+        public string Recommendation { get; set; }
         public int ProposalId { get; set; }
         public int ReviewerId { get; set; }
 

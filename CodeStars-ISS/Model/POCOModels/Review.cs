@@ -20,6 +20,7 @@ namespace Model.Domain
     {
         public int Id { get; set; }
         public Mark Mark { get; set; }
+        public string Recommendation { get; set; }
         public int ProposalId { get; set; }
         public int ReviewerId { get; set; }
         public virtual User Reviewer { get; set; }
