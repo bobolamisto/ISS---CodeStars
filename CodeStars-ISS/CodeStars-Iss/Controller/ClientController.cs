@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.Domain;
+using Model.DTOModels;
 using services.Services;
 
 namespace CodeStars_Iss.Controller
@@ -36,7 +37,7 @@ namespace CodeStars_Iss.Controller
             return _server.removeAccount(id);
         }
 
-        public Boolean logIn(string username, string password)
+        public UserDTO logIn(string username, string password)
         {
             return _server.logIn(username, password);
         }

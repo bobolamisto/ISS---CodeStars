@@ -26,7 +26,8 @@ namespace CodeStars_Iss
         {
             string user = textBoxUsername.Text;
             string password = textBoxPassword.Text;
-            if (uc.logIn(user, password))
+            var userDTO = uc.logIn(user, password);
+            if (userDTO != null)
             {
                 Landing l = new Landing(uc);
                 l.Show();

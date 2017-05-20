@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Model.Domain;
 using Persistence.Repository;
 using System.Data.Entity.Validation;
+using Model.DTOModels;
 
 namespace Server.ServicesImplementation
 {
@@ -31,7 +32,7 @@ namespace Server.ServicesImplementation
             return _userService.findUser(id);
         }
 
-        public bool logIn(string username, string password)
+        public UserDTO logIn(string username, string password)
         {
             return _userService.logIn(username, password);
         }
