@@ -16,6 +16,7 @@ namespace CodeStars_Iss
     //TextBoxEndDate - masked
     //ButtonAddConference - pentru a adauga
     //TextBoxDomain
+    //TextBoxTicket
     //TextBoxAbstractDeadeline - masked
     //TextBoxFullPaperDeadline - masked
     //TextBoxMainDescription

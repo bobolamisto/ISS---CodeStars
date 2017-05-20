@@ -14,10 +14,10 @@ namespace CodeStars_Iss
     //ButtonAddConference- adauga conferinta - la click deschide AddConference form
     //ButtonMyConferences - Apare optiunea de a adauga co-chairs pentru conferinta ta
     //ButtonAllConferences
-    //ConferencesList - lista conferinte
+    //GridViewConferinte - lista conferinte
     //ButtonBuyTicket - daca am selectat CheckBoxListener se cumpara automat bilet ( inainte selectam conferinta pt care dorim sa cumparam )
                       //-daca am selectat CheckBoxSpeaker - deschide BuyTicketSpeaker 
-    //ButtonFullScreen 
+ 
     //La apasarea ESC de anuleaza fullscreen mode
                     
     public partial class Landing : Form
@@ -28,44 +28,11 @@ namespace CodeStars_Iss
             ctrl = c;
             InitializeComponent();
             PanelCoChair.Visible = false;
-
-        }
-
-        private void initiateData()
-        {
-            var list = ctrl.getAllConferences();
-            foreach (var conf in list)
-            {
-                ListViewItem newItem = new ListViewItem();
-                newItem.SubItems.Add(conf.Name);
-                newItem.SubItems.Add(conf.StartDate.ToString());
-                newItem.SubItems.Add(conf.EndDate.ToString());
-                newItem.SubItems.Add(conf.Domain);
-                ConferencesList.Items.Add(newItem);
-
-            }
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void Landing_Load(object sender, EventArgs e)
         {
-            initiateData();
-        }
-
-        private void FullScreenButton_Click(object sender, EventArgs e)
-        {
-            FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;
-            TopMost = true;
-        }
-
-        private void Landing_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                FormBorderStyle = FormBorderStyle.Sizable;
-                WindowState = FormWindowState.Normal;
-                TopMost = false;
-            }
         }
 
         private void ButtonMyConferences_Click(object sender, EventArgs e)
@@ -95,9 +62,6 @@ namespace CodeStars_Iss
 
         }
 
-        private void ConferencesList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.FullScreenButton = new System.Windows.Forms.Button();
-            this.ConferencesList = new System.Windows.Forms.ListView();
             this.label2 = new System.Windows.Forms.Label();
             this.ButtonMyConferences = new System.Windows.Forms.Button();
             this.ButtonAllConferences = new System.Windows.Forms.Button();
@@ -37,29 +35,10 @@
             this.PanelCoChair = new System.Windows.Forms.Panel();
             this.ButtonCoChair = new System.Windows.Forms.Button();
             this.ButtonAddConference = new System.Windows.Forms.Button();
+            this.GridViewConferinte = new System.Windows.Forms.DataGridView();
             this.PanelCoChair.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).BeginInit();
             this.SuspendLayout();
-            // 
-            // FullScreenButton
-            // 
-            this.FullScreenButton.Location = new System.Drawing.Point(575, 15);
-            this.FullScreenButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.FullScreenButton.Name = "FullScreenButton";
-            this.FullScreenButton.Size = new System.Drawing.Size(88, 27);
-            this.FullScreenButton.TabIndex = 0;
-            this.FullScreenButton.Text = "FullScreen";
-            this.FullScreenButton.UseVisualStyleBackColor = true;
-            this.FullScreenButton.Click += new System.EventHandler(this.FullScreenButton_Click);
-            // 
-            // ConferencesList
-            // 
-            this.ConferencesList.Location = new System.Drawing.Point(236, 53);
-            this.ConferencesList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ConferencesList.Name = "ConferencesList";
-            this.ConferencesList.Size = new System.Drawing.Size(269, 316);
-            this.ConferencesList.TabIndex = 1;
-            this.ConferencesList.UseCompatibleStateImageBehavior = false;
-            this.ConferencesList.SelectedIndexChanged += new System.EventHandler(this.ConferencesList_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -136,36 +115,40 @@
             this.ButtonAddConference.UseVisualStyleBackColor = true;
             this.ButtonAddConference.Click += new System.EventHandler(this.ButtonAddConference_Click);
             // 
+            // GridViewConferinte
+            // 
+            this.GridViewConferinte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewConferinte.Location = new System.Drawing.Point(240, 53);
+            this.GridViewConferinte.Name = "GridViewConferinte";
+            this.GridViewConferinte.Size = new System.Drawing.Size(643, 292);
+            this.GridViewConferinte.TabIndex = 9;
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 461);
+            this.ClientSize = new System.Drawing.Size(1125, 528);
+            this.Controls.Add(this.GridViewConferinte);
             this.Controls.Add(this.ButtonAddConference);
             this.Controls.Add(this.PanelCoChair);
             this.Controls.Add(this.ButtonBuyTicket);
             this.Controls.Add(this.ButtonAllConferences);
             this.Controls.Add(this.ButtonMyConferences);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.ConferencesList);
-            this.Controls.Add(this.FullScreenButton);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Landing";
             this.Text = "Home Page";
             this.Load += new System.EventHandler(this.Landing_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Landing_KeyDown);
             this.PanelCoChair.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button FullScreenButton;
-        private System.Windows.Forms.ListView ConferencesList;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ButtonMyConferences;
         private System.Windows.Forms.Button ButtonAllConferences;
@@ -173,6 +156,7 @@
         private System.Windows.Forms.Panel PanelCoChair;
         private System.Windows.Forms.Button ButtonCoChair;
         private System.Windows.Forms.Button ButtonAddConference;
+        private System.Windows.Forms.DataGridView GridViewConferinte;
     }
 }
 
