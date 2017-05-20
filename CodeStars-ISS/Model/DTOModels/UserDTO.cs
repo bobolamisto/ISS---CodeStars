@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Domain
+namespace Model.DTOModels
 {
-    public class User
+    [Serializable]
+    public class UserDTO
     {
-        public User()
-        {
-            ConferenceParticipations = new HashSet<User_Conference>();
-        }
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -20,7 +17,8 @@ namespace Model.Domain
         public string Email { get; set; }
         public string WebPage { get; set; }
         public bool Admin { get; set; }
-        public virtual ICollection<User_Conference> ConferenceParticipations { get; set; }
+
+        public UserDTO() { }
 
     }
 }
