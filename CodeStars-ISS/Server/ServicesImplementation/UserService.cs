@@ -7,6 +7,7 @@ using services.Services;
 using Model.Domain;
 using Persistence.Repository;
 using Model;
+using Model.DTOModels;
 
 namespace server.ServicesImplementation
 {
@@ -60,14 +61,24 @@ namespace server.ServicesImplementation
             }
         }
 
-        public Boolean logIn(string username, string password)
+        public UserDTO logIn(string username, string password)
         {
             using (var uow = new UnitOfWork())
             {
                 var u = uow.getRepository<User>().getAll().FirstOrDefault(x=>x.Username == username && _ecrypt.verifiyHash(password,x.Password));
-                if(u!=null)
-                    return true;
-                return false;
+                if(u==null)
+                    return null;
+                //dupa ce intra servicul de conversie, o sa shimb
+                var userDto = new UserDTO()
+                {
+                    Admin = u.Admin,
+                    Email = u.Email,
+                    FirstName = u.FirstName,
+                    Id = u.Id,
+                    LastName = u.LastName,
+                    Password = u.Password
+                };
+                return userDto;
             }
         }
 
