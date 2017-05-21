@@ -10,11 +10,11 @@ namespace services.Services
 {
     public interface IUserService
     {
-        User findUser(int id);
+        UserDTO findUser(int id);
         UserDTO logIn(string username, string password);
-        User createAccount(User user);
-        User removeAccount(int idUser);
-        User updateAccount(User user);
-        IEnumerable<User> findAll();
+        UserDTO createAccount(UserDTO userDTO);
+        UserDTO removeAccount(int idUser);
+        UserDTO updateAccount(UserDTO userDTO);
+        IEnumerable<UserDTO> findAll();
     }
 }

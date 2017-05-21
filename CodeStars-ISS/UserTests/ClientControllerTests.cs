@@ -8,6 +8,7 @@ using Moq;
 using services.Services;
 using Model.Domain;
 using CodeStars_Iss.Controller;
+using Model.DTOModels;
 
 namespace UserTests
 {
@@ -20,7 +21,7 @@ namespace UserTests
             var serverService = new Mock<IServerService>();
             serverService
                 .Setup(s => s.findUser(It.IsAny<int>()))
-                .Returns((User)null);
+                .Returns((UserDTO)null);
 
             var clientController = new ClientController(serverService.Object);
 
@@ -35,7 +36,7 @@ namespace UserTests
             var serverService = new Mock<IServerService>();
             serverService
                 .Setup(s => s.findUser(It.IsAny<int>()))
-                .Returns(new User
+                .Returns(new UserDTO
                 {
                     Id = 1,
                     Username = "user",
@@ -57,8 +58,8 @@ namespace UserTests
         {
             var serverService = new Mock<IServerService>();
             serverService
-                .Setup(s => s.createAccount(It.IsAny<User>()))
-                .Returns(new User
+                .Setup(s => s.createAccount(It.IsAny<UserDTO>()))
+                .Returns(new UserDTO
                 {
                     Id = 1,
                     Username = "user",
@@ -77,7 +78,7 @@ namespace UserTests
             var serverService = new Mock<IServerService>();
             serverService
                 .Setup(s => s.removeAccount(It.IsAny<int>()))
-                .Returns(new User
+                .Returns(new UserDTO
                 {
                     Id = 1,
                     Username = "user",
@@ -98,9 +99,18 @@ namespace UserTests
         {
             var serverService = new Mock<IServerService>();
             serverService.Setup(s => s.logIn(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(true);
+                .Returns(new UserDTO()
+                {
+                    Id = 1,
+                    Username = "user",
+                    FirstName = "firstname"
+                });
             var clientController = new ClientController(serverService.Object);
-            Assert.AreEqual(true, clientController.logIn("username", "password"));
+            var returnedUserDTO = clientController.logIn("username", "password");
+            Assert.IsNotNull(returnedUserDTO);
+            Assert.AreEqual(1, returnedUserDTO.Id);
+            Assert.AreEqual("user", returnedUserDTO.Username);
+            Assert.AreEqual("firstname", returnedUserDTO.FirstName);
         }
         [TestMethod]
         public void TestClientControllerUpdateAccount()
@@ -118,8 +128,8 @@ namespace UserTests
                 Admin = true
             };
             serverService
-               .Setup(s => s.updateAccount(It.IsAny<User>()))
-               .Returns(new User {
+               .Setup(s => s.updateAccount(It.IsAny<UserDTO>()))
+               .Returns(new UserDTO {
                    Id = 1,
                    Username = "usernamea",
                    FirstName = "Firstc",

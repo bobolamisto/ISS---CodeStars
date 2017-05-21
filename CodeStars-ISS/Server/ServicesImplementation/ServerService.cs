@@ -1,12 +1,7 @@
 ﻿using services.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model.Domain;
-using Persistence.Repository;
-using System.Data.Entity.Validation;
 using Model.DTOModels;
 
 namespace Server.ServicesImplementation
@@ -27,7 +22,7 @@ namespace Server.ServicesImplementation
 
 
         //methods from IUserService
-        public User findUser(int id)
+        public UserDTO findUser(int id)
         {
             return _userService.findUser(id);
         }
@@ -37,51 +32,51 @@ namespace Server.ServicesImplementation
             return _userService.logIn(username, password);
         }
 
-        public User createAccount(User user)
+        public UserDTO createAccount(UserDTO user)
         {
             return _userService.createAccount(user);
         }
 
-        public User removeAccount(int idUser)
+        public UserDTO removeAccount(int idUser)
         {
             return _userService.removeAccount(idUser);
         }
 
-        public User updateAccount(User user)
+        public UserDTO updateAccount(UserDTO user)
         {
             return _userService.updateAccount(user);
         }
 
-        public IEnumerable<User> findAll()
+        public IEnumerable<UserDTO> findAll()
         {
             return _userService.findAll();
         }
 
 
         //methods from IUserConferenceService
-        public void AddConference(int idUser, Conference conference)
+        public ConferenceDTO AddConference(int idUser, ConferenceDTO conference)
         {
-            _userConferenceService.AddConference(idUser, conference);
+            return _userConferenceService.AddConference(idUser, conference);
         }
 
-        public IEnumerable<Conference> GetRelevantConferences(int idUser, UserRole userRole)
+        public IEnumerable<ConferenceDTO> GetRelevantConferences(int idUser, UserRole userRole)
         {
             return _userConferenceService.GetRelevantConferences(idUser, userRole);
         }
 
-        public IEnumerable<Conference> GetRelevantConferences(int idUser)
+        public IEnumerable<ConferenceDTO> GetRelevantConferences(int idUser)
         {
             return _userConferenceService.GetRelevantConferences(idUser);
         }
 
-        public IEnumerable<Conference> GetAllConferences()
+        public IEnumerable<ConferenceDTO> GetAllConferences()
         {
             return _userConferenceService.GetAllConferences();
         }
 
-        public void ModifyDescription(int idUser, Conference conference)
+        public ConferenceDTO ModifyDescription(int idUser, ConferenceDTO conference)
         {
-            _userConferenceService.ModifyDescription(idUser, conference);
+            return _userConferenceService.ModifyDescription(idUser, conference);
         }
 
 
@@ -101,7 +96,7 @@ namespace Server.ServicesImplementation
             _adminConferenceService.AcceptFullConference(idConference);
         }
 
-        public IEnumerable<Conference> GetFilteredConferences(ConferenceState conferenceState)
+        public IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState)
         {
             return _adminConferenceService.GetFilteredConferences(conferenceState);
         }

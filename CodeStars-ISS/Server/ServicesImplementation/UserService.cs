@@ -8,56 +8,55 @@ using Model.Domain;
 using Persistence.Repository;
 using Model;
 using Model.DTOModels;
+using Server.ModelConverterServices;
 
 namespace server.ServicesImplementation
 {
     public class UserService : IUserService
     {
-        IEncryption _ecrypt;
-        
+        private IEncryption _ecrypt;
+        private UserConverterService converter;
+
         public UserService()
         {
             _ecrypt = new Ecryption();
-            
+            converter = new UserConverterService();
         }
-        public User findUser(int id)
+        public UserDTO findUser(int id)
         {
             using (var uow=new UnitOfWork())
             {
-                User user = uow.getRepository<User>().get(id);
-                return user;
+                var user = uow.getRepository<User>().get(id);
+                return user == null ? null : converter.convertToDTOModel(user);
             }
         }
         
-        public User createAccount(User user)
-        {
-            
-            using ( var uow = new UnitOfWork())
-            {
-                var repo = uow.getRepository<User>();
-                var u = repo.get(user.Id);
-                if (u!=null)
-                    return null;
-                user.Password = _ecrypt.generateHash(user.Password);
-                repo.save(user);
-                uow.saveChanges();
-                return user;
-            }
-        }
-
-        public User removeAccount(int idUser)
+        public UserDTO createAccount(UserDTO userDTO)
         {
             using (var uow = new UnitOfWork())
             {
-                var user = uow.getRepository<User>().get(idUser);
+                var userRepo = uow.getRepository<User>();
+                if (userRepo.get(userDTO.Id) != null)
+                    return null;
+                userDTO.Validation = "Waiting";
+                userDTO.Password = _ecrypt.generateHash(userDTO.Password);
+                userRepo.save(converter.convertToPOCOModel(userDTO));
+                uow.saveChanges();
+                return userDTO;
+            }
+        }
+
+        public UserDTO removeAccount(int idUser)
+        {
+            using (var uow = new UnitOfWork())
+            {
                 var repo = uow.getRepository<User>();
-                if (user != null)
-                {
-                    repo.remove(idUser);
-                    uow.saveChanges();
-                    return user;
-                }
-                return user;
+                var user = repo.get(idUser);
+                if (user == null)
+                    return null;
+                repo.remove(idUser);
+                uow.saveChanges();
+                return converter.convertToDTOModel(user);
             }
         }
 
@@ -65,43 +64,31 @@ namespace server.ServicesImplementation
         {
             using (var uow = new UnitOfWork())
             {
-                var u = uow.getRepository<User>().getAll().FirstOrDefault(x=>x.Username == username && _ecrypt.verifiyHash(password,x.Password));
-                if(u==null)
-                    return null;
-                //dupa ce intra servicul de conversie, o sa shimb
-                var userDto = new UserDTO()
-                {
-                    Admin = u.Admin,
-                    Email = u.Email,
-                    FirstName = u.FirstName,
-                    Id = u.Id,
-                    LastName = u.LastName,
-                    Password = u.Password
-                };
-                return userDto;
+                var user = uow.getRepository<User>().getAll().FirstOrDefault(x=>x.Username == username && _ecrypt.verifiyHash(password,x.Password));
+                return user==null ? null : converter.convertToDTOModel(user);
             }
         }
 
-        public User updateAccount(User user)
+        public UserDTO updateAccount(UserDTO userDTO)
         {
             using (var uow = new UnitOfWork())
             {
                 var repo = uow.getRepository<User>();
-                var u = repo.get(user.Id);
-                if (u == null)
+                var user = repo.get(userDTO.Id);
+                if (user == null)
                     return null;
-                user.Password = _ecrypt.generateHash(user.Password);
-                repo.update(user.Id,user);
+                userDTO.Password = _ecrypt.generateHash(userDTO.Password);
+                repo.update(userDTO.Id,converter.convertToPOCOModel(userDTO));
                 uow.saveChanges();
-                return user;
+                return userDTO;
             }
         }
 
-        public IEnumerable<User> findAll()
+        public IEnumerable<UserDTO> findAll()
         {
             using (var uow = new UnitOfWork())
             {
-                return uow.getRepository<User>().getAll();
+                return converter.convertToDTOModel(uow.getRepository<User>().getAll());
             }
         }
     }

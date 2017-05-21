@@ -44,5 +44,10 @@ namespace Server.ModelConverterServices
             poco.State = (ConferenceState) Enum.Parse(typeof(ConferenceState),model.State,true);
             return poco;
         }
+
+        public IEnumerable<ConferenceDTO> convertToDTOModel(IEnumerable<Conference> conferences)
+        {
+            return conferences.Select(convertToDTOModel).ToList();
+        }
     }
 }
