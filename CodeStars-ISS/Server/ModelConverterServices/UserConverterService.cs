@@ -40,5 +40,10 @@ namespace Server.ModelConverterServices
             poco.Validation = (AccountState)Enum.Parse(typeof(AccountState), model.Validation, true);
             return poco;
         }
+
+        public IEnumerable<UserDTO> convertToDTOModel(IEnumerable<User> users)
+        {
+            return users.Select(convertToDTOModel).ToList();
+        }
     }
 }

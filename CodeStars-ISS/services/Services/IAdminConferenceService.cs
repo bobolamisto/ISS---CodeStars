@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Model.Domain;
+using Model.DTOModels;
 
 namespace services.Services
 {
@@ -29,7 +25,7 @@ namespace services.Services
         /// <summary>
         ///  Gets all the conferences that are in a specific state.
         /// </summary>
-        IEnumerable<Conference> GetFilteredConferences(ConferenceState conferenceState);
+        IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState);
 
     }
 }

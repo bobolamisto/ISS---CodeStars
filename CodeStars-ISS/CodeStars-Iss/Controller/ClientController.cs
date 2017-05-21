@@ -19,20 +19,20 @@ namespace CodeStars_Iss.Controller
 
 
         //methods from IUserService
-        public User findUser(int id)
+        public UserDTO findUser(int id)
         {
-            User user = _server.findUser(id);
+            var user = _server.findUser(id);
             return user;
         }
 
-        public User createAccount(string username, string password, string firstname, string lastname, string email, string webpage)
+        public UserDTO createAccount(string username, string password, string firstname, string lastname, string email, string webpage)
         {
-            User user = new User { Id = 0, Username = username, Password = password, FirstName = firstname, LastName = lastname, Email = email, WebPage = webpage, Admin = false };
+            var user = new UserDTO() { Id = 0, Username = username, Password = password, FirstName = firstname, LastName = lastname, Email = email, WebPage = webpage, Admin = false };
             return _server.createAccount(user);
 
         }
 
-        public User removeAccount(int id)
+        public UserDTO removeAccount(int id)
         {
             return _server.removeAccount(id);
         }
@@ -42,9 +42,9 @@ namespace CodeStars_Iss.Controller
             return _server.logIn(username, password);
         }
 
-        public User updateAccount(int id, string username, string password, string firstname, string lastname, string email, string webpage, Boolean admin)
+        public UserDTO updateAccount(int id, string username, string password, string firstname, string lastname, string email, string webpage, Boolean admin)
         {
-            User user = new User { Id = id, Username = username, Password = password, FirstName = firstname, LastName = lastname, Email = email, WebPage = webpage, Admin = admin };
+            var user = new UserDTO { Id = id, Username = username, Password = password, FirstName = firstname, LastName = lastname, Email = email, WebPage = webpage, Admin = admin };
             return _server.updateAccount(user);
         }
 
@@ -52,29 +52,29 @@ namespace CodeStars_Iss.Controller
         // methods from IUserConferenceService
         public void addConference(int uId, int cId, string cName, DateTime cStartDate, DateTime cEndDate, string Cdomain, DateTime CabstractDeadline, DateTime cFullPaperDeadline)
         {
-            Conference c = new Conference { Id = cId, Name = cName, StartDate = cStartDate, EndDate = cEndDate, Domain = Cdomain, AbstractDeadline = CabstractDeadline, FullPaperDeadline = cFullPaperDeadline };
+            var c = new ConferenceDTO() { Id = cId, Name = cName, StartDate = cStartDate.ToString(), EndDate = cEndDate.ToString(), Domain = Cdomain, AbstractDeadline = CabstractDeadline.ToString(), FullPaperDeadline = cFullPaperDeadline.ToString() };
             _server.AddConference(uId, c);
         }
 
-        public IEnumerable<Conference> getRelevantConferences(int uId, string userRole)
+        public IEnumerable<ConferenceDTO> getRelevantConferences(int uId, string userRole)
         {
             UserRole role = (UserRole)Enum.Parse(typeof(UserRole), userRole);
             return _server.GetRelevantConferences(uId, role);
         }
 
-        public IEnumerable<Conference> getRelevantConferences(int uId)
+        public IEnumerable<ConferenceDTO> getRelevantConferences(int uId)
         {
             return _server.GetRelevantConferences(uId);
         }
 
-        public IEnumerable<Conference> getAllConferences()
+        public IEnumerable<ConferenceDTO> getAllConferences()
         {
             return _server.GetAllConferences();
         }
 
         public void modifyDescription(int uId, int cId, string cName, DateTime cStartDate, DateTime cEndDate, string Cdomain, DateTime CabstractDeadline, DateTime cFullPaperDeadline)
         {
-            Conference c = new Conference { Id = cId, Name = cName, StartDate = cStartDate, EndDate = cEndDate, Domain = Cdomain, AbstractDeadline = CabstractDeadline, FullPaperDeadline = cFullPaperDeadline };
+            var c = new ConferenceDTO { Id = cId, Name = cName, StartDate = cStartDate.ToString(), EndDate = cEndDate.ToString(), Domain = Cdomain, AbstractDeadline = CabstractDeadline.ToString(), FullPaperDeadline = cFullPaperDeadline.ToString() };
             _server.ModifyDescription(uId, c);
         }
 
@@ -94,7 +94,7 @@ namespace CodeStars_Iss.Controller
             _server.AcceptFullConference(idConference);
         }
 
-        public IEnumerable<Conference> getFilteredConferences(string conferenceState)
+        public IEnumerable<ConferenceDTO> getFilteredConferences(string conferenceState)
         {
             ConferenceState state = (ConferenceState)Enum.Parse(typeof(ConferenceState), conferenceState);
             return _server.GetFilteredConferences(state);

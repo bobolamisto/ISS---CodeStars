@@ -9,7 +9,7 @@ namespace Model.Domain
     public enum AccountState
     {
         Validated=1,
-        Wainting,
+        Waiting,
         Unvalidated
     }
     public class User

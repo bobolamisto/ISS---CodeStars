@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using Model.Domain;
+using Model.DTOModels;
 using Persistence.Repository;
+using Server.ModelConverterServices;
 
 namespace services.Services
 {
     public class AdminConferenceService : IAdminConferenceService
     {
+        private ConferenceConverterService converter;
+
+        public AdminConferenceService()
+        {
+            converter = new ConferenceConverterService();
+        }
+
         public void AcceptConferenceProposal(int idConference)
         {
             ChangeConferenceState(idConference, ConferenceState.Building);
@@ -23,12 +32,12 @@ namespace services.Services
             ChangeConferenceState(idConference, ConferenceState.Accepted);
         }
 
-        public IEnumerable<Conference> GetFilteredConferences(ConferenceState conferenceState)
+        public IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState)
         {
             using (var uow = new UnitOfWork())
             {
                 var conferenceRepo = uow.getRepository<Conference>();
-                return conferenceRepo.getAll().Where(conference => conference.State == conferenceState);
+                return converter.convertToDTOModel(conferenceRepo.getAll().Where(conference => conference.State == conferenceState));
             }
         }
 

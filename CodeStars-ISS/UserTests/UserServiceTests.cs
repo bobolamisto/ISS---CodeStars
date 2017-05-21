@@ -9,6 +9,7 @@ using Effort;
 using services.Services;
 using server.ServicesImplementation;
 using System.Data.Common;
+using Model.DTOModels;
 
 namespace UserTests
 {
@@ -37,7 +38,7 @@ namespace UserTests
         [TestMethod]
         public void TestUserServiceCreateAccount()
         {
-            User userToAdd = new User
+            UserDTO userToAdd = new UserDTO
             {
                 Username = "UserForTest",
                 Password = "Password",
@@ -45,7 +46,8 @@ namespace UserTests
                 LastName = "ForTest",
                 Email = "test@gmail.com",
                 WebPage = "test.ro",
-                Admin = true
+                Admin = true,
+                Validation = "Validated"
             };
                
                 var _userService = new UserService();
@@ -100,7 +102,7 @@ namespace UserTests
         [TestMethod]
         public void TestUserServiceLogIn()
         {
-            User userToAdd = new User
+            UserDTO userToAdd = new UserDTO()
             {
                 Username = "UserForTest",
                 Password = "Password",
@@ -108,13 +110,14 @@ namespace UserTests
                 LastName = "ForTest",
                 Email = "test@gmail.com",
                 WebPage = "test.ro",
-                Admin = true
+                Admin = true,
+                Validation = "Validated"
             };
 
             var userService = new UserService();
             userService.createAccount(userToAdd);
-            Assert.AreEqual(true, userService.logIn("UserForTest", "Password"));
-            Assert.AreEqual(false, userService.logIn("abcde", "1234"));
+            Assert.AreEqual("UserForTest", userService.logIn("UserForTest", "Password").Username);
+            Assert.AreEqual(null, userService.logIn("abcde", "1234"));
         }
 
         [TestMethod]

@@ -64,7 +64,9 @@
     <Compile Include="ModelConverterServices\ReviewConverterService.cs" />
     <Compile Include="ModelConverterServices\UserConverterService.cs" />
     <Compile Include="ModelConverterServices\User_ConferenceConverterService.cs" />
+    <Compile Include="ServicesImplementation\AdminConferenceService.cs" />
     <Compile Include="ServicesImplementation\EnumGetDataService.cs" />
+    <Compile Include="ServicesImplementation\UserConferenceService.cs" />
     <Compile Include="StartServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesImplementation\Ecryption.cs" />
