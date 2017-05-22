@@ -15,9 +15,9 @@ namespace Persistence.Repository
         {
             this.context = context;
         }
-        public void save(E item)
+        public E save(E item)
         {
-            context.Set<E>().Add(item);
+            return context.Set<E>().Add(item);
             //context.SaveChanges();
         }
 

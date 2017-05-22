@@ -40,8 +40,9 @@ namespace server.ServicesImplementation
                     return null;
                 userDTO.Validation = "Waiting";
                 userDTO.Password = _ecrypt.generateHash(userDTO.Password);
-                userRepo.save(converter.convertToPOCOModel(userDTO));
+                var account = userRepo.save(converter.convertToPOCOModel(userDTO));
                 uow.saveChanges();
+                userDTO.Id = account.Id;
                 return userDTO;
             }
         }
