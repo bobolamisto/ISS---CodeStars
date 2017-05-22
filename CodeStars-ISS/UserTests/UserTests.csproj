@@ -75,7 +75,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ClientControllerTests.cs" />
+    <Compile Include="ConferenceControllerMethodsTests.cs" />
+    <Compile Include="ConferenceModelTests.cs" />
     <Compile Include="EffortProviderFactory.cs" />
+    <Compile Include="ProposalModelTest.cs" />
     <Compile Include="ServerServiceTests.cs" />
     <Compile Include="TestInitialize.cs" />
     <Compile Include="UserModelTests.cs" />
