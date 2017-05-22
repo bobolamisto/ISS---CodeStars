@@ -10,6 +10,7 @@ using services.Services;
 using server.ServicesImplementation;
 using System.Data.Common;
 using Model.DTOModels;
+using Server.ServicesImplementation;
 
 namespace UserTests
 {
@@ -115,8 +116,16 @@ namespace UserTests
             };
 
             var userService = new UserService();
-            userService.createAccount(userToAdd);
-            Assert.AreEqual("UserForTest", userService.logIn("UserForTest", "Password").Username);
+            var userCreated = userService.createAccount(userToAdd);
+            //test duplicat, e acelasi lucru daca folosesc loginDin UserService sau serverService
+            //validare cont nou
+            //todo: AdminUserCheckerService ar trebuii inlocuit cu un mock
+            var adminUserCheckerService = new AdminUserCheckerService();
+            var userAccepted = adminUserCheckerService.AcceptNewUser(userCreated);
+
+            var userReturnedFromLogin = userService.logIn("UserForTest", "Password");
+
+            Assert.AreEqual("UserForTest", userReturnedFromLogin.Username);
             Assert.AreEqual(null, userService.logIn("abcde", "1234"));
         }
 

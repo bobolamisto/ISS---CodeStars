@@ -66,7 +66,10 @@ namespace server.ServicesImplementation
             using (var uow = new UnitOfWork())
             {
                 var user = uow.getRepository<User>().getAll().FirstOrDefault(x=>x.Username == username && _ecrypt.verifiyHash(password,x.Password));
-                return user==null ? null : converter.convertToDTOModel(user);
+                //return user == null ? null : converter.convertToDTOModel(user);
+                if (user == null)
+                    return null;
+                return user.Validation != AccountState.Validated ? null : converter.convertToDTOModel(user);
             }
         }
 

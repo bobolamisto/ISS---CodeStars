@@ -100,12 +100,20 @@ namespace UserTests
                 Email = "test@gmail.com",
                 WebPage = "test.ro",
                 Admin = true,
-                Validation = "Waiting"
             };
 
-            
-            serverService.createAccount(userToAdd);
-            Assert.AreEqual("UserForTest", serverService.logIn("UserForTest", "Password").Username);
+            //test duplicat, e acelasi lucru daca folosesc loginDin UserService sau serverService
+            var userCreated = serverService.createAccount(userToAdd);
+
+            //validare cont nou
+            //todo: AdminUserCheckerService ar trebuii inlocuit cu un mock
+            var adminUserCheckerService = new AdminUserCheckerService();
+            var userAccepted = adminUserCheckerService.AcceptNewUser(userCreated);
+
+            var userReturnedFromLogin = serverService.logIn("UserForTest", "Password");
+            //adminul face validarea in geneal, aici trebuie simulata activarea contului, altfel testul crapa
+
+            Assert.AreEqual("UserForTest", userReturnedFromLogin.Username);
             Assert.IsNull(serverService.logIn("abcde", "1234"));
         }
 

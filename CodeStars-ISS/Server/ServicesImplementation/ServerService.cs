@@ -1,6 +1,7 @@
 ﻿using services.Services;
 using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using Model.Domain;
 using Model.DTOModels;
 
@@ -11,6 +12,7 @@ namespace Server.ServicesImplementation
         private IUserService _userService;
         private IUserConferenceService _userConferenceService;
         private IAdminConferenceService _adminConferenceService;
+        private IAdminUserChekerService _adminUserCheckerService;
 
         public ServerService(IUserService userservice, IUserConferenceService userconferenceservice, IAdminConferenceService adminconferenceservice)
         {
@@ -20,6 +22,12 @@ namespace Server.ServicesImplementation
 
         }
 
+        //nu am modificat construcotrul pentru a nu trebuii sa intru iar in controller sa modific
+        //servicii o sa mai adaugam, eu zic sa le setam asa, nu sa modificam constructorul de fiecare data
+        public void SetAdminUserCheckerService(IAdminUserChekerService service)
+        {
+            _adminUserCheckerService = service;
+        }
 
         //methods from IUserService
         public UserDTO findUser(int id)
@@ -99,6 +107,17 @@ namespace Server.ServicesImplementation
         public IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState)
         {
             return _adminConferenceService.GetFilteredConferences(conferenceState);
+        }
+
+        //methods from IAdminUserCheckerService
+        public UserDTO AcceptNewUser(UserDTO userDto)
+        {
+            return _adminUserCheckerService.AcceptNewUser(userDto);
+        }
+
+        public UserDTO RejectNewUser(UserDTO userDto)
+        {
+            return _adminUserCheckerService.AcceptNewUser(userDto);
         }
     }
 }
