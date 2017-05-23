@@ -76,8 +76,11 @@
   <ItemGroup>
     <Compile Include="ClientControllerTests.cs" />
     <Compile Include="EffortProviderFactory.cs" />
+    <Compile Include="ReviwTest.cs" />
     <Compile Include="ServerServiceTests.cs" />
     <Compile Include="TestInitialize.cs" />
+    <Compile Include="UserConferenceModelTests.cs" />
+    <Compile Include="UserConferenceTests.cs" />
     <Compile Include="UserModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserServiceTests.cs" />

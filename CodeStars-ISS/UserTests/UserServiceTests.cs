@@ -99,6 +99,7 @@ namespace UserTests
             Assert.AreEqual("User1", userRemoved.Username);
             Assert.AreEqual(1, userRemoved.Id);
         }
+
         [TestMethod]
         public void TestUserServiceLogIn()
         {
