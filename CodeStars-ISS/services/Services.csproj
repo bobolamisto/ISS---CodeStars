@@ -65,6 +65,7 @@
     <Compile Include="Services\IAdminUserChekerService.cs" />
     <Compile Include="Services\IAdminConferenceService.cs" />
     <Compile Include="Services\IClientService.cs" />
+    <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\IEncryption.cs" />
     <Compile Include="Services\IModelConverterService.cs" />
     <Compile Include="Services\IServerService.cs" />
