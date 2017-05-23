@@ -23,8 +23,9 @@ namespace services.Services
                 //adaugare in tabela conferinta
                 var conferenceRepo = uow.getRepository<Conference>();
                 conferenceDTO.Edition = conferenceRepo.getAll().Count(c => c.Name.Equals(conferenceDTO.Name)) + 1;
-                conferenceRepo.save(converter.convertToPOCOModel(conferenceDTO));
+                var conference = conferenceRepo.save(converter.convertToPOCOModel(conferenceDTO));
                 uow.saveChanges();
+                conferenceDTO.Id = conference.Id;
 
                 //adaugare in tabela de legatuara
                 var userConfereceRepo = uow.getRepository<User_Conference>();

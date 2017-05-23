@@ -79,10 +79,7 @@ namespace UserTests
             Assert.AreEqual(0, serverService.findAll().ToList().Count);
             var userSaved = serverService.createAccount(userToAdd);
             Assert.AreEqual(1, serverService.findAll().ToList().Count);
-            //pentru ca in create account am parametru de intrare un DTO, si adaug acel dto in repo fara sa-i stiu id-ul
-            //nu stiu ce id ar trebuii sa aiba entitatea pe care am pus-o in repo, am putea sa rezolvam asta daca am face
-            //ca metoda save din repo-ul generic ar returna id-ul entitatii adaugate.
-            //Assert.AreEqual("UserForTest",serverService.findUser(userSaved.Id).Username);
+            Assert.AreEqual("UserForTest",serverService.findUser(userSaved.Id).Username);
             Assert.AreEqual("test.ro", userSaved.WebPage);
         }
 
@@ -103,12 +100,20 @@ namespace UserTests
                 Email = "test@gmail.com",
                 WebPage = "test.ro",
                 Admin = true,
-                Validation = "Waiting"
             };
 
-            
-            serverService.createAccount(userToAdd);
-            Assert.AreEqual("UserForTest", serverService.logIn("UserForTest", "Password").Username);
+            //test duplicat, e acelasi lucru daca folosesc loginDin UserService sau serverService
+            var userCreated = serverService.createAccount(userToAdd);
+
+            //validare cont nou
+            //todo: AdminUserCheckerService ar trebuii inlocuit cu un mock
+            var adminUserCheckerService = new AdminUserCheckerService();
+            var userAccepted = adminUserCheckerService.AcceptNewUser(userCreated);
+
+            var userReturnedFromLogin = serverService.logIn("UserForTest", "Password");
+            //adminul face validarea in geneal, aici trebuie simulata activarea contului, altfel testul crapa
+
+            Assert.AreEqual("UserForTest", userReturnedFromLogin.Username);
             Assert.IsNull(serverService.logIn("abcde", "1234"));
         }
 

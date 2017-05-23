@@ -10,7 +10,7 @@ namespace Persistence.Repository
     {
         E get(int id);
         IEnumerable<E> getAll();
-        void save(E item);
+        E save(E item);
         void remove(int id);
         void update(int id, E newItem);
 
