@@ -67,6 +67,7 @@
     <Compile Include="ServicesImplementation\AdminConferenceService.cs" />
     <Compile Include="ServicesImplementation\AdminUserCheckerService.cs" />
     <Compile Include="ServicesImplementation\EnumGetDataService.cs" />
+    <Compile Include="ServicesImplementation\TicketService.cs" />
     <Compile Include="ServicesImplementation\UserConferenceService.cs" />
     <Compile Include="StartServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,6 +13,7 @@ namespace Server.ServicesImplementation
         private IUserConferenceService _userConferenceService;
         private IAdminConferenceService _adminConferenceService;
         private IAdminUserChekerService _adminUserCheckerService;
+        private ITicketService _ticketService;
 
         public ServerService(IUserService userservice, IUserConferenceService userconferenceservice, IAdminConferenceService adminconferenceservice)
         {
@@ -27,6 +28,11 @@ namespace Server.ServicesImplementation
         public void SetAdminUserCheckerService(IAdminUserChekerService service)
         {
             _adminUserCheckerService = service;
+        }
+
+        public void SetTicketService(ITicketService service)
+        {
+            _ticketService = service;
         }
 
         //methods from IUserService
@@ -119,5 +125,17 @@ namespace Server.ServicesImplementation
         {
             return _adminUserCheckerService.AcceptNewUser(userDto);
         }
+
+        //methods from ITickerService
+        public User_ConferenceDTO BuyTicket(int idUser, int idConference)
+        {
+            return _ticketService.BuyTicket(idUser, idConference);
+        }
+
+        public float GetTicketPrice(int idConference)
+        {
+            return _ticketService.GetTicketPrice(idConference);
+        }
+
     }
 }
