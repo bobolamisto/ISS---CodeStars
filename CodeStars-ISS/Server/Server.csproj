@@ -66,6 +66,7 @@
     <Compile Include="ModelConverterServices\User_ConferenceConverterService.cs" />
     <Compile Include="ServicesImplementation\AdminConferenceService.cs" />
     <Compile Include="ServicesImplementation\AdminUserCheckerService.cs" />
+    <Compile Include="ServicesImplementation\EmailService.cs" />
     <Compile Include="ServicesImplementation\EnumGetDataService.cs" />
     <Compile Include="ServicesImplementation\TicketService.cs" />
     <Compile Include="ServicesImplementation\UserConferenceService.cs" />
