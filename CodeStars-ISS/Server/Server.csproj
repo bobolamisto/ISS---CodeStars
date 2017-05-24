@@ -64,10 +64,12 @@
     <Compile Include="ModelConverterServices\ReviewConverterService.cs" />
     <Compile Include="ModelConverterServices\UserConverterService.cs" />
     <Compile Include="ModelConverterServices\User_ConferenceConverterService.cs" />
+    <Compile Include="ServerServiceBuilder.cs" />
     <Compile Include="ServicesImplementation\AdminConferenceService.cs" />
     <Compile Include="ServicesImplementation\AdminUserCheckerService.cs" />
     <Compile Include="ServicesImplementation\EmailService.cs" />
     <Compile Include="ServicesImplementation\EnumGetDataService.cs" />
+    <Compile Include="ServicesImplementation\PaperService.cs" />
     <Compile Include="ServicesImplementation\TicketService.cs" />
     <Compile Include="ServicesImplementation\UserConferenceService.cs" />
     <Compile Include="StartServer.cs" />

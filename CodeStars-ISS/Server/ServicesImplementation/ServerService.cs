@@ -14,17 +14,39 @@ namespace Server.ServicesImplementation
         private IAdminConferenceService _adminConferenceService;
         private IAdminUserChekerService _adminUserCheckerService;
         private ITicketService _ticketService;
+        private IEmailService _emailService;
+        private IPaperService _paperService;
 
+        public ServerService(){}
+
+        //las constructorul asta doar pentru ca e folosit in teste
+        //cred ca e mai bine sa folosim consructorul fara parametrii si de ficare daca cand adaug un serviciu sa adaug o metoda pentru setare
+        //daca as modifica constructorul de fiecare data dupa aceea ar trebuii sa modific in multe locuri in proiect
+        [Obsolete]
         public ServerService(IUserService userservice, IUserConferenceService userconferenceservice, IAdminConferenceService adminconferenceservice)
         {
             _userService = userservice;
             _userConferenceService = userconferenceservice;
             _adminConferenceService = adminconferenceservice;
-
         }
 
-        //nu am modificat construcotrul pentru a nu trebuii sa intru iar in controller sa modific
-        //servicii o sa mai adaugam, eu zic sa le setam asa, nu sa modificam constructorul de fiecare data
+        #region ServiceSetters
+
+        public void SetUserService(IUserService service)
+        {
+            _userService = service;
+        }
+
+        public void SetUserConferenceService(IUserConferenceService service)
+        {
+            _userConferenceService = service;
+        }
+
+        public void SetAdminConferencesService(IAdminConferenceService service)
+        {
+            _adminConferenceService = service;
+        }
+
         public void SetAdminUserCheckerService(IAdminUserChekerService service)
         {
             _adminUserCheckerService = service;
@@ -34,6 +56,18 @@ namespace Server.ServicesImplementation
         {
             _ticketService = service;
         }
+
+        public void SetEmailService(IEmailService service)
+        {
+            _emailService = service;
+        }
+
+        public void SetPaperService(IPaperService service)
+        {
+            _paperService = service;
+        }
+
+        #endregion
 
         //methods from IUserService
         public UserDTO findUser(int id)
@@ -135,6 +169,28 @@ namespace Server.ServicesImplementation
         public float GetTicketPrice(int idConference)
         {
             return _ticketService.GetTicketPrice(idConference);
+        }
+
+        //methods from PaperService
+        ProposalDTO AddPaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        {
+            return _paperService.AddPaper(idUser, idConferinta, paperDto);
+        }
+
+        ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
+        {
+            return _paperService.RemovePaper(idUser, idConferinta, idPaper);
+        }
+
+        ProposalDTO UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        {
+            return _paperService.UpdatePaper(idUser, idConferinta, paperDto);
+        }
+
+        //metods from EmailService
+        public void SendEmail(string toEmail, string subject, string message)
+        {
+            _emailService.SendEmail(toEmail, subject, message);
         }
 
     }
