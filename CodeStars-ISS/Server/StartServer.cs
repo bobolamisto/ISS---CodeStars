@@ -28,10 +28,8 @@ namespace Server
             TcpChannel channel = new TcpChannel(props, clientProv, serverProv);
             ChannelServices.RegisterChannel(channel, false);
            
-            IUserService userService = new UserService();
-            IUserConferenceService userConferenceService = new UserConferenceService();
-            IAdminConferenceService adminConferenceService = new AdminConferenceService();
-            var server = new ServerService(userService, userConferenceService, adminConferenceService);
+            //nu era ok sa se creeze in StartServer Servicile, am adaugat o clasa builder
+            var server = ServerServiceBuilder.MakeServerService();
             RemotingServices.Marshal(server, "server");
             Console.WriteLine("Server started ...");
             Console.WriteLine("Press <enter> to exit...");
