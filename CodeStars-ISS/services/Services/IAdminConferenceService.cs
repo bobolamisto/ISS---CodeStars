@@ -27,5 +27,7 @@ namespace services.Services
         /// </summary>
         IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState);
 
+        void validateAccount(string username, string firstname, string lastname);
+
     }
 }

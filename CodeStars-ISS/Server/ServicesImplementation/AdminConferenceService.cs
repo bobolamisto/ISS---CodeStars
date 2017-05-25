@@ -51,5 +51,20 @@ namespace services.Services
                 uow.saveChanges();
             }
         }
+
+       
+        public void validateAccount(string username, string firstname, string lastname)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var userRepo = uow.getRepository<User>();
+                var user = userRepo.getAll().FirstOrDefault(x => x.Username == username && x.FirstName == firstname && x.LastName == lastname);
+                if (user != null)
+                {
+                    user.Validation = AccountState.Validated;
+                }
+                uow.saveChanges();
+            }
+        }
     }
 }

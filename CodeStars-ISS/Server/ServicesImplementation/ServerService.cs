@@ -238,5 +238,10 @@ namespace Server.ServicesImplementation
         {
             return _paperService.FindProposal( title,subject,keywords);
         }
+
+        public void validateAccount(string username, string firstname, string lastname)
+        {
+            _adminConferenceService.validateAccount(username, firstname, lastname);
+        }
     }
 }

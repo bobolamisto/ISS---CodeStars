@@ -33,7 +33,7 @@ namespace services.Services
                 var userConference = new User_Conference
                 {
                     ConferenceId = conferenceDTO.Id,
-                    Role = UserRole.Proposer,
+                    Role = UserRole.Chair,
                     UserId = idUser
                 };
                 userConfereceRepo.save(userConference);

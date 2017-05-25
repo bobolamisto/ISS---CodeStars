@@ -24,7 +24,10 @@ namespace CodeStars_Iss.Controller
             var user = _server.findUser(id);
             return user;
         }
-
+        public void validateAccount(string username, string firstname, string lastname)
+        {
+            _server.validateAccount(username, firstname, lastname);
+        }
         public UserDTO createAccount(string username, string password, string firstname, string lastname, string email, string webpage)
         {
             var user = new UserDTO() { Id = 0, Username = username, Password = password, FirstName = firstname, LastName = lastname, Email = email, WebPage = webpage, Admin = false };
@@ -122,6 +125,12 @@ namespace CodeStars_Iss.Controller
         public ProposalDTO AddProposal(int idUser,int idConf,ProposalDTO proposal)
         {
             return _server.AddPaper(idUser, idConf, proposal);
+        }
+
+        public IEnumerable<UserDTO> getAllUsers()
+        {
+           return _server.findAll().Where(u => u.Validation == AccountState.Waiting.ToString());
+
         }
 
         public ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
