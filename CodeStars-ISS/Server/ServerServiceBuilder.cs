@@ -20,7 +20,7 @@ namespace Server
             serverService.SetAdminUserCheckerService(new AdminUserCheckerService());
             serverService.SetTicketService(new TicketService());
             serverService.SetEmailService(new EmailService());
-            serverService.SetPaperService(new PaperService());
+            serverService.SetPaperService(new ProposalService());
             return serverService;
         }
     }

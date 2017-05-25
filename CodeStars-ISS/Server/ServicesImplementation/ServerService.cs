@@ -15,7 +15,7 @@ namespace Server.ServicesImplementation
         private IAdminUserChekerService _adminUserCheckerService;
         private ITicketService _ticketService;
         private IEmailService _emailService;
-        private IPaperService _paperService;
+        private IProposalService _paperService;
 
         public ServerService(){}
 
@@ -62,7 +62,7 @@ namespace Server.ServicesImplementation
             _emailService = service;
         }
 
-        public void SetPaperService(IPaperService service)
+        public void SetPaperService(IProposalService service)
         {
             _paperService = service;
         }
@@ -182,9 +182,9 @@ namespace Server.ServicesImplementation
             return _paperService.RemovePaper(idUser, idConferinta, idPaper);
         }
 
-        ProposalDTO UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        ProposalDTO UpdatePaper( ProposalDTO paperDto)
         {
-            return _paperService.UpdatePaper(idUser, idConferinta, paperDto);
+            return _paperService.UpdatePaper( paperDto);
         }
 
         //metods from EmailService
@@ -208,19 +208,19 @@ namespace Server.ServicesImplementation
             return _paperService.GetUserProposal(idUser, idConferinta);
         }
 
-        ProposalDTO IPaperService.AddPaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        ProposalDTO IProposalService.AddPaper(int idUser, int idConferinta, ProposalDTO paperDto)
         {
             return _paperService.AddPaper(idUser, idConferinta, paperDto);
         }
 
-        ProposalDTO IPaperService.RemovePaper(int idUser, int idConferinta, int idPaper)
+        ProposalDTO IProposalService.RemovePaper(int idUser, int idConferinta, int idPaper)
         {
             return _paperService.RemovePaper(idUser, idConferinta, idPaper);
         }
 
-        ProposalDTO IPaperService.UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        ProposalDTO IProposalService.UpdatePaper(ProposalDTO paperDto)
         {
-            return _paperService.UpdatePaper(idUser, idConferinta, paperDto);
+            return _paperService.UpdatePaper( paperDto);
         }
 
         public IEnumerable<ProposalDTO> GetUserProposals(int idUser)
@@ -231,6 +231,12 @@ namespace Server.ServicesImplementation
         public IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf)
         {
             return _paperService.GetProposalsToBeReviewed(idUser, idConf);
+        }
+        
+
+        public ProposalDTO FindProposal(string title, string subject, string keywords)
+        {
+            return _paperService.FindProposal( title,subject,keywords);
         }
     }
 }

@@ -124,14 +124,20 @@ namespace CodeStars_Iss.Controller
             return _server.AddPaper(idUser, idConf, proposal);
         }
 
-        ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
+        public ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
         {
             return _server.RemovePaper(idUser, idConferinta, idPaper);
         }
 
-        ProposalDTO UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        public ProposalDTO UpdatePaper(ProposalDTO paperDto)
         {
-            return _server.UpdatePaper(idUser, idConferinta, paperDto);
+            return _server.UpdatePaper( paperDto);
         }
+
+        public ProposalDTO FindProposal(string title, string subject, string keywords)
+        {
+            return _server.FindProposal(title,subject,keywords);
+        }
+
     }
 }

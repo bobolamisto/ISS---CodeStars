@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace services.Services
 {
-    public interface IPaperService
+    public interface IProposalService
     {
         /// <summary>
         /// Adauga o lucrare noua ca si propusa de un user la o anumita conferinta
@@ -22,7 +22,7 @@ namespace services.Services
         /// Se face verificarea ca userul este cel care a propus lucrarea, pentru a nu avea situatia in care un user modifica lucrarea altcuiva.
         /// De aceea si idUser si idConferinta sunt parametrii, pe langa idPaper 
         /// </summary>
-        ProposalDTO UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto);
+        ProposalDTO UpdatePaper( ProposalDTO paperDto);
 
         ProposalDTO GetUserProposal(int idUser, int idConferinta);
 
@@ -31,5 +31,7 @@ namespace services.Services
         /// Propunerile care trebuie evaluate de la conferinta la care eu sunt chair
         /// </summary>
         IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf);
+
+        ProposalDTO FindProposal( string title,string subject,string keywords);
     }
 }

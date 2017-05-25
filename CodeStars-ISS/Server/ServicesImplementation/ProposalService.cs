@@ -9,12 +9,12 @@ using System.Collections.Generic;
 
 namespace Server.ServicesImplementation
 {
-    public class PaperService : IPaperService
+    public class ProposalService : IProposalService
     {
         private ProposalConverterService _proposalConverter;
         private User_ConferenceConverterService _userConferenceConverter;
 
-        public PaperService()
+        public ProposalService()
         {
             _proposalConverter = new ProposalConverterService();
             _userConferenceConverter = new User_ConferenceConverterService();
@@ -33,6 +33,17 @@ namespace Server.ServicesImplementation
                 uow.saveChanges();
 
                 return _proposalConverter.convertToDTOModel(paperReturned);
+            }
+        }
+
+        public ProposalDTO FindProposal(string title,string subject,string keywords) { 
+            using (var uow=new UnitOfWork())
+            {
+                var proposals = uow.getRepository<Proposal>().getAll();
+                var existing = proposals.FirstOrDefault(p => p.Title == title&&p.Subject==subject&&p.Keywords==keywords);
+                if (existing == null)
+                    return null;
+                return _proposalConverter.convertToDTOModel(existing);
             }
         }
 
@@ -107,10 +118,8 @@ namespace Server.ServicesImplementation
             }
         }
 
-        public ProposalDTO UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        public ProposalDTO UpdatePaper( ProposalDTO paperDto)
         {
-            var userConference = SearchUserConference(idUser, idConferinta);
-            if (userConference == null) return null;
             using (var uow = new UnitOfWork())
             {
                 var paperRepo = uow.getRepository<Proposal>();

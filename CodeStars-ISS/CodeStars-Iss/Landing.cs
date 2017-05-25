@@ -132,9 +132,16 @@ namespace CodeStars_Iss
         //updatez o lucrare
         private void buttonUpdateProposal_Click(object sender, EventArgs e)
         {
-            UpdateProposal p = new UpdateProposal(ctrl);
+            if (GridViewProposals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a proposals!");
+                return;
+            }
+            var selectedRow = GridViewProposals.SelectedRows[0];
+            var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+            UpdateProposal p = new UpdateProposal(ctrl,prop);
             p.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         //Conferintele la care particip ca si speaker -> unde trebuie sa imi adaug lucrarile
@@ -171,7 +178,10 @@ namespace CodeStars_Iss
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
             AddProposal p = new AddProposal(ctrl,user.Id,conf.Id);
             p.Show();
-            this.Hide();
+            List<ProposalDTO> items = new List<ProposalDTO>();
+            items.Add(ctrl.GetUserProposal(user.Id, conf.Id));
+            reloadProposals(items);
+            //this.Hide();
         }
 
         //fac review la un proposal
@@ -179,7 +189,7 @@ namespace CodeStars_Iss
         {
             ReviewProposal p = new ReviewProposal(ctrl);
             p.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void buttonMyConferencesAsListener_Click(object sender, EventArgs e)
