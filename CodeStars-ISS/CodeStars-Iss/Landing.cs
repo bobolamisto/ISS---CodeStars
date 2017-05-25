@@ -156,6 +156,8 @@ namespace CodeStars_Iss
         private void buttonProposalsToBeReviewed_Click(object sender, EventArgs e)
         {
             panelReviewProposal.Visible = true;
+            var items = ctrl.GetUserProposals(user.Id);
+            reloadProposals(items);
         }
 
         //lucrarile mele 
@@ -187,7 +189,14 @@ namespace CodeStars_Iss
         //fac review la un proposal
         private void buttonReviewProposal_Click(object sender, EventArgs e)
         {
-            ReviewProposal p = new ReviewProposal(ctrl);
+            if (GridViewProposals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a proposal!");
+                return;
+            }
+            var selectedRow = GridViewProposals.SelectedRows[0];
+            var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+            ReviewProposal p = new ReviewProposal(ctrl,prop,user.Id);
             p.Show();
             //this.Hide();
         }

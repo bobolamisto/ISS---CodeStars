@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.DTOModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace services.Services
 {
-    public interface IServerService: IUserService, IUserConferenceService, IAdminConferenceService,IProposalService
+    public interface IServerService: IUserService, IUserConferenceService, IAdminConferenceService,IProposalService,IReviewService
     {
+        List<EnumObject> getData<E>();
     }
 }

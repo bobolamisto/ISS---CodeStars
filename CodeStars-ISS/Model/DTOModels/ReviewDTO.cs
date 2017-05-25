@@ -16,5 +16,14 @@ namespace Model.DTOModels
         public int ReviewerId { get; set; }
 
         public ReviewDTO() {}
+
+        public ReviewDTO(int id,string mark,string recommendation,int proposalId,int reviewerId)
+        {
+            Id = id;
+            Mark = mark;
+            Recommendation = recommendation;
+            ProposalId = proposalId;
+            ReviewerId = reviewerId;
+        }
     }
 }

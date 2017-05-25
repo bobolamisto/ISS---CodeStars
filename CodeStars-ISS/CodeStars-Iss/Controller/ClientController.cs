@@ -139,5 +139,14 @@ namespace CodeStars_Iss.Controller
             return _server.FindProposal(title,subject,keywords);
         }
 
+        public List<EnumObject> getData<E>()
+        {
+            return _server.getData<E>();
+        }
+
+        public ReviewDTO addReview(ReviewDTO model)
+        {
+            return _server.addReview(model);
+        }
     }
 }
