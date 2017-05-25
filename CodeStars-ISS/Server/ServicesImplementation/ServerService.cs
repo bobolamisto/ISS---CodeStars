@@ -16,6 +16,8 @@ namespace Server.ServicesImplementation
         private ITicketService _ticketService;
         private IEmailService _emailService;
         private IProposalService _paperService;
+        private EnumGetDataService _enumService;
+        private IReviewService _reviewService;
 
         public ServerService(){}
 
@@ -23,11 +25,17 @@ namespace Server.ServicesImplementation
         //cred ca e mai bine sa folosim consructorul fara parametrii si de ficare daca cand adaug un serviciu sa adaug o metoda pentru setare
         //daca as modifica constructorul de fiecare data dupa aceea ar trebuii sa modific in multe locuri in proiect
         [Obsolete]
-        public ServerService(IUserService userservice, IUserConferenceService userconferenceservice, IAdminConferenceService adminconferenceservice)
+        public ServerService(IUserService userservice, IUserConferenceService userconferenceservice, IAdminConferenceService adminconferenceservice,
+            ITicketService ticketservice,IEmailService emailservice,IProposalService propservice,EnumGetDataService enumservice,IReviewService reviewService)
         {
             _userService = userservice;
             _userConferenceService = userconferenceservice;
             _adminConferenceService = adminconferenceservice;
+            _ticketService = ticketservice;
+            _emailService = emailservice;
+            _paperService = propservice;
+            _enumService = enumservice;
+            _reviewService = reviewService;
         }
 
         #region ServiceSetters
@@ -65,6 +73,15 @@ namespace Server.ServicesImplementation
         public void SetPaperService(IProposalService service)
         {
             _paperService = service;
+        }
+
+        public void SetEnumService(EnumGetDataService service)
+        {
+            _enumService = service;
+        }
+        public void SetReviewService(IReviewService service)
+        {
+            _reviewService = service;
         }
 
         #endregion
@@ -239,9 +256,34 @@ namespace Server.ServicesImplementation
             return _paperService.FindProposal( title,subject,keywords);
         }
 
-        public void validateAccount(string username, string firstname, string lastname)
+        public List<EnumObject> getData<E>()
         {
-            _adminConferenceService.validateAccount(username, firstname, lastname);
+            return _enumService.getData<E>();
+        }
+
+        public ReviewDTO addReview(ReviewDTO model)
+        {
+            return _reviewService.addReview(model);
+        }
+
+        public void updateReview(ReviewDTO model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void removeReview(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ReviewDTO> getAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ReviewDTO getReview(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -70,6 +70,7 @@
     <Compile Include="ServicesImplementation\EmailService.cs" />
     <Compile Include="ServicesImplementation\EnumGetDataService.cs" />
     <Compile Include="ServicesImplementation\ProposalService.cs" />
+    <Compile Include="ServicesImplementation\ReviewService.cs" />
     <Compile Include="ServicesImplementation\TicketService.cs" />
     <Compile Include="ServicesImplementation\UserConferenceService.cs" />
     <Compile Include="StartServer.cs" />
@@ -79,7 +80,9 @@
     <Compile Include="ServicesImplementation\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="package.builder.json" />
     <None Include="packages.config" />
     <None Include="Server.nuspec" />

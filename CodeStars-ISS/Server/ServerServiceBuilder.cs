@@ -21,6 +21,8 @@ namespace Server
             serverService.SetTicketService(new TicketService());
             serverService.SetEmailService(new EmailService());
             serverService.SetPaperService(new ProposalService());
+            serverService.SetEnumService(new EnumGetDataService());
+            serverService.SetReviewService(new ReviewService());
             return serverService;
         }
     }
