@@ -42,8 +42,12 @@ namespace UserTests
             var userService = new UserService();
             var userConferenceService = new UserConferenceService();
             var adminConferenceService = new AdminConferenceService();
-
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService);
+            var proposalService = new ProposalService();
+            var reviewService = new ReviewService();
+            var ticketService = new TicketService();
+            var enumService = new EnumGetDataService();
+            var emailService = new EmailService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
 
             var user1 = serverService.findUser(1);
             var user3 = serverService.findUser(3);
@@ -63,7 +67,12 @@ namespace UserTests
             var userService = new UserService();
             var userConferenceService = new UserConferenceService();
             var adminConferenceService = new AdminConferenceService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService);
+            var proposalService = new ProposalService();
+            var reviewService = new ReviewService();
+            var ticketService = new TicketService();
+            var enumService = new EnumGetDataService();
+            var emailService = new EmailService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
             UserDTO userToAdd = new UserDTO()
             {
                 Username = "UserForTest",
@@ -89,7 +98,12 @@ namespace UserTests
             var userService = new UserService();
             var userConferenceService = new UserConferenceService();
             var adminConferenceService = new AdminConferenceService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService);
+            var proposalService = new ProposalService();
+            var reviewService = new ReviewService();
+            var ticketService = new TicketService();
+            var enumService = new EnumGetDataService();
+            var emailService = new EmailService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
 
             UserDTO userToAdd = new UserDTO()
             {
@@ -123,7 +137,12 @@ namespace UserTests
             var userService = new UserService();
             var userConferenceService = new UserConferenceService();
             var adminConferenceService = new AdminConferenceService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService);
+            var proposalService = new ProposalService();
+            var reviewService = new ReviewService();
+            var ticketService = new TicketService();
+            var enumService = new EnumGetDataService();
+            var emailService = new EmailService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
 
             PrepareData();
             var nrUsers = serverService.findAll().ToList().Count;
@@ -141,7 +160,12 @@ namespace UserTests
             var userService = new UserService();
             var userConferenceService = new UserConferenceService();
             var adminConferenceService = new AdminConferenceService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService);
+            var proposalService = new ProposalService();
+            var reviewService = new ReviewService();
+            var ticketService = new TicketService();
+            var enumService = new EnumGetDataService();
+            var emailService = new EmailService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService,ticketService,emailService,proposalService,enumService,reviewService);
 
             PrepareData();
           
@@ -171,7 +195,12 @@ namespace UserTests
             var userService = new UserService();
             var userConferenceService = new UserConferenceService();
             var adminConferenceService = new AdminConferenceService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService);
+            var proposalService = new ProposalService();
+            var reviewService = new ReviewService();
+            var ticketService = new TicketService();
+            var enumService = new EnumGetDataService();
+            var emailService = new EmailService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
 
             Assert.AreEqual(0, serverService.findAll().ToList().Count);
             PrepareData();

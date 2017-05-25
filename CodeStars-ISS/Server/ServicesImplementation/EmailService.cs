@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Server.ServicesImplementation
 {
-    class EmailService : IEmailService
+    public class EmailService : IEmailService
     {
         public void SendEmail(string toEmail, string subject, string message)
         {

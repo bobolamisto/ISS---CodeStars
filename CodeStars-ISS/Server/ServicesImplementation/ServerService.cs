@@ -19,14 +19,14 @@ namespace Server.ServicesImplementation
         private EnumGetDataService _enumService;
         private IReviewService _reviewService;
 
-        public ServerService(){}
+        public ServerService() { }
 
         //las constructorul asta doar pentru ca e folosit in teste
         //cred ca e mai bine sa folosim consructorul fara parametrii si de ficare daca cand adaug un serviciu sa adaug o metoda pentru setare
         //daca as modifica constructorul de fiecare data dupa aceea ar trebuii sa modific in multe locuri in proiect
         [Obsolete]
         public ServerService(IUserService userservice, IUserConferenceService userconferenceservice, IAdminConferenceService adminconferenceservice,
-            ITicketService ticketservice,IEmailService emailservice,IProposalService propservice,EnumGetDataService enumservice,IReviewService reviewService)
+            ITicketService ticketservice, IEmailService emailservice, IProposalService propservice, EnumGetDataService enumservice, IReviewService reviewService)
         {
             _userService = userservice;
             _userConferenceService = userconferenceservice;
@@ -199,9 +199,9 @@ namespace Server.ServicesImplementation
             return _paperService.RemovePaper(idUser, idConferinta, idPaper);
         }
 
-        ProposalDTO UpdatePaper( ProposalDTO paperDto)
+        ProposalDTO UpdatePaper(ProposalDTO paperDto)
         {
-            return _paperService.UpdatePaper( paperDto);
+            return _paperService.UpdatePaper(paperDto);
         }
 
         //metods from EmailService
@@ -212,10 +212,10 @@ namespace Server.ServicesImplementation
 
         public User_ConferenceDTO buyTicket(int idU, int idC)
         {
-            return _ticketService.BuyTicket(idU, idC); 
+            return _ticketService.BuyTicket(idU, idC);
         }
 
-        public ConferenceDTO FindConference(string startDate,string endDate)
+        public ConferenceDTO FindConference(string startDate, string endDate)
         {
             return _userConferenceService.FindConference(startDate, endDate);
         }
@@ -237,7 +237,7 @@ namespace Server.ServicesImplementation
 
         ProposalDTO IProposalService.UpdatePaper(ProposalDTO paperDto)
         {
-            return _paperService.UpdatePaper( paperDto);
+            return _paperService.UpdatePaper(paperDto);
         }
 
         public IEnumerable<ProposalDTO> GetUserProposals(int idUser)
@@ -249,11 +249,11 @@ namespace Server.ServicesImplementation
         {
             return _paperService.GetProposalsToBeReviewed(idUser, idConf);
         }
-        
+
 
         public ProposalDTO FindProposal(string title, string subject, string keywords)
         {
-            return _paperService.FindProposal( title,subject,keywords);
+            return _paperService.FindProposal(title, subject, keywords);
         }
 
         public List<EnumObject> getData<E>()
@@ -284,6 +284,10 @@ namespace Server.ServicesImplementation
         public ReviewDTO getReview(int id)
         {
             throw new NotImplementedException();
+        }
+        public void validateAccount(string username, string firstname, string lastname)
+        {
+            _adminConferenceService.validateAccount(username, firstname, lastname);
         }
     }
 }
