@@ -32,28 +32,28 @@ namespace UserTests
             }
         }
 
-        [TestMethod]
-       // public void TestConferenceServiceAddConf()
-       // {
-         //   ConferenceDTO conferenceToAdd = new ConferenceDTO
-          //  {
-            //    Id = 1,
-             //   Name = "Nume",
-              //  Edition = 11,
-               // StartDate = "12.05.2015",
-               // EndDate = "13.05.2015",
-                //Domain = "Domeniu",
-               // AbstractDeadline = "10.05.2015",
-               // FullPaperDeadline = "11.05.2015",
-               // MainDescription = "Descriere",
-                //Price = 25,
-               // State = "Accepted"
-            //};
+        //[TestMethod]
+        // public void TestConferenceServiceAddConf()
+        // {
+        //   ConferenceDTO conferenceToAdd = new ConferenceDTO
+        //  {
+        //    Id = 1,
+        //   Name = "Nume",
+        //  Edition = 11,
+        // StartDate = "12.05.2015",
+        // EndDate = "13.05.2015",
+        //Domain = "Domeniu",
+        // AbstractDeadline = "10.05.2015",
+        // FullPaperDeadline = "11.05.2015",
+        // MainDescription = "Descriere",
+        //Price = 25,
+        // State = "Accepted"
+        //};
 
-           // var _confService = new ServerService();
-          //  Assert.AreEqual(0, _confService.findAll().ToList().Count);
-           // var confSaved = _confService.createAccount(confToAdd);
+        // var _confService = new ServerService();
+        //  Assert.AreEqual(0, _confService.findAll().ToList().Count);
+        // var confSaved = _confService.createAccount(confToAdd);
         //    Assert.AreEqual(1, _confService.findAll().ToList().Count);
         //}
-    }
+    } 
 }

@@ -159,6 +159,8 @@
             this.TextBoxFullPaperDeadline.Name = "TextBoxFullPaperDeadline";
             this.TextBoxFullPaperDeadline.Size = new System.Drawing.Size(148, 25);
             this.TextBoxFullPaperDeadline.TabIndex = 18;
+            this.TextBoxFullPaperDeadline.ValidatingType = typeof(System.DateTime);
+            this.TextBoxFullPaperDeadline.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.TextBoxFullPaperDeadline_MaskInputRejected);
             // 
             // TextBoxAbstractDeadline
             // 
@@ -167,6 +169,7 @@
             this.TextBoxAbstractDeadline.Name = "TextBoxAbstractDeadline";
             this.TextBoxAbstractDeadline.Size = new System.Drawing.Size(148, 25);
             this.TextBoxAbstractDeadline.TabIndex = 19;
+            this.TextBoxAbstractDeadline.ValidatingType = typeof(System.DateTime);
             // 
             // TextBoxMainDescription
             // 
@@ -206,7 +209,7 @@
             // 
             this.TextBoxTicket.Location = new System.Drawing.Point(176, 350);
             this.TextBoxTicket.Name = "TextBoxTicket";
-            this.TextBoxTicket.Size = new System.Drawing.Size(100, 25);
+            this.TextBoxTicket.Size = new System.Drawing.Size(148, 25);
             this.TextBoxTicket.TabIndex = 24;
             // 
             // AddConference

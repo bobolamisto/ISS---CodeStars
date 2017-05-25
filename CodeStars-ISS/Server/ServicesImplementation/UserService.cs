@@ -95,5 +95,24 @@ namespace server.ServicesImplementation
                 return converter.convertToDTOModel(uow.getRepository<User>().getAll());
             }
         }
+
+        public User_ConferenceDTO buyTicket(int idU, int idC)
+        {
+            using(var uow = new UnitOfWork())
+            {
+                var repo = uow.getRepository<User_Conference>();
+                repo.save(new User_Conference { UserId = idU, ConferenceId = idC });
+                uow.saveChanges();
+                var item = repo.getAll().Where(x => x.ConferenceId == idC && x.UserId == idU);
+                User_Conference existingItem = item.ElementAt(0);
+                User_ConferenceDTO newitem = new User_ConferenceDTO();
+                newitem.Id = existingItem.Id;
+                newitem.Role = existingItem.Role.ToString();
+                newitem.UserId = existingItem.UserId;
+                newitem.ConferenceId = existingItem.ConferenceId;
+
+                return newitem;
+            }
+        }
     }
 }

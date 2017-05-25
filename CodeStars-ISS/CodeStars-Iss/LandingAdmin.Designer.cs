@@ -37,8 +37,8 @@
             this.buttonAcceptedConferences = new System.Windows.Forms.Button();
             this.buttonReviewConferences = new System.Windows.Forms.Button();
             this.panelAcceptDeclineConferences = new System.Windows.Forms.Panel();
-            this.buttonAcceptConference = new System.Windows.Forms.Button();
             this.buttonDeclineConference = new System.Windows.Forms.Button();
+            this.buttonAcceptConference = new System.Windows.Forms.Button();
             this.buttonAcceptUser = new System.Windows.Forms.Button();
             this.buttonPendingUsers = new System.Windows.Forms.Button();
             this.buttonDeclineUser = new System.Windows.Forms.Button();
@@ -141,17 +141,6 @@
             this.panelAcceptDeclineConferences.Size = new System.Drawing.Size(157, 100);
             this.panelAcceptDeclineConferences.TabIndex = 9;
             // 
-            // buttonAcceptConference
-            // 
-            this.buttonAcceptConference.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAcceptConference.Location = new System.Drawing.Point(26, 22);
-            this.buttonAcceptConference.Name = "buttonAcceptConference";
-            this.buttonAcceptConference.Size = new System.Drawing.Size(75, 23);
-            this.buttonAcceptConference.TabIndex = 0;
-            this.buttonAcceptConference.Text = "Accept";
-            this.buttonAcceptConference.UseVisualStyleBackColor = true;
-            this.buttonAcceptConference.Click += new System.EventHandler(this.buttonAcceptConference_Click);
-            // 
             // buttonDeclineConference
             // 
             this.buttonDeclineConference.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -162,6 +151,17 @@
             this.buttonDeclineConference.Text = "Decline";
             this.buttonDeclineConference.UseVisualStyleBackColor = true;
             this.buttonDeclineConference.Click += new System.EventHandler(this.buttonDeclineConference_Click);
+            // 
+            // buttonAcceptConference
+            // 
+            this.buttonAcceptConference.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAcceptConference.Location = new System.Drawing.Point(26, 22);
+            this.buttonAcceptConference.Name = "buttonAcceptConference";
+            this.buttonAcceptConference.Size = new System.Drawing.Size(75, 23);
+            this.buttonAcceptConference.TabIndex = 0;
+            this.buttonAcceptConference.Text = "Accept";
+            this.buttonAcceptConference.UseVisualStyleBackColor = true;
+            this.buttonAcceptConference.Click += new System.EventHandler(this.buttonAcceptConference_Click);
             // 
             // buttonAcceptUser
             // 
@@ -246,6 +246,7 @@
             this.Controls.Add(this.dataGridConferences);
             this.Name = "LandingAdmin";
             this.Text = "LandingAdmin";
+            this.Load += new System.EventHandler(this.LandingAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConferences)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
             this.panelAcceptDeclineConferences.ResumeLayout(false);

@@ -1,4 +1,5 @@
 ﻿using CodeStars_Iss.Controller;
+using Model.DTOModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +18,10 @@ namespace CodeStars_Iss
     public partial class LandingAdmin : Form
     {
         private ClientController ctrl;
-        public LandingAdmin(ClientController ctrl)
+        private UserDTO user;
+        public LandingAdmin(ClientController ctrl,UserDTO user)
         {
+            this.user = user;
             this.ctrl = ctrl;
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
@@ -80,6 +83,11 @@ namespace CodeStars_Iss
 
         //respinge un user
         private void buttonDeclineUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LandingAdmin_Load(object sender, EventArgs e)
         {
 
         }

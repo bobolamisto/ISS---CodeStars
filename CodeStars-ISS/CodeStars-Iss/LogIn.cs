@@ -29,9 +29,19 @@ namespace CodeStars_Iss
             var userDTO = uc.logIn(user, password);
             if (userDTO != null)
             {
-                Landing l = new Landing(uc);
-                l.Show();
-                this.Hide();
+                if (!userDTO.Admin)
+                {
+                    Landing l = new Landing(uc, userDTO);
+                    l.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    LandingAdmin l = new LandingAdmin(uc, userDTO);
+                    l.Show();
+                    this.Hide();
+                }
+
             }
             else
             {

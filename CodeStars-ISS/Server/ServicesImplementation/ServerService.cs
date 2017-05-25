@@ -193,5 +193,9 @@ namespace Server.ServicesImplementation
             _emailService.SendEmail(toEmail, subject, message);
         }
 
+        public User_ConferenceDTO buyTicket(int idU, int idC)
+        {
+            return _ticketService.BuyTicket(idU, idC); 
+        }
     }
 }

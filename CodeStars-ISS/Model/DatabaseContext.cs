@@ -40,7 +40,7 @@ namespace Model
             modelBuilder.Configurations.Add(new ReviewMap());
             modelBuilder.Configurations.Add(new ProposalMap());
         }
-
+/*
         protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
             List<DbValidationError> errors = new List<DbValidationError>();
@@ -65,5 +65,6 @@ namespace Model
             }
             return base.ValidateEntity(entityEntry, items);
         }
+        */
     }
 }
