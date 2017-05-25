@@ -103,5 +103,35 @@ namespace CodeStars_Iss.Controller
             ConferenceState state = (ConferenceState)Enum.Parse(typeof(ConferenceState), conferenceState);
             return _server.GetFilteredConferences(state);
         }
+
+        public ConferenceDTO FindConference(string startDate,string endDate)
+        {
+            return _server.FindConference(startDate, endDate);
+        }
+
+        public ProposalDTO GetUserProposal(int idUser, int idConferinta)
+        {
+            return _server.GetUserProposal(idUser, idConferinta);
+        }
+
+        public IEnumerable<ProposalDTO> GetUserProposals(int idUser)
+        {
+            return _server.GetUserProposals(idUser);
+        }
+
+        public ProposalDTO AddProposal(int idUser,int idConf,ProposalDTO proposal)
+        {
+            return _server.AddPaper(idUser, idConf, proposal);
+        }
+
+        ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
+        {
+            return _server.RemovePaper(idUser, idConferinta, idPaper);
+        }
+
+        ProposalDTO UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        {
+            return _server.UpdatePaper(idUser, idConferinta, paperDto);
+        }
     }
 }

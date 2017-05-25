@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Model.Domain;
 using Model.DTOModels;
@@ -92,6 +93,18 @@ namespace services.Services
                 uow.saveChanges();
 
                 return conferenceDTO;
+            }
+        }
+
+        public ConferenceDTO FindConference(string startDate, string endDate)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var repo = uow.getRepository<Conference>();
+                var conf = repo.getAll().FirstOrDefault(c => c.StartDate.CompareTo(DateTime.Parse(startDate))==0 && c.EndDate.CompareTo(DateTime.Parse(endDate))==0);             
+                if (conf == null)
+                    return null;
+                return converter.convertToDTOModel(conf);
             }
         }
     }

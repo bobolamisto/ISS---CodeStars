@@ -38,13 +38,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.TextBoxFullPaperDeadline = new System.Windows.Forms.MaskedTextBox();
-            this.TextBoxAbstractDeadline = new System.Windows.Forms.MaskedTextBox();
             this.TextBoxMainDescription = new System.Windows.Forms.TextBox();
-            this.TextBoxStartDate = new System.Windows.Forms.MaskedTextBox();
-            this.TextBoxEndDate = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.TextBoxTicket = new System.Windows.Forms.TextBox();
+            this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerEndDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerAbstractDeadline = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFullPaperDeadline = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // ButtonAddConference
@@ -108,7 +108,7 @@
             this.TextBoxName.Location = new System.Drawing.Point(176, 36);
             this.TextBoxName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TextBoxName.Name = "TextBoxName";
-            this.TextBoxName.Size = new System.Drawing.Size(149, 25);
+            this.TextBoxName.Size = new System.Drawing.Size(200, 25);
             this.TextBoxName.TabIndex = 11;
             // 
             // TextBoxDomain
@@ -116,7 +116,7 @@
             this.TextBoxDomain.Location = new System.Drawing.Point(176, 202);
             this.TextBoxDomain.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.TextBoxDomain.Name = "TextBoxDomain";
-            this.TextBoxDomain.Size = new System.Drawing.Size(148, 25);
+            this.TextBoxDomain.Size = new System.Drawing.Size(200, 25);
             this.TextBoxDomain.TabIndex = 14;
             // 
             // label5
@@ -152,25 +152,6 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "Main Description";
             // 
-            // TextBoxFullPaperDeadline
-            // 
-            this.TextBoxFullPaperDeadline.Location = new System.Drawing.Point(177, 304);
-            this.TextBoxFullPaperDeadline.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TextBoxFullPaperDeadline.Name = "TextBoxFullPaperDeadline";
-            this.TextBoxFullPaperDeadline.Size = new System.Drawing.Size(148, 25);
-            this.TextBoxFullPaperDeadline.TabIndex = 18;
-            this.TextBoxFullPaperDeadline.ValidatingType = typeof(System.DateTime);
-            this.TextBoxFullPaperDeadline.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.TextBoxFullPaperDeadline_MaskInputRejected);
-            // 
-            // TextBoxAbstractDeadline
-            // 
-            this.TextBoxAbstractDeadline.Location = new System.Drawing.Point(177, 253);
-            this.TextBoxAbstractDeadline.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TextBoxAbstractDeadline.Name = "TextBoxAbstractDeadline";
-            this.TextBoxAbstractDeadline.Size = new System.Drawing.Size(148, 25);
-            this.TextBoxAbstractDeadline.TabIndex = 19;
-            this.TextBoxAbstractDeadline.ValidatingType = typeof(System.DateTime);
-            // 
             // TextBoxMainDescription
             // 
             this.TextBoxMainDescription.Location = new System.Drawing.Point(176, 393);
@@ -179,22 +160,6 @@
             this.TextBoxMainDescription.Name = "TextBoxMainDescription";
             this.TextBoxMainDescription.Size = new System.Drawing.Size(235, 135);
             this.TextBoxMainDescription.TabIndex = 20;
-            // 
-            // TextBoxStartDate
-            // 
-            this.TextBoxStartDate.Location = new System.Drawing.Point(176, 90);
-            this.TextBoxStartDate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TextBoxStartDate.Name = "TextBoxStartDate";
-            this.TextBoxStartDate.Size = new System.Drawing.Size(148, 25);
-            this.TextBoxStartDate.TabIndex = 21;
-            // 
-            // TextBoxEndDate
-            // 
-            this.TextBoxEndDate.Location = new System.Drawing.Point(176, 147);
-            this.TextBoxEndDate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.TextBoxEndDate.Name = "TextBoxEndDate";
-            this.TextBoxEndDate.Size = new System.Drawing.Size(148, 25);
-            this.TextBoxEndDate.TabIndex = 22;
             // 
             // label8
             // 
@@ -209,21 +174,49 @@
             // 
             this.TextBoxTicket.Location = new System.Drawing.Point(176, 350);
             this.TextBoxTicket.Name = "TextBoxTicket";
-            this.TextBoxTicket.Size = new System.Drawing.Size(148, 25);
+            this.TextBoxTicket.Size = new System.Drawing.Size(200, 25);
             this.TextBoxTicket.TabIndex = 24;
+            // 
+            // dateTimePickerStartDate
+            // 
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(176, 87);
+            this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
+            this.dateTimePickerStartDate.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePickerStartDate.TabIndex = 25;
+            // 
+            // dateTimePickerEndDate
+            // 
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(176, 141);
+            this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
+            this.dateTimePickerEndDate.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePickerEndDate.TabIndex = 26;
+            // 
+            // dateTimePickerAbstractDeadline
+            // 
+            this.dateTimePickerAbstractDeadline.Location = new System.Drawing.Point(176, 247);
+            this.dateTimePickerAbstractDeadline.Name = "dateTimePickerAbstractDeadline";
+            this.dateTimePickerAbstractDeadline.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePickerAbstractDeadline.TabIndex = 27;
+            // 
+            // dateTimePickerFullPaperDeadline
+            // 
+            this.dateTimePickerFullPaperDeadline.Location = new System.Drawing.Point(176, 306);
+            this.dateTimePickerFullPaperDeadline.Name = "dateTimePickerFullPaperDeadline";
+            this.dateTimePickerFullPaperDeadline.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePickerFullPaperDeadline.TabIndex = 28;
             // 
             // AddConference
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 531);
+            this.Controls.Add(this.dateTimePickerFullPaperDeadline);
+            this.Controls.Add(this.dateTimePickerAbstractDeadline);
+            this.Controls.Add(this.dateTimePickerEndDate);
+            this.Controls.Add(this.dateTimePickerStartDate);
             this.Controls.Add(this.TextBoxTicket);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.TextBoxEndDate);
-            this.Controls.Add(this.TextBoxStartDate);
             this.Controls.Add(this.TextBoxMainDescription);
-            this.Controls.Add(this.TextBoxAbstractDeadline);
-            this.Controls.Add(this.TextBoxFullPaperDeadline);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -255,12 +248,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.MaskedTextBox TextBoxFullPaperDeadline;
-        private System.Windows.Forms.MaskedTextBox TextBoxAbstractDeadline;
         private System.Windows.Forms.TextBox TextBoxMainDescription;
-        private System.Windows.Forms.MaskedTextBox TextBoxStartDate;
-        private System.Windows.Forms.MaskedTextBox TextBoxEndDate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TextBoxTicket;
+        private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEndDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerAbstractDeadline;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFullPaperDeadline;
     }
 }

@@ -197,5 +197,40 @@ namespace Server.ServicesImplementation
         {
             return _ticketService.BuyTicket(idU, idC); 
         }
+
+        public ConferenceDTO FindConference(string startDate,string endDate)
+        {
+            return _userConferenceService.FindConference(startDate, endDate);
+        }
+
+        public ProposalDTO GetUserProposal(int idUser, int idConferinta)
+        {
+            return _paperService.GetUserProposal(idUser, idConferinta);
+        }
+
+        ProposalDTO IPaperService.AddPaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        {
+            return _paperService.AddPaper(idUser, idConferinta, paperDto);
+        }
+
+        ProposalDTO IPaperService.RemovePaper(int idUser, int idConferinta, int idPaper)
+        {
+            return _paperService.RemovePaper(idUser, idConferinta, idPaper);
+        }
+
+        ProposalDTO IPaperService.UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        {
+            return _paperService.UpdatePaper(idUser, idConferinta, paperDto);
+        }
+
+        public IEnumerable<ProposalDTO> GetUserProposals(int idUser)
+        {
+            return _paperService.GetUserProposals(idUser);
+        }
+
+        public IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf)
+        {
+            return _paperService.GetProposalsToBeReviewed(idUser, idConf);
+        }
     }
 }

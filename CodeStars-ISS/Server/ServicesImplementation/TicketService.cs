@@ -4,6 +4,8 @@ using Model.DTOModels;
 using Persistence.Repository;
 using services.Services;
 using Server.ModelConverterServices;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Server.ServicesImplementation
 {
@@ -21,10 +23,15 @@ namespace Server.ServicesImplementation
             using (var uow = new UnitOfWork())
             {
                 var userConferenceRepository = uow.getRepository<User_Conference>();
+                var existing = userConferenceRepository.getAll().FirstOrDefault(uc => uc.ConferenceId == idConference &&
+                                                                                  uc.UserId == idUser);
+                if (existing != null)
+                    return null;
                 var userConference = new User_Conference()
                 {
                     ConferenceId = idConference,
-                    UserId = idUser
+                    UserId = idUser,
+                    Role = UserRole.Listener
                 };
                 var userConferenceReturned = userConferenceRepository.save(userConference);
                 uow.saveChanges();

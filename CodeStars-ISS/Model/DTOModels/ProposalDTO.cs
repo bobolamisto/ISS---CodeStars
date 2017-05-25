@@ -18,6 +18,16 @@ namespace Model.DTOModels
         public int ParticipationId { get; set; }
 
         public ProposalDTO() { }
+        public ProposalDTO(int id, string title, string subject, string bastract, string fullpaper, string keywords, int partID)
+        {
+            Id = id;
+            Title = title;
+            Subject = subject;
+            Abstract = bastract;
+            FullPaper = fullpaper;
+            Keywords = keywords;
+            ParticipationId = partID;
+        }
 
     }
 }

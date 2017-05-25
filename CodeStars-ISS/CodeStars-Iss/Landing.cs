@@ -1,4 +1,5 @@
 ﻿using CodeStars_Iss.Controller;
+using Model.Domain;
 using Model.DTOModels;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace CodeStars_Iss
         private ClientController ctrl;
         private UserDTO user;
         private DataTable conferinte;
+        private DataTable proposals;
         public Landing(ClientController c,UserDTO user)
         {
             this.user = user;
@@ -35,19 +37,36 @@ namespace CodeStars_Iss
             panelAddProposal.Visible = false;
             panelReviewProposal.Visible = false;
             panelUpdateProposal.Visible = false;
-            conferinte = new DataTable();
+            
             this.WindowState = FormWindowState.Maximized;
-            this.GetConferences(false);
+            
         }
 
         private void Landing_Load(object sender, EventArgs e)
         {
+            conferinte = new DataTable();
+            conferinte.Columns.Add("Name", typeof(string));
+            conferinte.Columns.Add("Domain", typeof(string));
+            conferinte.Columns.Add("Start Date", typeof(string));
+            conferinte.Columns.Add("End Date", typeof(string));
+            conferinte.Columns.Add("Abstract Deadline", typeof(string));
+            conferinte.Columns.Add("Full Paper Deadline", typeof(string));
+            var items = ctrl.getAllConferences();
+            reloadConferences(items);
+
+            proposals = new DataTable();
+            proposals.Columns.Add("Title", typeof(string));
+            proposals.Columns.Add("Subject", typeof(string));
+            proposals.Columns.Add("Abstract", typeof(string));
+            proposals.Columns.Add("Full Paper", typeof(string));
+            proposals.Columns.Add("Key Words", typeof(string));
         }
 
         //Conferintele la care sunt owner -> adaug co-chairs
         private void ButtonMyConferences_Click(object sender, EventArgs e)
         {
-            reloadConferences(false);
+            var items = ctrl.getRelevantConferences(user.Id, (UserRole.Chair).ToString());
+            reloadConferences(items);
             PanelCoChair.Visible = true;
         }
 
@@ -59,56 +78,11 @@ namespace CodeStars_Iss
             
         }
 
-        private void GetConferences(Boolean boolean)
-        {
-            conferinte.Columns.Add("Name", typeof(string));
-            conferinte.Columns.Add("Domain", typeof(string));
-            conferinte.Columns.Add("Start Date", typeof(string));
-            conferinte.Columns.Add("End Date", typeof(string));
-            conferinte.Columns.Add("Abstract Deadline", typeof(string));
-            conferinte.Columns.Add("Full Paper Deadline", typeof(string));
+        
 
-            var items = ctrl.getAllConferences();
-            var myConf = ctrl.getRelevantConferences(user.Id);
-
-            if (boolean)
-                foreach (var item in items)
-                {
-
-                    DataRow c = conferinte.NewRow();
-                    c["Name"] = item.Name;
-                    c["Domain"] = item.Domain;
-                    c["Start Date"] = item.StartDate;
-                    c["End Date"] = item.StartDate;
-                    c["Abstract Deadline"] = item.StartDate;
-                    c["Full Paper Deadline"] = item.StartDate;
-                    conferinte.Rows.Add(c);
-                }
-            else
-            {
-                foreach (var item in myConf)
-                {
-
-                    DataRow c = conferinte.NewRow();
-                    c["Name"] = item.Name;
-                    c["Domain"] = item.Domain;
-                    c["Start Date"] = item.StartDate;
-                    c["End Date"] = item.StartDate;
-                    c["Abstract Deadline"] = item.StartDate;
-                    c["Full Paper Deadline"] = item.StartDate;
-                    conferinte.Rows.Add(c);
-                }
-            }
-            GridViewConferinte.DataSource = conferinte;
-            GridViewConferinte.ClearSelection();
-        }
-
-        private void reloadConferences(Boolean boolean)
+        private void reloadConferences(IEnumerable<ConferenceDTO> items)
         {
             conferinte.Clear();
-            var myConf = ctrl.getRelevantConferences(user.Id);
-            var items = ctrl.getAllConferences();
-            if (boolean)
                 foreach (var item in items)
                 {
 
@@ -116,36 +90,18 @@ namespace CodeStars_Iss
                     c["Name"] = item.Name;
                     c["Domain"] = item.Domain;
                     c["Start Date"] = item.StartDate;
-                    c["End Date"] = item.StartDate;
-                    c["Abstract Deadline"] = item.StartDate;
-                    c["Full Paper Deadline"] = item.StartDate;
+                    c["End Date"] = item.EndDate;
+                    c["Abstract Deadline"] = item.AbstractDeadline;
+                    c["Full Paper Deadline"] = item.FullPaperDeadline;
                     conferinte.Rows.Add(c);
                 }
-            else
-            {
-                foreach (var item in myConf)
-                {
-
-                    DataRow c = conferinte.NewRow();
-                    c["Name"] = item.Name;
-                    c["Domain"] = item.Domain;
-                    c["Start Date"] = item.StartDate;
-                    c["End Date"] = item.StartDate;
-                    c["Abstract Deadline"] = item.StartDate;
-                    c["Full Paper Deadline"] = item.StartDate;
-                    conferinte.Rows.Add(c);
-                }
-            }
             GridViewConferinte.DataSource = conferinte;
-            GridViewConferinte.ClearSelection();
-
-
         }
 
         private void ButtonAllConferences_Click(object sender, EventArgs e)
         {
-
-            reloadConferences(true);
+            var items = ctrl.getAllConferences();
+            reloadConferences(items);
             PanelCoChair.Visible = false;
 
 
@@ -153,10 +109,18 @@ namespace CodeStars_Iss
 
         private void ButtonBuyTicket_Click(object sender, EventArgs e)
         {
+            if(GridViewConferinte.SelectedRows.Count==0)
+            {
+                MessageBox.Show("Please select a conference!");
+                return;
+            }
             var selectedRow = GridViewConferinte.SelectedRows[0];
-            var items = ctrl.getAllConferences().Where(x => x.Name.Equals(selectedRow.Cells[0].Value.ToString()));
-            ConferenceDTO conf = items.ElementAt(0);
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(),selectedRow.Cells[3].Value.ToString());
             var auto = ctrl.buyTicket(user.Id, conf.Id);
+            if (auto == null)
+                MessageBox.Show("You have already a ticket at this conference");
+            else
+                MessageBox.Show("You are now a listener at " + conf.Name);
         }
 
         //adaug co chair
@@ -170,12 +134,14 @@ namespace CodeStars_Iss
         {
             UpdateProposal p = new UpdateProposal(ctrl);
             p.Show();
+            this.Hide();
         }
 
         //Conferintele la care particip ca si speaker -> unde trebuie sa imi adaug lucrarile
         private void buttonMyConferencesAsSpeaker_Click(object sender, EventArgs e)
         {
-            reloadConferences(false);
+            var items = ctrl.getRelevantConferences(user.Id, (UserRole.Speaker).ToString());
+            reloadConferences(items);
             panelAddProposal.Visible = true;
         }
 
@@ -189,13 +155,23 @@ namespace CodeStars_Iss
         private void buttonMyProposals_Click(object sender, EventArgs e)
         {
             panelUpdateProposal.Visible = true;
+            var items = ctrl.GetUserProposals(user.Id);
+            reloadProposals(items);
         }
 
         //adaug lucrare la o conferinta la care particip ca speaker
         private void buttonAddProposal_Click(object sender, EventArgs e)
         {
-            AddProposal p = new AddProposal(ctrl);
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a conference!");
+                return;
+            }
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            AddProposal p = new AddProposal(ctrl,user.Id,conf.Id);
             p.Show();
+            this.Hide();
         }
 
         //fac review la un proposal
@@ -203,6 +179,48 @@ namespace CodeStars_Iss
         {
             ReviewProposal p = new ReviewProposal(ctrl);
             p.Show();
+            this.Hide();
+        }
+
+        private void buttonMyConferencesAsListener_Click(object sender, EventArgs e)
+        {
+            var items = ctrl.getRelevantConferences(user.Id, (UserRole.Listener).ToString());
+            reloadConferences(items);
+            panelAddProposal.Visible = true;
+        }
+
+        private void GridViewConferinte_Click(object sender, EventArgs e)
+        {
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            
+            var prop = ctrl.GetUserProposal(user.Id, conf.Id);
+            if (prop == null)
+                return;
+
+            List<ProposalDTO> items = new List<ProposalDTO>();
+            items.Add(prop);
+            reloadProposals(items);
+        }
+
+        private void reloadProposals(IEnumerable<ProposalDTO> items)
+        {
+            proposals.Clear();
+                foreach (var item in items)
+                {
+                    DataRow c = proposals.NewRow();
+                    c["Title"] = item.Title;
+                    c["Subject"] = item.Subject;
+                    c["Abstract"] = item.Abstract;
+                    c["Full Paper"] = item.FullPaper;
+                    c["Key Words"] = item.Keywords;
+                    proposals.Rows.Add(c);
+                }
+            GridViewProposals.DataSource = proposals;
         }
     }
 }

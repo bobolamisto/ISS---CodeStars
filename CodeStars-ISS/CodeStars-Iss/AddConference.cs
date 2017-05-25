@@ -35,28 +35,34 @@ namespace CodeStars_Iss
 
         private void AddConference_Load(object sender, EventArgs e)
         {
-            
+            dateTimePickerStartDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerStartDate.CustomFormat = "MM/dd/yyyy hh:mm tt";
+
+            dateTimePickerEndDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerEndDate.CustomFormat = "MM/dd/yyyy hh:mm tt";
+
+            dateTimePickerAbstractDeadline.Format = DateTimePickerFormat.Custom;
+            dateTimePickerAbstractDeadline.CustomFormat = "MM/dd/yyyy hh:mm tt";
+
+            dateTimePickerFullPaperDeadline.Format = DateTimePickerFormat.Custom;
+            dateTimePickerFullPaperDeadline.CustomFormat = "MM/dd/yyyy hh:mm tt";
         }
 
         private void ButtonAddConference_Click(object sender, EventArgs e)
         {
-            string startTime = TextBoxStartDate.Text;
-            string endTime = TextBoxEndDate.Text;
-            string abstractTime = TextBoxAbstractDeadline.Text;
-            string fullPaperTime = TextBoxFullPaperDeadline.Text;
+            string startTime = dateTimePickerStartDate.Text;
+            string endTime = dateTimePickerEndDate.Text;
+            string abstractTime = dateTimePickerAbstractDeadline.Text;
+            string fullPaperTime = dateTimePickerFullPaperDeadline.Text;
 
-            string[] parse = startTime.Split('.');
-            DateTime startDate = new DateTime(int.Parse(parse[2]), int.Parse(parse[1]), int.Parse(parse[0]));
-            parse = endTime.Split('.');
-            DateTime endDate = new DateTime(int.Parse(parse[2]), int.Parse(parse[1]), int.Parse(parse[0]));
-            parse = abstractTime.Split('.');
-            DateTime abstractDate = new DateTime(int.Parse(parse[2]), int.Parse(parse[1]), int.Parse(parse[0]));
-            parse = fullPaperTime.Split('.');
-            DateTime fullPaperDate = new DateTime(int.Parse(parse[2]), int.Parse(parse[1]), int.Parse(parse[0]));
+
+            DateTime startDate = DateTime.Parse(startTime);
+            DateTime endDate = DateTime.Parse(endTime);
+            DateTime abstractDate = DateTime.Parse(abstractTime);
+            DateTime fullPaperDate = DateTime.Parse(fullPaperTime);
             string pret = TextBoxTicket.Text;
             float price = float.Parse(pret);
-
-
+            
             try
             {
                 this.ctrl.addConference(this.user.Id, 0, TextBoxName.Text, startDate, endDate, TextBoxDomain.Text, abstractDate, fullPaperDate, price,TextBoxMainDescription.Text);

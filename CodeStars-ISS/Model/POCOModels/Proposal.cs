@@ -16,6 +16,8 @@ namespace Model.Domain
         public string Keywords { get; set; }
         public int ParticipationId { get; set; }
         public virtual User_Conference Participation { get; set; }
+
+        
         
     }
 }

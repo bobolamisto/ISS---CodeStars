@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace services.Services
 {
-    public interface IServerService: IUserService, IUserConferenceService, IAdminConferenceService
+    public interface IServerService: IUserService, IUserConferenceService, IAdminConferenceService,IPaperService
     {
     }
 }

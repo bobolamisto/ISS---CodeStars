@@ -1,4 +1,6 @@
 ﻿using Model.DTOModels;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace services.Services
 {
@@ -21,5 +23,13 @@ namespace services.Services
         /// De aceea si idUser si idConferinta sunt parametrii, pe langa idPaper 
         /// </summary>
         ProposalDTO UpdatePaper(int idUser, int idConferinta, ProposalDTO paperDto);
+
+        ProposalDTO GetUserProposal(int idUser, int idConferinta);
+
+        IEnumerable<ProposalDTO> GetUserProposals(int idUser);
+        /// <summary>
+        /// Propunerile care trebuie evaluate de la conferinta la care eu sunt chair
+        /// </summary>
+        IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf);
     }
 }

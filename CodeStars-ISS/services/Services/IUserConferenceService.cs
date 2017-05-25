@@ -37,5 +37,7 @@ namespace services.Services
         /// If the conference has no current description, the method wil add a new description.
         /// </summary>
         ConferenceDTO ModifyDescription(int idUser, ConferenceDTO conferenceDTO);
+
+        ConferenceDTO FindConference(string startDate, string endDate);
     }
 }
