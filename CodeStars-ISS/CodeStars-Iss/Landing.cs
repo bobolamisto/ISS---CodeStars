@@ -180,10 +180,6 @@ namespace CodeStars_Iss
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
             AddProposal p = new AddProposal(ctrl,user.Id,conf.Id);
             p.Show();
-            List<ProposalDTO> items = new List<ProposalDTO>();
-            items.Add(ctrl.GetUserProposal(user.Id, conf.Id));
-            reloadProposals(items);
-            //this.Hide();
         }
 
         //fac review la un proposal

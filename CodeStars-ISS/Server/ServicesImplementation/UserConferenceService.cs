@@ -83,7 +83,7 @@ namespace services.Services
                 var isUserProposer =
                     userConferenceRepo.getAll()
                         .Any(userConference => userConference.UserId == idUser && 
-                        userConference.Role == UserRole.Proposer && 
+                        userConference.Role == UserRole.Chair && 
                         userConference.ConferenceId == conferenceDTO.Id);
                 if (!isUserProposer)
                     return null;

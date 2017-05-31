@@ -11,7 +11,7 @@ namespace Model.Domain
         CoChair,
         Listener,
         Speaker,
-        Proposer
+        Reviewer
     }
     public class User_Conference
     {

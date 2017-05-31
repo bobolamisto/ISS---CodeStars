@@ -14,5 +14,6 @@ namespace services.Services
         void removeReview(int id);
         IEnumerable<ReviewDTO> getAll();
         ReviewDTO getReview(int id);
+        IEnumerable<ReviewDTO> getAllForProposal(int proposalId);
     }
 }
