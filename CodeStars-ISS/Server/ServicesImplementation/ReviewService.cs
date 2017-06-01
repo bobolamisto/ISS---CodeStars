@@ -37,6 +37,11 @@ namespace Server.ServicesImplementation
             throw new NotImplementedException();
         }
 
+        public IEnumerable<ReviewDTO> getAllForProposal(int proposalId)
+        {
+            throw new NotImplementedException();
+        }
+
         public ReviewDTO getReview(int id)
         {
             throw new NotImplementedException();

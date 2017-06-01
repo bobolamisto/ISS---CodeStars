@@ -21,6 +21,7 @@ namespace Model.Mapping
             Property(p => p.Keywords);
             Property(p => p.ParticipationId);
             HasRequired(p => p.Participation).WithMany().HasForeignKey(p => p.ParticipationId);
+            HasRequired(p => p.Section).WithMany(s => s.Proposals).HasForeignKey(p => p.SectionId);
         }
     }
 }

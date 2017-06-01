@@ -16,9 +16,10 @@ namespace Model.DTOModels
         public string FullPaper { get; set; }
         public string Keywords { get; set; }
         public int ParticipationId { get; set; }
+        public int SectionId { get; set; }
 
         public ProposalDTO() { }
-        public ProposalDTO(int id, string title, string subject, string bastract, string fullpaper, string keywords, int partID)
+        public ProposalDTO(int id, string title, string subject, string bastract, string fullpaper, string keywords, int partID,int secId)
         {
             Id = id;
             Title = title;
@@ -27,6 +28,7 @@ namespace Model.DTOModels
             FullPaper = fullpaper;
             Keywords = keywords;
             ParticipationId = partID;
+            SectionId = secId;
         }
 
     }

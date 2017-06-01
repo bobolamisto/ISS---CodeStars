@@ -25,6 +25,7 @@ namespace Model.Mapping
             Property(c => c.Price);
             Property(c => c.Edition);
             HasMany(c => c.Participations).WithRequired(uc => uc.Conference).HasForeignKey(uc => uc.ConferenceId);
+            HasMany(c => c.Sections).WithRequired(s => s.Conference).HasForeignKey(s => s.ConferenceId);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Server.ServicesImplementation
         private IAdminUserChekerService _adminUserCheckerService;
         private ITicketService _ticketService;
         private IEmailService _emailService;
-        private IProposalService _paperService;
+        private IProposalService _proposalService;
         private EnumGetDataService _enumService;
         private IReviewService _reviewService;
 
@@ -33,7 +33,7 @@ namespace Server.ServicesImplementation
             _adminConferenceService = adminconferenceservice;
             _ticketService = ticketservice;
             _emailService = emailservice;
-            _paperService = propservice;
+            _proposalService = propservice;
             _enumService = enumservice;
             _reviewService = reviewService;
         }
@@ -72,7 +72,7 @@ namespace Server.ServicesImplementation
 
         public void SetPaperService(IProposalService service)
         {
-            _paperService = service;
+            _proposalService = service;
         }
 
         public void SetEnumService(EnumGetDataService service)
@@ -166,6 +166,11 @@ namespace Server.ServicesImplementation
             return _adminConferenceService.GetFilteredConferences(conferenceState);
         }
 
+        public void validateAccount(string username, string firstname, string lastname)
+        {
+            _adminConferenceService.validateAccount(username, firstname, lastname);
+        }
+
         //methods from IAdminUserCheckerService
         public UserDTO AcceptNewUser(UserDTO userDto)
         {
@@ -189,26 +194,49 @@ namespace Server.ServicesImplementation
         }
 
         //methods from PaperService
-        ProposalDTO AddPaper(int idUser, int idConferinta, ProposalDTO paperDto)
+        public ProposalDTO AddPaper(int idUser, int idConferinta, ProposalDTO paperDto)
         {
-            return _paperService.AddPaper(idUser, idConferinta, paperDto);
+            return _proposalService.AddPaper(idUser, idConferinta, paperDto);
         }
 
-        ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
+        public ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
         {
-            return _paperService.RemovePaper(idUser, idConferinta, idPaper);
+            return _proposalService.RemovePaper(idUser, idConferinta, idPaper);
         }
 
-        ProposalDTO UpdatePaper(ProposalDTO paperDto)
+        public ProposalDTO UpdatePaper(ProposalDTO paperDto)
         {
-            return _paperService.UpdatePaper(paperDto);
+            return _proposalService.UpdatePaper(paperDto);
         }
 
-        //metods from EmailService
+        public ProposalDTO GetUserProposal(int idUser, int idConferinta)
+        {
+            return _proposalService.GetUserProposal(idUser, idConferinta);
+        }
+
+        public IEnumerable<ProposalDTO> GetUserProposals(int idUser)
+        {
+            return _proposalService.GetUserProposals(idUser);
+        }
+
+        public IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf)
+        {
+            return _proposalService.GetProposalsToBeReviewed(idUser, idConf);
+        }
+
+
+        public ProposalDTO FindProposal(string title, string subject, string keywords)
+        {
+            return _proposalService.FindProposal(title, subject, keywords);
+        }
+
+        //methods from EmailService
         public void SendEmail(string toEmail, string subject, string message)
         {
             _emailService.SendEmail(toEmail, subject, message);
         }
+
+        //methods from User_Conference Service
 
         public User_ConferenceDTO buyTicket(int idU, int idC)
         {
@@ -218,49 +246,16 @@ namespace Server.ServicesImplementation
         public ConferenceDTO FindConference(string startDate, string endDate)
         {
             return _userConferenceService.FindConference(startDate, endDate);
-        }
+        } 
 
-        public ProposalDTO GetUserProposal(int idUser, int idConferinta)
-        {
-            return _paperService.GetUserProposal(idUser, idConferinta);
-        }
-
-        ProposalDTO IProposalService.AddPaper(int idUser, int idConferinta, ProposalDTO paperDto)
-        {
-            return _paperService.AddPaper(idUser, idConferinta, paperDto);
-        }
-
-        ProposalDTO IProposalService.RemovePaper(int idUser, int idConferinta, int idPaper)
-        {
-            return _paperService.RemovePaper(idUser, idConferinta, idPaper);
-        }
-
-        ProposalDTO IProposalService.UpdatePaper(ProposalDTO paperDto)
-        {
-            return _paperService.UpdatePaper(paperDto);
-        }
-
-        public IEnumerable<ProposalDTO> GetUserProposals(int idUser)
-        {
-            return _paperService.GetUserProposals(idUser);
-        }
-
-        public IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf)
-        {
-            return _paperService.GetProposalsToBeReviewed(idUser, idConf);
-        }
-
-
-        public ProposalDTO FindProposal(string title, string subject, string keywords)
-        {
-            return _paperService.FindProposal(title, subject, keywords);
-        }
-
+        
+        //methods from Enum Service
         public List<EnumObject> getData<E>()
         {
             return _enumService.getData<E>();
         }
 
+        //methods from Review Service
         public ReviewDTO addReview(ReviewDTO model)
         {
             return _reviewService.addReview(model);
@@ -285,9 +280,36 @@ namespace Server.ServicesImplementation
         {
             throw new NotImplementedException();
         }
-        public void validateAccount(string username, string firstname, string lastname)
+
+        public IEnumerable<ReviewDTO> getAllForProposal(int proposalId)
         {
-            _adminConferenceService.validateAccount(username, firstname, lastname);
+            throw new NotImplementedException();
         }
+
+
+        //methods from Section Service
+        public IEnumerable<SectionDTO> getSectionsOfConference(int conferenceId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SectionDTO addSection(SectionDTO section)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void updateSection(SectionDTO section)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteSection(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        
     }
 }

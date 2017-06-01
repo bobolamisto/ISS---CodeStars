@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using Model.POCOModels;
 
 namespace Model
 {
@@ -20,6 +21,7 @@ namespace Model
         public DbSet<User_Conference> ConferenceParticipations { get; set; }
         public DbSet<Proposal> Proposals { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Section> Sections { get; set; }
         public object ObjectStateManager { get; set; }
 
         public DatabaseContext() : base("DatabaseContext")
@@ -39,6 +41,7 @@ namespace Model
             modelBuilder.Configurations.Add(new UserConferenceMap());
             modelBuilder.Configurations.Add(new ReviewMap());
             modelBuilder.Configurations.Add(new ProposalMap());
+            modelBuilder.Configurations.Add(new SectionMap());
         }
 /*
         protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)

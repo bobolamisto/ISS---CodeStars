@@ -37,7 +37,7 @@ namespace CodeStars_Iss
             var abstrac = textBoxAbstract.Text;
             var fullpaper = textBoxFull.Text;
             var keywords = textBoxKeywords.Text;
-            var ok = ctr.AddProposal(userId, confId, new Model.DTOModels.ProposalDTO(0, title, subject, abstrac, fullpaper, keywords, 0));
+            var ok = ctr.AddProposal(userId, confId, new Model.DTOModels.ProposalDTO(0, title, subject, abstrac, fullpaper, keywords, 0,1));
             if (ok != null)
             { MessageBox.Show("Proposal added successfully!");
                 this.Close();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.POCOModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,8 @@ namespace Model.Domain
         public string FullPaper { get; set; }
         public string Keywords { get; set; }
         public int ParticipationId { get; set; }
+        public int SectionId { get; set; }
         public virtual User_Conference Participation { get; set; }
-
-        
-        
+        public virtual Section Section { get; set; }        
     }
 }

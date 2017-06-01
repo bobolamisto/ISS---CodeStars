@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.POCOModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,10 +30,12 @@ namespace Model.Domain
         public ConferenceState State { get; set; }
 
         public virtual ICollection<User_Conference> Participations { get; set; }
+        public virtual ICollection<Section> Sections { get; set; }
 
         public Conference()
         {
             Participations = new HashSet<User_Conference>();
+            Sections = new HashSet<Section>();
         }
     }
 }

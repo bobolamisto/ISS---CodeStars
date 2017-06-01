@@ -63,9 +63,12 @@
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="DTOModels\EnumObject.cs" />
+    <Compile Include="DTOModels\SectionDTO.cs" />
+    <Compile Include="Mapping\SectionMap.cs" />
     <Compile Include="POCOModels\Conference.cs" />
     <Compile Include="POCOModels\Proposal.cs" />
     <Compile Include="POCOModels\Review.cs" />
+    <Compile Include="POCOModels\Section.cs" />
     <Compile Include="POCOModels\User.cs" />
     <Compile Include="POCOModels\User_Conference.cs" />
     <Compile Include="DTOModels\ConferenceDTO.cs" />

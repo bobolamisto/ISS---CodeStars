@@ -70,6 +70,7 @@
     <Compile Include="Services\IModelConverterService.cs" />
     <Compile Include="Services\IProposalService.cs" />
     <Compile Include="Services\IReviewService.cs" />
+    <Compile Include="Services\ISectionService.cs" />
     <Compile Include="Services\IServerService.cs" />
     <Compile Include="Services\ITicketService.cs" />
     <Compile Include="Services\IUserConferenceService.cs" />

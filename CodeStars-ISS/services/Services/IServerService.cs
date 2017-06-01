@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace services.Services
 {
-    public interface IServerService: IUserService, IUserConferenceService, IAdminConferenceService,IProposalService,IReviewService
+    public interface IServerService: IUserService, IUserConferenceService, IAdminConferenceService,IProposalService,IReviewService,ISectionService
     {
         List<EnumObject> getData<E>();
     }
