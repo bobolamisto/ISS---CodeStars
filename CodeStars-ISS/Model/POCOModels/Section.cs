@@ -16,7 +16,7 @@ namespace Model.POCOModels
         public int ChairId { get; set; }
         public int ConferenceId { get; set; }
         public virtual User Chair { get; set; }
-        public virtual Conference Conference { get; set; }
+        public virtual ConferenceDTO Conference { get; set; }
         public virtual ICollection<Proposal> Proposals { get; set; }
         public Section()
         {

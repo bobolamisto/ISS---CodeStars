@@ -25,7 +25,7 @@ namespace services.Services
         /// <summary>
         ///  Gets all the conferences that are in a specific state.
         /// </summary>
-        IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState);
+        IEnumerable<Model.DTOModels.ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState);
 
         void validateAccount(string username, string firstname, string lastname);
 
