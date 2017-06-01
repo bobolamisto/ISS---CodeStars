@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,27 +64,16 @@ namespace CodeStars_Iss
             string pret = TextBoxTicket.Text;
             float price = float.Parse(pret);
             
+
             try
             {
-                this.ctrl.addConference(this.user.Id, 0, TextBoxName.Text, startDate, endDate, TextBoxDomain.Text, abstractDate, fullPaperDate, price,TextBoxMainDescription.Text);
+                this.ctrl.addConference(this.user.Id, 0, TextBoxName.Text, startDate, endDate, TextBoxDomain.Text, abstractDate, fullPaperDate, price, TextBoxMainDescription.Text);
                 MessageBox.Show("The conference was added successfully");
                 this.Close();
             }
-            catch (DbEntityValidationException dbEx)
+            catch(Exception ex)
             {
-
-                foreach (DbEntityValidationResult entityErr in dbEx.EntityValidationErrors)
-                {
-                    foreach (DbValidationError error in entityErr.ValidationErrors)
-                    {
-                        Console.WriteLine("Error Property Name {0} : Error Message: {1}",
-                        error.PropertyName, error.ErrorMessage);
-                    }
-                }
-            }
-            catch(Exception exception)
-            {
-                MessageBox.Show(exception.ToString());
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -1,7 +1,9 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,6 +37,27 @@ namespace Persistence.Repository
         public void saveChanges()
         {
             context.SaveChanges();
+            //string errors = "";
+            //try
+            //{
+            //    context.SaveChanges();
+            //}
+            //catch (DbEntityValidationException dbEx)
+            //{
+            //    foreach (DbEntityValidationResult entityErr in dbEx.EntityValidationErrors)
+            //    {
+            //        foreach (DbValidationError error in entityErr.ValidationErrors)
+            //        {
+            //            errors += String.Format("Error Property Name {0} : Error Message: {1} \n",
+            //            error.PropertyName, error.ErrorMessage);
+            //        }
+            //    }
+            //}
+            //finally
+            //{
+            //    if (errors != "")
+            //        throw new ValidationException(errors);
+            //}
         }
 
     }
