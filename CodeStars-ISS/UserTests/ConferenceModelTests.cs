@@ -16,7 +16,7 @@ namespace UserTests
         public void TestConference()
         {
             //arrange
-            Conference conference1 = new Conference
+            ConferenceDTO conference1 = new ConferenceDTO
             {
                 Id = 11,
                 Name = "Conferinta1",

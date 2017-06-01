@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Mapping
 {
-    internal class ConferenceMap : EntityTypeConfiguration<Conference>
+    internal class ConferenceMap : EntityTypeConfiguration<ConferenceDTO>
     {
         public ConferenceMap()
         {
