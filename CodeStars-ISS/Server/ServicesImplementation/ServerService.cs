@@ -18,6 +18,7 @@ namespace Server.ServicesImplementation
         private IProposalService _proposalService;
         private EnumGetDataService _enumService;
         private IReviewService _reviewService;
+        private ISectionService _sectionService;
 
         public ServerService() { }
 
@@ -26,7 +27,8 @@ namespace Server.ServicesImplementation
         //daca as modifica constructorul de fiecare data dupa aceea ar trebuii sa modific in multe locuri in proiect
         [Obsolete]
         public ServerService(IUserService userservice, IUserConferenceService userconferenceservice, IAdminConferenceService adminconferenceservice,
-            ITicketService ticketservice, IEmailService emailservice, IProposalService propservice, EnumGetDataService enumservice, IReviewService reviewService)
+            ITicketService ticketservice, IEmailService emailservice, IProposalService propservice, EnumGetDataService enumservice, 
+            IReviewService reviewService,ISectionService sectionService)
         {
             _userService = userservice;
             _userConferenceService = userconferenceservice;
@@ -36,6 +38,7 @@ namespace Server.ServicesImplementation
             _proposalService = propservice;
             _enumService = enumservice;
             _reviewService = reviewService;
+            _sectionService = sectionService;
         }
 
         #region ServiceSetters
@@ -82,6 +85,11 @@ namespace Server.ServicesImplementation
         public void SetReviewService(IReviewService service)
         {
             _reviewService = service;
+        }
+
+        public void SetSectionService(ISectionService service)
+        {
+            _sectionService = service;
         }
 
         #endregion
@@ -290,25 +298,23 @@ namespace Server.ServicesImplementation
         //methods from Section Service
         public IEnumerable<SectionDTO> getSectionsOfConference(int conferenceId)
         {
-            throw new NotImplementedException();
+            return _sectionService.getSectionsOfConference(conferenceId);
         }
 
         public SectionDTO addSection(SectionDTO section)
         {
-            throw new NotImplementedException();
+            return _sectionService.addSection(section);
         }
 
         public void updateSection(SectionDTO section)
         {
-            throw new NotImplementedException();
+            _sectionService.updateSection(section);
         }
 
         public void deleteSection(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        
+            _sectionService.deleteSection(id);
+        }       
 
         
     }

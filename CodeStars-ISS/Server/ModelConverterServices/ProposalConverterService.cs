@@ -11,6 +11,11 @@ namespace Server.ModelConverterServices
 {
     public class ProposalConverterService : IModelConverterService<Proposal, ProposalDTO>
     {
+        public IEnumerable<ProposalDTO> convertToDTOList(IEnumerable<Proposal> models)
+        {
+            return models.Select(convertToDTOModel).ToList();
+        }
+
         public ProposalDTO convertToDTOModel(Proposal model)
         {
             ProposalDTO dto = new ProposalDTO();

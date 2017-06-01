@@ -47,7 +47,8 @@ namespace UserTests
             var ticketService = new TicketService();
             var enumService = new EnumGetDataService();
             var emailService = new EmailService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
+            var sectionService = new SectionService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService,sectionService);
 
             var user1 = serverService.findUser(1);
             var user3 = serverService.findUser(3);
@@ -72,7 +73,8 @@ namespace UserTests
             var ticketService = new TicketService();
             var enumService = new EnumGetDataService();
             var emailService = new EmailService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
+            var sectionService = new SectionService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService, sectionService);
             UserDTO userToAdd = new UserDTO()
             {
                 Username = "UserForTest",
@@ -103,7 +105,8 @@ namespace UserTests
             var ticketService = new TicketService();
             var enumService = new EnumGetDataService();
             var emailService = new EmailService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
+            var sectionService = new SectionService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService, sectionService);
 
             UserDTO userToAdd = new UserDTO()
             {
@@ -142,7 +145,8 @@ namespace UserTests
             var ticketService = new TicketService();
             var enumService = new EnumGetDataService();
             var emailService = new EmailService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
+            var sectionService = new SectionService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService, sectionService);
 
             PrepareData();
             var nrUsers = serverService.findAll().ToList().Count;
@@ -165,7 +169,8 @@ namespace UserTests
             var ticketService = new TicketService();
             var enumService = new EnumGetDataService();
             var emailService = new EmailService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService,ticketService,emailService,proposalService,enumService,reviewService);
+            var sectionService = new SectionService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService, sectionService);
 
             PrepareData();
           
@@ -200,7 +205,8 @@ namespace UserTests
             var ticketService = new TicketService();
             var enumService = new EnumGetDataService();
             var emailService = new EmailService();
-            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService);
+            var sectionService = new SectionService();
+            var serverService = new ServerService(userService, userConferenceService, adminConferenceService, ticketService, emailService, proposalService, enumService, reviewService, sectionService);
 
             Assert.AreEqual(0, serverService.findAll().ToList().Count);
             PrepareData();

@@ -92,7 +92,7 @@ namespace server.ServicesImplementation
         {
             using (var uow = new UnitOfWork())
             {
-                return converter.convertToDTOModel(uow.getRepository<User>().getAll());
+                return converter.convertToDTOList(uow.getRepository<User>().getAll());
             }
         }
 

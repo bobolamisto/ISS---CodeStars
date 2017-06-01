@@ -23,6 +23,7 @@ namespace Server
             serverService.SetPaperService(new ProposalService());
             serverService.SetEnumService(new EnumGetDataService());
             serverService.SetReviewService(new ReviewService());
+            serverService.SetSectionService(new SectionService());
             return serverService;
         }
     }

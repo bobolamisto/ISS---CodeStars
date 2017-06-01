@@ -41,7 +41,7 @@ namespace Server.ModelConverterServices
             return poco;
         }
 
-        public IEnumerable<UserDTO> convertToDTOModel(IEnumerable<User> users)
+        public IEnumerable<UserDTO> convertToDTOList(IEnumerable<User> users)
         {
             return users.Select(convertToDTOModel).ToList();
         }

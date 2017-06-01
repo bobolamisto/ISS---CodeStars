@@ -62,6 +62,7 @@
     <Compile Include="ModelConverterServices\ConferenceConverterService.cs" />
     <Compile Include="ModelConverterServices\ProposalConverterService.cs" />
     <Compile Include="ModelConverterServices\ReviewConverterService.cs" />
+    <Compile Include="ModelConverterServices\SectionConverterService.cs" />
     <Compile Include="ModelConverterServices\UserConverterService.cs" />
     <Compile Include="ModelConverterServices\User_ConferenceConverterService.cs" />
     <Compile Include="ServerServiceBuilder.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="ServicesImplementation\EnumGetDataService.cs" />
     <Compile Include="ServicesImplementation\ProposalService.cs" />
     <Compile Include="ServicesImplementation\ReviewService.cs" />
+    <Compile Include="ServicesImplementation\SectionService.cs" />
     <Compile Include="ServicesImplementation\TicketService.cs" />
     <Compile Include="ServicesImplementation\UserConferenceService.cs" />
     <Compile Include="StartServer.cs" />

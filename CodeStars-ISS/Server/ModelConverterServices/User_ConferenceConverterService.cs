@@ -11,6 +11,11 @@ namespace Server.ModelConverterServices
 {
     public class User_ConferenceConverterService : IModelConverterService<User_Conference, User_ConferenceDTO>
     {
+        public IEnumerable<User_ConferenceDTO> convertToDTOList(IEnumerable<User_Conference> models)
+        {
+            return models.Select(convertToDTOModel).ToList();
+        }
+
         public User_ConferenceDTO convertToDTOModel(User_Conference model)
         {
             User_ConferenceDTO dto = new User_ConferenceDTO();

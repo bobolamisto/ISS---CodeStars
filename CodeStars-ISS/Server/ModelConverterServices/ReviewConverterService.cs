@@ -11,6 +11,11 @@ namespace Server.ModelConverterServices
 {
     public class ReviewConverterService : IModelConverterService<Review, ReviewDTO>
     {
+        public IEnumerable<ReviewDTO> convertToDTOList(IEnumerable<Review> models)
+        {
+            return models.Select(convertToDTOModel).ToList();
+        }
+
         public ReviewDTO convertToDTOModel(Review model)
         {
             ReviewDTO dto = new ReviewDTO();

@@ -45,9 +45,10 @@ namespace Server.ModelConverterServices
             return poco;
         }
 
-        public IEnumerable<ConferenceDTO> convertToDTOModel(IEnumerable<Conference> conferences)
+        public IEnumerable<ConferenceDTO> convertToDTOList(IEnumerable<Conference> conferences)
         {
             return conferences.Select(convertToDTOModel).ToList();
         }
+        
     }
 }

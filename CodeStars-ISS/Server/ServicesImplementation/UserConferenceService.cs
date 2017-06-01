@@ -51,7 +51,7 @@ namespace services.Services
                 {
                     return conference.Participations.Count(userConference => userConference.UserId == idUser && userConference.Role == userRole) != 0;
                 });
-                return converter.convertToDTOModel(relevantConferences);
+                return converter.convertToDTOList(relevantConferences);
             }
         }
 
@@ -61,7 +61,7 @@ namespace services.Services
             {
                 var conferenceRepo = uow.getRepository<Conference>();
                 var user = conferenceRepo.get(idUser);
-                return converter.convertToDTOModel(user.Participations.Select(userConference => userConference.Conference));
+                return converter.convertToDTOList(user.Participations.Select(userConference => userConference.Conference));
             }
         }
 
@@ -70,7 +70,7 @@ namespace services.Services
             using (var uow = new UnitOfWork())
             {
                 var conferenceRepo = uow.getRepository<Conference>();
-                return converter.convertToDTOModel(conferenceRepo.getAll().Where(conference => conference.State == ConferenceState.Accepted));
+                return converter.convertToDTOList(conferenceRepo.getAll().Where(conference => conference.State == ConferenceState.Accepted));
             }
         }
 

@@ -10,5 +10,6 @@ namespace services.Services
     {
         DTO convertToDTOModel(POCO model);
         POCO convertToPOCOModel(DTO model);
+        IEnumerable<DTO> convertToDTOList(IEnumerable<POCO> models);
     }
 }
