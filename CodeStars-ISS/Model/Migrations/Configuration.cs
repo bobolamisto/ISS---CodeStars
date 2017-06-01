@@ -25,8 +25,8 @@ namespace Model.Migrations
 
             var conferences = new Conference[]
             {
-                new Conference {Id=1, Name="Conferinta1",StartDate=new DateTime(2017,2,1), EndDate= new DateTime(2017,4,5), AbstractDeadline=new DateTime(2017,1,1),FullPaperDeadline=new DateTime(2017,1,5), Domain="IT",Price=55.5f,Edition=2,MainDescription="description1",State=ConferenceState.Accepted},
-                new Conference {Id=2, Name="Conferinta2",StartDate=new DateTime(2016,5,23), EndDate= new DateTime(2016,7,23),AbstractDeadline= new DateTime(2016,5,2),FullPaperDeadline= new DateTime(2016,5,3), Domain="IT",Price=56.7f,Edition=1,MainDescription="description2",State=ConferenceState.Accepted}
+                new Conference {Id=1, Name="Conferinta1",StartDate=new DateTime(2017,2,1), EndDate= new DateTime(2017,4,5), AbstractDeadline=new DateTime(2017,3,20),FullPaperDeadline=new DateTime(2017,4,1), Domain="IT",Price=55.5f,Edition=1,MainDescription="description1",State=ConferenceState.Accepted},
+                new Conference {Id=2, Name="Conferinta2",StartDate=new DateTime(2016,5,23), EndDate= new DateTime(2016,7,23),AbstractDeadline= new DateTime(2016,6,2),FullPaperDeadline= new DateTime(2016,7,20), Domain="IT",Price=56.7f,Edition=1,MainDescription="description2",State=ConferenceState.Accepted}
             };
 
             var participations = new User_Conference[]

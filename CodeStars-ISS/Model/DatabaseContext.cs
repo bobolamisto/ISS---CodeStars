@@ -43,7 +43,7 @@ namespace Model
             modelBuilder.Configurations.Add(new ProposalMap());
             modelBuilder.Configurations.Add(new SectionMap());
         }
-/*
+
         protected override DbEntityValidationResult ValidateEntity(DbEntityEntry entityEntry, IDictionary<object, object> items)
         {
             List<DbValidationError> errors = new List<DbValidationError>();
@@ -59,15 +59,15 @@ namespace Model
                     errors.Add(new DbValidationError("Name", "Conference name can't be null"));
                 if (conference.Domain == "")
                     errors.Add(new DbValidationError("Domain", "Conference domain can't be null"));
-                if (conference.AbstractDeadline.CompareTo(conference.StartDate) >= 0)
-                    errors.Add(new DbValidationError("AbstractDeadline", String.Format("The deadline for abstracts submission must be before {0}", conference.StartDate)));
-                if (conference.FullPaperDeadline.CompareTo(conference.StartDate) >= 0)
-                    errors.Add(new DbValidationError("FullPapersDeadline", String.Format("The deadline for full papers submission must be before {0}", conference.StartDate)));
+                if (conference.AbstractDeadline.CompareTo(conference.EndDate) >= 0)
+                    errors.Add(new DbValidationError("AbstractDeadline", String.Format("The deadline for abstracts submission must be before {0}", conference.EndDate)));
+                if (conference.FullPaperDeadline.CompareTo(conference.EndDate) >= 0)
+                    errors.Add(new DbValidationError("FullPapersDeadline", String.Format("The deadline for full papers submission must be before {0}", conference.EndDate)));
                 if (errors.Count > 0)
                     return new DbEntityValidationResult(entityEntry, errors);
             }
             return base.ValidateEntity(entityEntry, items);
         }
-        */
+        
     }
 }
