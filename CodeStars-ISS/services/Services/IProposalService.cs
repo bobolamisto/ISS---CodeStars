@@ -33,5 +33,6 @@ namespace services.Services
         IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf);
 
         ProposalDTO FindProposal( string title,string subject,string keywords);
+        IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId);
     }
 }
