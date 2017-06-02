@@ -12,31 +12,31 @@ namespace services.Services
         /// <summary>
         /// Adds the conference in which the user will be the proposer.
         /// </summary>
-        ConferenceDTO AddConference(int idUser, Model.DTOModels.ConferenceDTO conferenceDTO);
+        ConferenceDTO AddConference(int idUser, ConferenceDTO conferenceDTO);
 
         /// <summary>
         /// Used for getting a list of conferences for a specific user with a SPECIFIC USER ROLE.
         /// Gets the conferences in wich the user is participating, and has a specific role.
         /// </summary>
-        IEnumerable<Model.DTOModels.ConferenceDTO> GetRelevantConferences(int idUser, UserRole userRole);
+        IEnumerable<ConferenceDTO> GetRelevantConferences(int idUser, UserRole userRole);
 
         /// <summary>
         /// Used for getting a list of conferences for a specific user NO MATTER THE ROLE.
         /// Gets the conferences in wich the user is participating, and has a specific role.
         /// </summary>
-        IEnumerable<Model.DTOModels.ConferenceDTO> GetRelevantConferences(int idUser);
+        IEnumerable<ConferenceDTO> GetRelevantConferences(int idUser);
 
         /// <summary>
         /// Gets all the ACCEPTED Conferences
         /// </summary>
-        IEnumerable<Model.DTOModels.ConferenceDTO> GetAllConferences();
+        IEnumerable<ConferenceDTO> GetAllConferences();
 
         /// <summary>
         /// Used for modyfing the description of a conference. The conference Id MUST BE SET before calling this method.
         /// If the user is not the owner/proposer of the conference, the method will have no efect.
         /// If the conference has no current description, the method wil add a new description.
         /// </summary>
-        ConferenceDTO ModifyDescription(int idUser, Model.DTOModels.ConferenceDTO conferenceDTO);
+        ConferenceDTO ModifyDescription(int idUser,ConferenceDTO conferenceDTO);
 
         ConferenceDTO FindConference(string startDate, string endDate);
     }

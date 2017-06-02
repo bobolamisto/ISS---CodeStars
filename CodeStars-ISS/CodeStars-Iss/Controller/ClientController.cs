@@ -59,29 +59,29 @@ namespace CodeStars_Iss.Controller
         // methods from IUserConferenceService
         public void addConference(int uId, int cId, string cName, DateTime cStartDate, DateTime cEndDate, string Cdomain, DateTime CabstractDeadline, DateTime cFullPaperDeadline, float Price, string Description)
         {
-            var c = new Model.DTOModels.ConferenceDTO() { Name = cName, StartDate = cStartDate.ToString(), EndDate = cEndDate.ToString(), Domain = Cdomain, AbstractDeadline = CabstractDeadline.ToString(), FullPaperDeadline = cFullPaperDeadline.ToString(), Price = Price, State = ConferenceState.Proposed.ToString(), MainDescription = Description};
+            var c = new ConferenceDTO() { Name = cName, StartDate = cStartDate.ToString(), EndDate = cEndDate.ToString(), Domain = Cdomain, AbstractDeadline = CabstractDeadline.ToString(), FullPaperDeadline = cFullPaperDeadline.ToString(), Price = Price, State = ConferenceState.Proposed.ToString(), MainDescription = Description};
             _server.AddConference(uId, c);
         }
 
-        public IEnumerable<Model.DTOModels.ConferenceDTO> getRelevantConferences(int uId, string userRole)
+        public IEnumerable<ConferenceDTO> getRelevantConferences(int uId, string userRole)
         {
             UserRole role = (UserRole)Enum.Parse(typeof(UserRole), userRole);
             return _server.GetRelevantConferences(uId, role);
         }
 
-        public IEnumerable<Model.DTOModels.ConferenceDTO> getRelevantConferences(int uId)
+        public IEnumerable<ConferenceDTO> getRelevantConferences(int uId)
         {
             return _server.GetRelevantConferences(uId);
         }
 
-        public IEnumerable<Model.DTOModels.ConferenceDTO> getAllConferences()
+        public IEnumerable<ConferenceDTO> getAllConferences()
         {
             return _server.GetAllConferences();
         }
 
         public void modifyDescription(int uId, int cId, string cName, DateTime cStartDate, DateTime cEndDate, string Cdomain, DateTime CabstractDeadline, DateTime cFullPaperDeadline)
         {
-            var c = new Model.DTOModels.ConferenceDTO { Id = cId, Name = cName, StartDate = cStartDate.ToString(), EndDate = cEndDate.ToString(), Domain = Cdomain, AbstractDeadline = CabstractDeadline.ToString(), FullPaperDeadline = cFullPaperDeadline.ToString() };
+            var c = new ConferenceDTO { Id = cId, Name = cName, StartDate = cStartDate.ToString(), EndDate = cEndDate.ToString(), Domain = Cdomain, AbstractDeadline = CabstractDeadline.ToString(), FullPaperDeadline = cFullPaperDeadline.ToString() };
             _server.ModifyDescription(uId, c);
         }
 
@@ -101,7 +101,7 @@ namespace CodeStars_Iss.Controller
             _server.AcceptFullConference(idConference);
         }
 
-        public IEnumerable<Model.DTOModels.ConferenceDTO> getFilteredConferences(string conferenceState)
+        public IEnumerable<ConferenceDTO> getFilteredConferences(string conferenceState)
         {
             ConferenceState state = (ConferenceState)Enum.Parse(typeof(ConferenceState), conferenceState);
             return _server.GetFilteredConferences(state);

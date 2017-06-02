@@ -17,7 +17,7 @@ namespace services.Services
             converter = new ConferenceConverterService();
         }
 
-        public ConferenceDTO AddConference(int idUser, Model.DTOModels.ConferenceDTO conferenceDTO)
+        public ConferenceDTO AddConference(int idUser, ConferenceDTO conferenceDTO)
         {
             using (var uow = new UnitOfWork())
             {
@@ -54,7 +54,7 @@ namespace services.Services
             }
         }
 
-        public IEnumerable<Model.DTOModels.ConferenceDTO> GetRelevantConferences(int idUser)
+        public IEnumerable<ConferenceDTO> GetRelevantConferences(int idUser)
         {
             using (var uow = new UnitOfWork())
             {
@@ -64,7 +64,7 @@ namespace services.Services
             }
         }
 
-        public IEnumerable<Model.DTOModels.ConferenceDTO> GetAllConferences()
+        public IEnumerable<ConferenceDTO> GetAllConferences()
         {
             using (var uow = new UnitOfWork())
             {
