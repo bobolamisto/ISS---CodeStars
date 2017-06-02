@@ -232,6 +232,11 @@ namespace Server.ServicesImplementation
             return _proposalService.GetProposalsToBeReviewed(idUser, idConf);
         }
 
+        public IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId)
+        {
+            return _proposalService.GetProposalsOfSection(sectionId);
+        }
+
 
         public ProposalDTO FindProposal(string title, string subject, string keywords)
         {
@@ -314,7 +319,7 @@ namespace Server.ServicesImplementation
         public void deleteSection(int id)
         {
             _sectionService.deleteSection(id);
-        }       
+        }
 
         
     }

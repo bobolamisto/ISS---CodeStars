@@ -157,5 +157,15 @@ namespace CodeStars_Iss.Controller
         {
             return _server.addReview(model);
         }
+
+        public IEnumerable<SectionDTO> getSectionsOfConference(int id)
+        {
+            return _server.getSectionsOfConference(id);
+        }
+
+        public IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId)
+        {
+            return _server.GetProposalsOfSection(sectionId);
+        }
     }
 }

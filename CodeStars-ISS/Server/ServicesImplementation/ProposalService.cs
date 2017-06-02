@@ -47,6 +47,15 @@ namespace Server.ServicesImplementation
             }
         }
 
+        public IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var proposals = uow.getRepository<Proposal>().getAll().Where(p => p.SectionId == sectionId);
+                return _proposalConverter.convertToDTOList(proposals);
+            }
+        }
+
         public IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf)
         {
             using(var uow=new UnitOfWork())
