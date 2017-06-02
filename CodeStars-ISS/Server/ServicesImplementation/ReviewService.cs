@@ -34,27 +34,49 @@ namespace Server.ServicesImplementation
 
         public IEnumerable<ReviewDTO> getAll()
         {
-            throw new NotImplementedException();
+            using (var uow = new UnitOfWork())
+            {
+                var repo = uow.getRepository<Review>();
+                return converter.convertToDTOList(repo.getAll());
+            }
         }
 
         public IEnumerable<ReviewDTO> getAllForProposal(int proposalId)
         {
-            throw new NotImplementedException();
+            using (var uow = new UnitOfWork())
+            {
+                var repo = uow.getRepository<Review>();
+                return converter.convertToDTOList(repo.getAll().Where(review => review.ProposalId == proposalId));
+            }
         }
 
         public ReviewDTO getReview(int id)
         {
-            throw new NotImplementedException();
+            using (var uow = new UnitOfWork())
+            {
+                var repo = uow.getRepository<Review>();
+                return converter.convertToDTOModel(repo.get(id));
+            }
         }
 
         public void removeReview(int id)
         {
-            throw new NotImplementedException();
+            using (var uow = new UnitOfWork())
+            {
+                var repo = uow.getRepository<Review>();
+                repo.remove(id);
+                uow.saveChanges();
+            }
         }
 
         public void updateReview(ReviewDTO model)
         {
-            throw new NotImplementedException();
+            using (var uow = new UnitOfWork())
+            {
+                var repo = uow.getRepository<Review>();
+                repo.update(model.Id, converter.convertToPOCOModel(model));
+                uow.saveChanges();
+            }
         }
     }
 }

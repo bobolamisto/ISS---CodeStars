@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Server.ModelConverterServices
 {
-    public class ConferenceConverterService : IModelConverterService<Conference, ConferenceDTO>
+    public class ConferenceConverterService : IModelConverterService<Model.Domain.ConferenceDTO, Model.DTOModels.ConferenceDTO>
     {
-        public ConferenceDTO convertToDTOModel(Conference model)
+        public ConferenceDTO convertToDTOModel(Model.Domain.ConferenceDTO model)
         {
-            ConferenceDTO dto = new ConferenceDTO();
+            Model.DTOModels.ConferenceDTO dto = new Model.DTOModels.ConferenceDTO();
             dto.Id = model.Id;
             dto.Name = model.Name;
             dto.Edition = model.Edition;
@@ -28,9 +28,9 @@ namespace Server.ModelConverterServices
             return dto;
         }
 
-        public Conference convertToPOCOModel(ConferenceDTO model)
+        public ConferenceDTO convertToPOCOModel(Model.DTOModels.ConferenceDTO model)
         {
-            Conference poco = new Conference();
+            Model.Domain.ConferenceDTO poco = new Model.Domain.ConferenceDTO();
             poco.Id = model.Id;
             poco.Name = model.Name;
             poco.Edition = model.Edition;
@@ -45,7 +45,7 @@ namespace Server.ModelConverterServices
             return poco;
         }
 
-        public IEnumerable<ConferenceDTO> convertToDTOList(IEnumerable<Conference> conferences)
+        public IEnumerable<Model.DTOModels.ConferenceDTO> convertToDTOList(IEnumerable<Model.Domain.ConferenceDTO> conferences)
         {
             return conferences.Select(convertToDTOModel).ToList();
         }

@@ -87,7 +87,7 @@ namespace Server.ServicesImplementation
         {
             using (var uow=new UnitOfWork())
             {
-                var conferences = uow.getRepository<Conference>().getAll();
+                var conferences = uow.getRepository<Model.Domain.ConferenceDTO>().getAll();
                 List<ProposalDTO> items = new List<ProposalDTO>();
                 foreach(var c in conferences)
                 {

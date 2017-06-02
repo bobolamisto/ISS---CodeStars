@@ -15,7 +15,7 @@ namespace Model.Domain
         Declined //in cazul in care nu stergem direct o conferinta daca e refuzata     
     }
 
-    public class Conference
+    public class ConferenceDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -32,7 +32,7 @@ namespace Model.Domain
         public virtual ICollection<User_Conference> Participations { get; set; }
         public virtual ICollection<Section> Sections { get; set; }
 
-        public Conference()
+        public ConferenceDTO()
         {
             Participations = new HashSet<User_Conference>();
             Sections = new HashSet<Section>();
