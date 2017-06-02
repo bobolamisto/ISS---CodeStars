@@ -12,7 +12,7 @@ namespace Model.Domain
         Proposed=1,
         Building,
         Accepted,
-        Declined //in cazul in care nu stergem direct o conferinta daca e refuzata
+        Declined //in cazul in care nu stergem direct o conferinta daca e refuzata 
     }
 
     public class Conference
