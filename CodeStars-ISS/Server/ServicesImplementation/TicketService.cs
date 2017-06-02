@@ -44,7 +44,7 @@ namespace Server.ServicesImplementation
         {
             using (var uow = new UnitOfWork())
             {
-                var conference = uow.getRepository<Model.Domain.ConferenceDTO>().get(idConference);
+                var conference = uow.getRepository<Conference>().get(idConference);
                 return conference == null ? default(float) : conference.Price;
             }
         }

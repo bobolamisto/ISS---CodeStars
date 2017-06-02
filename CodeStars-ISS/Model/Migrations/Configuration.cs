@@ -23,11 +23,11 @@ namespace Model.Migrations
                 new User { Id = 2, Username = "bogdan", Password = "C0797F6426DF677E3A720E208EF458CE", FirstName = "test", LastName = "test", Email = "test@test.com", WebPage = "test.com", Admin = true,Validation=AccountState.Validated }
              };
 
-            var conferences = new ConferenceDTO[]
+            var conferences = new Conference[]
             {
 
-                new ConferenceDTO {Id=1, Name="Conferinta1",StartDate=new DateTime(2017,2,1), EndDate= new DateTime(2017,4,5), AbstractDeadline=new DateTime(2017,1,1),FullPaperDeadline=new DateTime(2017,1,5), Domain="IT",Price=55.5f,Edition=2,MainDescription="description1",State=ConferenceState.Accepted},
-                new ConferenceDTO {Id=2, Name="Conferinta2",StartDate=new DateTime(2016,5,23), EndDate= new DateTime(2016,7,23),AbstractDeadline= new DateTime(2016,5,2),FullPaperDeadline= new DateTime(2016,5,3), Domain="IT",Price=56.7f,Edition=1,MainDescription="description2",State=ConferenceState.Accepted}
+                new Conference {Id=1, Name="Conferinta1",StartDate=new DateTime(2017,2,1), EndDate= new DateTime(2017,4,5), AbstractDeadline=new DateTime(2017,1,1),FullPaperDeadline=new DateTime(2017,1,5), Domain="IT",Price=55.5f,Edition=2,MainDescription="description1",State=ConferenceState.Accepted},
+                new Conference {Id=2, Name="Conferinta2",StartDate=new DateTime(2016,5,23), EndDate= new DateTime(2016,7,23),AbstractDeadline= new DateTime(2016,5,2),FullPaperDeadline= new DateTime(2016,5,3), Domain="IT",Price=56.7f,Edition=1,MainDescription="description2",State=ConferenceState.Accepted}
 
             };
 

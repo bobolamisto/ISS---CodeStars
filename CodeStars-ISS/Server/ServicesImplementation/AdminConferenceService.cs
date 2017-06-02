@@ -32,11 +32,11 @@ namespace services.Services
             ChangeConferenceState(idConference, ConferenceState.Accepted);
         }
 
-        public IEnumerable<Model.DTOModels.ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState)
+        public IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState)
         {
             using (var uow = new UnitOfWork())
             {
-                var conferenceRepo = uow.getRepository<Model.Domain.ConferenceDTO>();
+                var conferenceRepo = uow.getRepository<Conference>();
                 return converter.convertToDTOList(conferenceRepo.getAll().Where(conference => conference.State == conferenceState));
             }
         }
@@ -45,7 +45,7 @@ namespace services.Services
         {
             using (var uow = new UnitOfWork())
             {
-                var conferenceRepo = uow.getRepository<Model.Domain.ConferenceDTO>();
+                var conferenceRepo = uow.getRepository<Conference>();
                 var conferenceFromRepo = conferenceRepo.get(idConference);
                 conferenceFromRepo.State = conferenceState;
                 uow.saveChanges();

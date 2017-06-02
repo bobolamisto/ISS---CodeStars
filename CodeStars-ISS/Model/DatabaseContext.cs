@@ -17,7 +17,7 @@ namespace Model
     public class DatabaseContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<ConferenceDTO> Conferences { get; set; }
+        public DbSet<Conference> Conferences { get; set; }
         public DbSet<User_Conference> ConferenceParticipations { get; set; }
         public DbSet<Proposal> Proposals { get; set; }
         public DbSet<Review> Reviews { get; set; }
