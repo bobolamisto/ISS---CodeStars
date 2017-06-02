@@ -36,28 +36,27 @@ namespace Persistence.Repository
 
         public void saveChanges()
         {
-            context.SaveChanges();
-            //string errors = "";
-            //try
-            //{
-            //    context.SaveChanges();
-            //}
-            //catch (DbEntityValidationException dbEx)
-            //{
-            //    foreach (DbEntityValidationResult entityErr in dbEx.EntityValidationErrors)
-            //    {
-            //        foreach (DbValidationError error in entityErr.ValidationErrors)
-            //        {
-            //            errors += String.Format("Error Property Name {0} : Error Message: {1} \n",
-            //            error.PropertyName, error.ErrorMessage);
-            //        }
-            //    }
-            //}
-            //finally
-            //{
-            //    if (errors != "")
-            //        throw new ValidationException(errors);
-            //}
+            string errors = "";
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (DbEntityValidationResult entityErr in dbEx.EntityValidationErrors)
+                {
+                    foreach (DbValidationError error in entityErr.ValidationErrors)
+                    {
+                        errors += String.Format("Error Property Name {0} : Error Message: {1} \n",
+                        error.PropertyName, error.ErrorMessage);
+                    }
+                }
+            }
+            finally
+            {
+                if (errors != "")
+                    throw new Exception(errors);
+            }
         }
 
     }
