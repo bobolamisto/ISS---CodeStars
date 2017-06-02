@@ -80,7 +80,7 @@ namespace CodeStars_Iss
 
         
 
-        private void reloadConferences(IEnumerable<Model.DTOModels.ConferenceDTO> items)
+        private void reloadConferences(IEnumerable<ConferenceDTO> items)
         {
             conferinte.Clear();
                 foreach (var item in items)

@@ -135,7 +135,7 @@ namespace CodeStars_Iss
             var items2 = ctrl.getAllUsers();
             reloadUsers(items2);
         }
-        private void reloadConferences(IEnumerable<Model.DTOModels.ConferenceDTO> items)
+        private void reloadConferences(IEnumerable<ConferenceDTO> items)
         {
             conferinte.Clear();
             foreach (var item in items)

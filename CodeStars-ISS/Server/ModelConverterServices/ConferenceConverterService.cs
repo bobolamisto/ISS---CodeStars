@@ -13,7 +13,7 @@ namespace Server.ModelConverterServices
     {
         public ConferenceDTO convertToDTOModel(Conference model)
         {
-            Model.DTOModels.ConferenceDTO dto = new Model.DTOModels.ConferenceDTO();
+            ConferenceDTO dto = new ConferenceDTO();
             dto.Id = model.Id;
             dto.Name = model.Name;
             dto.Edition = model.Edition;
@@ -28,7 +28,7 @@ namespace Server.ModelConverterServices
             return dto;
         }
 
-        public Conference convertToPOCOModel(Model.DTOModels.ConferenceDTO model)
+        public Conference convertToPOCOModel(ConferenceDTO model)
         {
             Conference poco = new Conference();
             poco.Id = model.Id;
