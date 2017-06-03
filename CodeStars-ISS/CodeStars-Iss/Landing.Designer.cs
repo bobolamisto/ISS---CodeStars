@@ -48,12 +48,15 @@
             this.panelAddProposal = new System.Windows.Forms.Panel();
             this.buttonAddProposal = new System.Windows.Forms.Button();
             this.buttonMyConferencesAsListener = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSections = new System.Windows.Forms.Button();
             this.PanelCoChair.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).BeginInit();
             this.panelReviewProposal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewProposals)).BeginInit();
             this.panelUpdateProposal.SuspendLayout();
             this.panelAddProposal.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -268,11 +271,30 @@
             this.buttonMyConferencesAsListener.UseVisualStyleBackColor = true;
             this.buttonMyConferencesAsListener.Click += new System.EventHandler(this.buttonMyConferencesAsListener_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.buttonSections);
+            this.panel1.Location = new System.Drawing.Point(422, 261);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(148, 50);
+            this.panel1.TabIndex = 20;
+            // 
+            // buttonSections
+            // 
+            this.buttonSections.Location = new System.Drawing.Point(3, 15);
+            this.buttonSections.Name = "buttonSections";
+            this.buttonSections.Size = new System.Drawing.Size(142, 23);
+            this.buttonSections.TabIndex = 0;
+            this.buttonSections.Text = "Manage Sections";
+            this.buttonSections.UseVisualStyleBackColor = true;
+            this.buttonSections.Click += new System.EventHandler(this.buttonSections_Click);
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 692);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonMyConferencesAsListener);
             this.Controls.Add(this.panelAddProposal);
             this.Controls.Add(this.buttonMyConferencesAsSpeaker);
@@ -301,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridViewProposals)).EndInit();
             this.panelUpdateProposal.ResumeLayout(false);
             this.panelAddProposal.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,6 +350,8 @@
         private System.Windows.Forms.Panel panelAddProposal;
         private System.Windows.Forms.Button buttonAddProposal;
         private System.Windows.Forms.Button buttonMyConferencesAsListener;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonSections;
     }
 }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Policy;
 using Model.Domain;
 using Model.DTOModels;
+using System.Linq;
 
 namespace Server.ServicesImplementation
 {
@@ -207,9 +208,9 @@ namespace Server.ServicesImplementation
             return _proposalService.AddPaper(idUser, idConferinta, paperDto);
         }
 
-        public ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
+        public ProposalDTO RemovePaper( int idPaper)
         {
-            return _proposalService.RemovePaper(idUser, idConferinta, idPaper);
+            return _proposalService.RemovePaper(idPaper);
         }
 
         public ProposalDTO UpdatePaper(ProposalDTO paperDto)
@@ -321,6 +322,39 @@ namespace Server.ServicesImplementation
             _sectionService.deleteSection(id);
         }
 
-        
+        public SectionDTO getSectionById(int id)
+        {
+            return _sectionService.getSectionById(id);
+        }
+
+        public void addProposalToSection(int idProposal, int idSection)
+        {
+            _proposalService.addProposalToSection(idProposal, idSection);
+        }
+
+        public ProposalDTO getProposalById(int id)
+        {
+            return _proposalService.getProposalById(id);
+        }
+
+        public void removeProposalFromAnySection(int idProposal)
+        {
+            _proposalService.removeProposalFromAnySection(idProposal);
+        }
+
+        public IEnumerable<ProposalDTO> getProposalsOutsideSections(int conferenceId)
+        {
+            return _proposalService.getProposalsOutsideSections(conferenceId);
+        }
+
+        public int findByUsername(string username)
+        {
+            return _userService.findByUsername(username);
+        }
+
+        public IEnumerable<UserDTO> getUsersParticipatingAtConference(int conferenceId)
+        {
+            return _userConferenceService.getUsersParticipatingAtConference(conferenceId);
+        }
     }
 }

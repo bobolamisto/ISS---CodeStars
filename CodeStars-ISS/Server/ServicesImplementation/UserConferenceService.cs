@@ -106,5 +106,20 @@ namespace services.Services
                 return converter.convertToDTOModel(conf);
             }
         }
+
+        public IEnumerable<UserDTO> getUsersParticipatingAtConference(int conferenceId)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var conference = uow.getRepository<Conference>().get(conferenceId);
+                List<UserDTO> users = new List<UserDTO>();
+                var usersConverter = new UserConverterService();
+                var usersRepo = uow.getRepository<User>();
+                foreach (var u in conference.Participations)
+                    if (u.Role == UserRole.Chair || u.Role == UserRole.CoChair || u.Role == UserRole.Reviewer)
+                        users.Add(usersConverter.convertToDTOModel(usersRepo.get(u.UserId)));
+                return users;
+            }
+        }
     }
 }

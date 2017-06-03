@@ -39,5 +39,6 @@ namespace services.Services
         ConferenceDTO ModifyDescription(int idUser,ConferenceDTO conferenceDTO);
 
         ConferenceDTO FindConference(string startDate, string endDate);
+        IEnumerable<UserDTO> getUsersParticipatingAtConference(int conferenceId);
     }
 }

@@ -237,5 +237,18 @@ namespace CodeStars_Iss
                 }
             GridViewProposals.DataSource = proposals;
         }
+
+        private void buttonSections_Click(object sender, EventArgs e)
+        {
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a conference.");
+                return;
+            }
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            AddSections window = new AddSections(conf, ctrl);
+            window.Show();
+        }
     }
 }

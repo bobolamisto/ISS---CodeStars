@@ -133,9 +133,9 @@ namespace CodeStars_Iss.Controller
 
         }
 
-        public ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
+        public ProposalDTO RemovePaper(int idPaper)
         {
-            return _server.RemovePaper(idUser, idConferinta, idPaper);
+            return _server.RemovePaper( idPaper);
         }
 
         public ProposalDTO UpdatePaper(ProposalDTO paperDto)
@@ -166,6 +166,41 @@ namespace CodeStars_Iss.Controller
         public IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId)
         {
             return _server.GetProposalsOfSection(sectionId);
+        }
+        public SectionDTO getSectionById(int id)
+        {
+            return _server.getSectionById(id);
+        }
+
+        public void addProposalToSection(int idProposal, int idSection)
+        {
+            _server.addProposalToSection(idProposal, idSection);
+        }
+        public ProposalDTO getProposalById(int id)
+        {
+            return _server.getProposalById(id);
+        }
+        public void removeProposalFromAnySection(int idProposal)
+        {
+            _server.removeProposalFromAnySection(idProposal);
+        }
+
+        public IEnumerable<ProposalDTO> getProposalsOutsideSections(int conferenceId)
+        {
+            return _server.getProposalsOutsideSections(conferenceId);
+        }
+        public int findByUsername(string username)
+        {
+            return _server.findByUsername(username);
+        }
+
+        public IEnumerable<UserDTO> getUsersParticipatingAtConference(int conferenceId)
+        {
+            return _server.getUsersParticipatingAtConference(conferenceId);
+        }
+        public SectionDTO addsection(SectionDTO section)
+        {
+            return _server.addSection(section);
         }
     }
 }

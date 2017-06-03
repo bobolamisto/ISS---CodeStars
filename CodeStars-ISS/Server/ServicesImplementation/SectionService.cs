@@ -8,6 +8,7 @@ using Model.DTOModels;
 using Model.POCOModels;
 using Server.ModelConverterServices;
 using Persistence.Repository;
+using Model.Domain;
 
 namespace Server.ServicesImplementation
 {
@@ -42,8 +43,27 @@ namespace Server.ServicesImplementation
                 var existing = repo.getAll().FirstOrDefault(s => s.Id == id);
                 if (existing == null)
                     return;
+                var proposalsRepo = uow.getRepository<Proposal>();
+                foreach(var p in existing.Proposals)
+                {
+                    p.SectionId = null;
+                    proposalsRepo.update(p.Id, p);
+                    uow.saveChanges();
+                }
                 repo.remove(id);
                 uow.saveChanges();
+            }
+        }
+
+        public SectionDTO getSectionById(int id)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var repo = uow.getRepository<Section>();
+                var found = repo.get(id);
+                if (found == null)
+                    return null;
+                return converter.convertToDTOModel(found);
             }
         }
 
@@ -51,7 +71,8 @@ namespace Server.ServicesImplementation
         {
             using(var uow=new UnitOfWork())
             {
-                var sections = uow.getRepository<Section>().getAll().Where(s => s.ConferenceId == conferenceId).ToList();
+                var sections = uow.getRepository<Conference>().get(conferenceId).Sections;
+                sections.OrderBy(s => s.StartDate);
                 return converter.convertToDTOList(sections);
             }
         }

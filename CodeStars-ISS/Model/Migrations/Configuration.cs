@@ -39,16 +39,16 @@ namespace Model.Migrations
                 new User_Conference{Id=4,UserId=2,ConferenceId=2,Role=UserRole.Speaker}
             };
 
-            var sections = new Section[]
-            {
-                new Section{Id=1,Title="Section1",StartDate=new DateTime(2017,2,1), EndDate= new DateTime(2017,4,5),ChairId=1,ConferenceId=1},
-                new Section{Id=2,Title="Section2",StartDate=new DateTime(2016,5,23), EndDate= new DateTime(2016,7,23),ChairId=2,ConferenceId=2}
-            };
+            //var sections = new Section[]
+            //{
+            //    new Section{Id=1,Title="Section1",StartDate=new DateTime(2017,2,1), EndDate= new DateTime(2017,4,5),ChairId=1,ConferenceId=1},
+            //    new Section{Id=2,Title="Section2",StartDate=new DateTime(2016,5,23), EndDate= new DateTime(2016,7,23),ChairId=2,ConferenceId=2}
+            //};
 
             var proposals = new Proposal[]
             {
-                new Proposal{Id=1,Title="Proposal1",Subject="Subject1",Abstract="url",FullPaper="url",Keywords="k1,k2",ParticipationId=2,SectionId=2},
-                new Proposal{Id=2,Title="Proposal2",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=3,SectionId=1}
+                new Proposal{Id=1,Title="Proposal1",Subject="Subject1",Abstract="url",FullPaper="url",Keywords="k1,k2",ParticipationId=2},
+                new Proposal{Id=2,Title="Proposal2",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=3}
             };
 
             var reviews = new Review[]
@@ -63,7 +63,7 @@ namespace Model.Migrations
             context.Users.AddOrUpdate(users);
             context.Conferences.AddOrUpdate(conferences);
             context.ConferenceParticipations.AddOrUpdate(participations);
-            context.Sections.AddOrUpdate(sections);
+            //context.Sections.AddOrUpdate(sections);
             context.Proposals.AddOrUpdate(proposals);
             context.Reviews.AddOrUpdate(reviews);
         }

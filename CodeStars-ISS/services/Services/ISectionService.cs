@@ -13,7 +13,7 @@ namespace services.Services
         SectionDTO addSection(SectionDTO section);
         void updateSection(SectionDTO section);
         void deleteSection(int id);
-
+        SectionDTO getSectionById(int id);
 
     }
 }

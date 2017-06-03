@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Model.DTOModels
-{
+{   [Serializable]
     public class SectionDTO
     {
         public int Id { get; set; }

@@ -15,8 +15,9 @@ namespace services.Services
         UserDTO createAccount(UserDTO userDTO);
         UserDTO removeAccount(int idUser);
         UserDTO updateAccount(UserDTO userDTO);
-
         User_ConferenceDTO buyTicket(int idU, int idC);
         IEnumerable<UserDTO> findAll();
+        int findByUsername(string username);
+        
     }
 }

@@ -15,7 +15,7 @@ namespace services.Services
         /// Se face verificarea ca userul este cel care a propus lucrarea, pentru a nu avea situatia in care un user sterge lucrarea altcuiva.
         /// De aceea si idUser si idConferinta sunt parametrii, pe langa idPaper 
         /// </summary>
-        ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper);
+        ProposalDTO RemovePaper(int idPaper);
         /// <summary>
         /// Update le lucrarea propusa de user la o anumita conferinta.
         /// Se face verificarea ca userul este cel care a propus lucrarea.
@@ -34,5 +34,9 @@ namespace services.Services
 
         ProposalDTO FindProposal( string title,string subject,string keywords);
         IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId);
+        void addProposalToSection(int idProposal, int idSection);
+        void removeProposalFromAnySection(int idProposal);
+        ProposalDTO getProposalById(int id);
+        IEnumerable<ProposalDTO> getProposalsOutsideSections(int conferenceId);
     }
 }

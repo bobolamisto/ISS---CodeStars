@@ -114,5 +114,16 @@ namespace server.ServicesImplementation
                 return newitem;
             }
         }
+
+        public int findByUsername(string username)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var user = uow.getRepository<User>().getAll().FirstOrDefault(u => u.Username == username);
+                if (user == null)
+                    return -1;
+                return user.Id;
+            }
+        }
     }
 }

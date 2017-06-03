@@ -18,10 +18,8 @@ namespace CodeStars_Iss
         private ConferenceDTO conference;
         private DataTable remainingProposals;
         private DataTable chosenProposals;
-        private List<ProposalDTO> remProposals;
-        private List<ProposalDTO> chsnProposals;
         private List<SectionDTO> sections;
-        private int currentSectionId;
+        private SectionDTO currentSection;
         public AddSections(ConferenceDTO conf,ClientController ct)
         {
             conference = conf;
@@ -38,26 +36,34 @@ namespace CodeStars_Iss
             chosenProposals.Columns.Add("Subject", typeof(string));
             chosenProposals.Columns.Add("Url", typeof(string));
 
-            labelAllProposals.Text = "Remaining Proposals";
-            labelChosenProposals.Text = "Chosen Proposals";
-
             InitializeComponent();
             initializeData();
         }
 
-        private void initializeData()
+        public void initializeData()
         {
-            remProposals = new List<ProposalDTO>();
-            reloadGridRemainingProposals(remProposals);
+            labelConference.Text = conference.Name + ", Edition " + conference.Edition;
+            labelConferenceStarts.Text = conference.StartDate;
+            labelConferenceEnds.Text = conference.EndDate;
+
+            reloadGridRemainingProposals(ctrl.getProposalsOutsideSections(conference.Id));
 
             sections = ctrl.getSectionsOfConference(conference.Id).ToList();
-            currentSectionId = sections[0].Id;
-            reloadGridChosenProposals(currentSectionId);
+            if(sections.Count==0)
+            { 
+                return;
+            }
+            currentSection = sections[0];
+            labelSectionStarts.Text = currentSection.StartDate;
+            labelSectionEnds.Text = currentSection.EndDate;
+            reloadGridChosenProposals(ctrl.GetProposalsOfSection(currentSection.Id));
         }
 
-        private void reloadGridChosenProposals(int sectionId)
+        private void reloadGridChosenProposals(IEnumerable<ProposalDTO> proposals)
         {
-            var proposals = ctrl.GetProposalsOfSection(sectionId);
+            labelChosenProposals.Text = "Chosen Proposals For Section \'" + currentSection.Title + "\'";
+            labelSectionStarts.Text = currentSection.StartDate;
+            labelSectionEnds.Text = currentSection.EndDate;
             foreach (var item in proposals)
             {
                 DataRow c = chosenProposals.NewRow();
@@ -70,7 +76,7 @@ namespace CodeStars_Iss
             GridViewChosenProposals.DataSource = chosenProposals;
         }
 
-        private void reloadGridRemainingProposals(List<ProposalDTO> proposals)
+        private void reloadGridRemainingProposals(IEnumerable<ProposalDTO> proposals)
         {
             foreach (var item in proposals)
             {
@@ -82,6 +88,98 @@ namespace CodeStars_Iss
                 remainingProposals.Rows.Add(c);
             }
             GridViewAllProposals.DataSource = remainingProposals;
+            setVisibility();
+        }
+
+        private void buttonPreviousSection_Click(object sender, EventArgs e)
+        {
+            if(sections.Count==1)
+            {
+                MessageBox.Show("This is the only section.");
+                return;
+            }
+            if(sections[0].Id==currentSection.Id)
+            {
+                MessageBox.Show("This is the first section.");
+                return;
+            }
+            int index = sections.IndexOf(ctrl.getSectionById(currentSection.Id));
+            currentSection = sections.ElementAt(index - 1);
+            reloadGridChosenProposals(ctrl.GetProposalsOfSection(currentSection.Id));
+        }
+
+        private void buttonNextSection_Click(object sender, EventArgs e)
+        {
+            if (sections.Count == 1)
+            {
+                MessageBox.Show("This is the only section.");
+                return;
+            }
+            if (sections.Last().Id == currentSection.Id)
+            {
+                MessageBox.Show("This is the last section.");
+                return;
+            }
+            int index = sections.IndexOf(ctrl.getSectionById(currentSection.Id));
+            currentSection = sections.ElementAt(index + 1);
+            reloadGridChosenProposals(ctrl.GetProposalsOfSection(currentSection.Id));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (GridViewAllProposals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Select a proposal!!");
+                return;
+            }
+            var selectedRow = GridViewAllProposals.SelectedRows[0];
+            var selectedId = Int32.Parse(selectedRow.Cells[0].Value.ToString());
+            
+            ctrl.addProposalToSection(selectedId,currentSection.Id);
+            reloadGridChosenProposals(ctrl.GetProposalsOfSection(currentSection.Id));
+            reloadGridRemainingProposals(ctrl.getProposalsOutsideSections(conference.Id));
+        }
+
+        private void buttonRemoveProposal_Click(object sender, EventArgs e)
+        {
+            if (GridViewChosenProposals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Select a proposal!!");
+                return;
+            }
+            var selectedRow = GridViewChosenProposals.SelectedRows[0];
+            var selectedId = Int32.Parse(selectedRow.Cells[0].Value.ToString());
+
+            ctrl.removeProposalFromAnySection(selectedId);
+            reloadGridRemainingProposals(ctrl.getProposalsOutsideSections(conference.Id));
+            reloadGridChosenProposals(ctrl.GetProposalsOfSection(currentSection.Id));
+        }
+
+        private void setVisibility()
+        {
+            if (currentSection == null)
+            {
+                labelChosenProposals.Text = "There are no sections in this conference.";
+                buttonPreviousSection.Visible = false;
+                buttonNextSection.Visible = false;
+                buttonAddProposal.Visible = false;
+                buttonRemoveProposal.Visible = false;
+                groupBoxSectionDates.Visible = false;
+            }
+            else
+            {
+                buttonPreviousSection.Visible = true;
+                buttonNextSection.Visible = true;
+                buttonAddProposal.Visible = true;
+                buttonRemoveProposal.Visible = true;
+                groupBoxSectionDates.Visible = true;
+            }
+        }
+
+        private void buttonAddSection_Click(object sender, EventArgs e)
+        {
+            var window = new SectionDetails(conference.Id,ctrl,this);
+            window.Show();
         }
     }
 }

@@ -6,6 +6,7 @@ using services.Services;
 using Server.ModelConverterServices;
 using System;
 using System.Collections.Generic;
+using Model.POCOModels;
 
 namespace Server.ServicesImplementation
 {
@@ -36,6 +37,17 @@ namespace Server.ServicesImplementation
             }
         }
 
+        public void addProposalToSection(int idProposal, int idSection)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var proposal = uow.getRepository<Proposal>().get(idProposal);
+                var section = uow.getRepository<Section>().get(idSection);
+                section.Proposals.Add(proposal);
+                uow.saveChanges();
+            }
+        }
+
         public ProposalDTO FindProposal(string title,string subject,string keywords) { 
             using (var uow=new UnitOfWork())
             {
@@ -47,11 +59,32 @@ namespace Server.ServicesImplementation
             }
         }
 
+        public ProposalDTO getProposalById(int id)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var proposal = uow.getRepository<Proposal>().get(id);
+                if (proposal == null)
+                    return null;
+                return _proposalConverter.convertToDTOModel(proposal);
+            }
+        }
+
         public IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId)
         {
             using(var uow=new UnitOfWork())
             {
                 var proposals = uow.getRepository<Proposal>().getAll().Where(p => p.SectionId == sectionId);
+                return _proposalConverter.convertToDTOList(proposals);
+            }
+        }
+
+        public IEnumerable<ProposalDTO> getProposalsOutsideSections(int conferenceId)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var proposals = uow.getRepository<Proposal>().getAll().Where(p => p.Participation.ConferenceId == conferenceId);
+                proposals = proposals.Where(p => p.SectionId == null);
                 return _proposalConverter.convertToDTOList(proposals);
             }
         }
@@ -110,10 +143,10 @@ namespace Server.ServicesImplementation
             }
         }
 
-        public ProposalDTO RemovePaper(int idUser, int idConferinta, int idPaper)
+        public ProposalDTO RemovePaper(int idPaper)
         {
-            var userConference = SearchUserConference(idUser, idConferinta);
-            if (userConference == null) return null;
+        //    var userConference = SearchUserConference(idUser, idConferinta);
+        //    if (userConference == null) return null;
             using (var uow = new UnitOfWork())
             {
                 var paperRepo = uow.getRepository<Proposal>();
@@ -124,6 +157,18 @@ namespace Server.ServicesImplementation
                 paperRepo.remove(idPaper);
                 uow.saveChanges();
                 return _proposalConverter.convertToDTOModel(paper);
+            }
+        }
+
+        public void removeProposalFromAnySection(int idProposal)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var repo = uow.getRepository<Proposal>();
+                var proposal = repo.get(idProposal);
+                proposal.SectionId = null;
+                repo.update(proposal.Id, proposal);
+                uow.saveChanges();
             }
         }
 
