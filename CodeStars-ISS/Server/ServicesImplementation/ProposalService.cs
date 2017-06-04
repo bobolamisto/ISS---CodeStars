@@ -23,6 +23,7 @@ namespace Server.ServicesImplementation
 
         public ProposalDTO AddPaper(int idUser, int idConferinta, ProposalDTO paperDto)
         {
+            paperDto.ProposalState = ProposalState.Pending;
             var userConference = SearchUserConference(idUser, idConferinta);
             if (userConference == null) return null;
             paperDto.ParticipationId = userConference.Id;
@@ -117,24 +118,21 @@ namespace Server.ServicesImplementation
             }
         }
 
-        public IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf)
+        public IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState)
         {
-            using(var uow=new UnitOfWork())
+            using(var uow = new UnitOfWork())
             {
-                var part = SearchUserConference(idUser, idConf);
-                if (part == null || part.Role != UserRole.Chair)
-                    return null;
-                var participations = uow.getRepository<User_Conference>().getAll().Where(uc => uc.ConferenceId == idConf);
-                var proposals = uow.getRepository<Proposal>().getAll();
-                List<ProposalDTO> items = new List<ProposalDTO>();
-                foreach(var p in participations)
-                {
-                    foreach(var proposal in proposals)
-                    {
-                        //ne trebuie un enum pentru stare proposal
-                    }
-                }
-                return items;
+                var proposals = uow.getRepository<Proposal>().getAll().Where(proposal => proposal.ProposalState == proposalState);
+                return _proposalConverter.convertToDTOList(proposals);
+            }
+        }
+
+        public IEnumerable<ProposalDTO> GetProposalsByState(int idUser, ProposalState proposalState)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var proposals = uow.getRepository<Proposal>().getAll().Where(proposal => proposal.Participation.UserId == idUser && proposal.ProposalState == proposalState);
+                return _proposalConverter.convertToDTOList(proposals);
             }
         }
 

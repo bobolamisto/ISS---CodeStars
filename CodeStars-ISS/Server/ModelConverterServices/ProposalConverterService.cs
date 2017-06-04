@@ -26,6 +26,7 @@ namespace Server.ModelConverterServices
             dto.FullPaper = model.FullPaper;
             dto.Keywords = model.Keywords;
             dto.ParticipationId = model.ParticipationId;
+            dto.ProposalState = model.ProposalState;
             return dto;
         }
 
@@ -39,6 +40,7 @@ namespace Server.ModelConverterServices
             poco.FullPaper = model.FullPaper;
             poco.Keywords = model.Keywords;
             poco.ParticipationId = model.ParticipationId;
+            poco.ProposalState = model.ProposalState;
             return poco;
         }
     }

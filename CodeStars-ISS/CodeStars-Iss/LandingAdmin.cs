@@ -183,5 +183,11 @@ namespace CodeStars_Iss
             window.Show();
             this.Close();
         }
+
+        private void buttonAllProposals_Click(object sender, EventArgs e)
+        {
+            var window = new MyProposals(ctrl, user, OpenedFrom.AdminWindow);
+            window.Show();
+        }
     }
 }
