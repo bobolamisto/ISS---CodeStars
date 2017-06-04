@@ -357,14 +357,24 @@ namespace Server.ServicesImplementation
             return _userService.findByUsername(username);
         }
 
-        public IEnumerable<UserDTO> getUsersParticipatingAtConference(int conferenceId)
+        public IEnumerable<UserDTO> getPCMembersForConference(int conferenceId)
         {
-            return _userConferenceService.getUsersParticipatingAtConference(conferenceId);
+            return _userConferenceService.getPCMembersForConference(conferenceId);
         }
 
         public int evaluateProposal(int id)
         {
             return _proposalService.evaluateProposal(id);
+        }
+
+        public IEnumerable<UserDTO> getPCMembersAvailableForSectionChair(int conferenId)
+        {
+            return _userConferenceService.getPCMembersAvailableForSectionChair(conferenId);
+        }
+
+        public UserDTO getChairOfConference(int confId)
+        {
+            return _userConferenceService.getChairOfConference(confId);
         }
     }
 }

@@ -42,6 +42,7 @@
             this.buttonProposalsToBeReviewed = new System.Windows.Forms.Button();
             this.buttonMyProposals = new System.Windows.Forms.Button();
             this.panelUpdateProposal = new System.Windows.Forms.Panel();
+            this.ManageAuthorsButton = new System.Windows.Forms.Button();
             this.buttonUpdateProposal = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonMyConferencesAsSpeaker = new System.Windows.Forms.Button();
@@ -50,7 +51,7 @@
             this.buttonMyConferencesAsListener = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonSections = new System.Windows.Forms.Button();
-            this.ManageAuthorsButton = new System.Windows.Forms.Button();
+            this.buttonSwitch = new System.Windows.Forms.Button();
             this.PanelCoChair.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).BeginInit();
             this.panelReviewProposal.SuspendLayout();
@@ -150,6 +151,7 @@
             this.GridViewConferinte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridViewConferinte.Size = new System.Drawing.Size(771, 193);
             this.GridViewConferinte.TabIndex = 9;
+            this.GridViewConferinte.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewConferinte_CellContentClick);
             this.GridViewConferinte.Click += new System.EventHandler(this.GridViewConferinte_Click);
             // 
             // panelReviewProposal
@@ -214,6 +216,16 @@
             this.panelUpdateProposal.Name = "panelUpdateProposal";
             this.panelUpdateProposal.Size = new System.Drawing.Size(286, 47);
             this.panelUpdateProposal.TabIndex = 15;
+            // 
+            // ManageAuthorsButton
+            // 
+            this.ManageAuthorsButton.Location = new System.Drawing.Point(146, 10);
+            this.ManageAuthorsButton.Name = "ManageAuthorsButton";
+            this.ManageAuthorsButton.Size = new System.Drawing.Size(130, 30);
+            this.ManageAuthorsButton.TabIndex = 1;
+            this.ManageAuthorsButton.Text = "Manage Authors";
+            this.ManageAuthorsButton.UseVisualStyleBackColor = true;
+            this.ManageAuthorsButton.Click += new System.EventHandler(this.ManageAuthorsButton_Click);
             // 
             // buttonUpdateProposal
             // 
@@ -291,21 +303,23 @@
             this.buttonSections.UseVisualStyleBackColor = true;
             this.buttonSections.Click += new System.EventHandler(this.buttonSections_Click);
             // 
-            // ManageAuthorsButton
+            // buttonSwitch
             // 
-            this.ManageAuthorsButton.Location = new System.Drawing.Point(146, 10);
-            this.ManageAuthorsButton.Name = "ManageAuthorsButton";
-            this.ManageAuthorsButton.Size = new System.Drawing.Size(130, 30);
-            this.ManageAuthorsButton.TabIndex = 1;
-            this.ManageAuthorsButton.Text = "Manage Authors";
-            this.ManageAuthorsButton.UseVisualStyleBackColor = true;
-            this.ManageAuthorsButton.Click += new System.EventHandler(this.ManageAuthorsButton_Click);
+            this.buttonSwitch.Location = new System.Drawing.Point(812, 11);
+            this.buttonSwitch.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSwitch.Name = "buttonSwitch";
+            this.buttonSwitch.Size = new System.Drawing.Size(165, 32);
+            this.buttonSwitch.TabIndex = 21;
+            this.buttonSwitch.Text = "Switch to Admin Page";
+            this.buttonSwitch.UseVisualStyleBackColor = true;
+            this.buttonSwitch.Click += new System.EventHandler(this.buttonSwitch_Click);
             // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 692);
+            this.Controls.Add(this.buttonSwitch);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonMyConferencesAsListener);
             this.Controls.Add(this.panelAddProposal);
@@ -365,6 +379,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonSections;
         private System.Windows.Forms.Button ManageAuthorsButton;
+        private System.Windows.Forms.Button buttonSwitch;
     }
 }
 

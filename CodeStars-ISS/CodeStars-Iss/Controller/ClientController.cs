@@ -199,13 +199,27 @@ namespace CodeStars_Iss.Controller
             return _server.findByUsername(username);
         }
 
-        public IEnumerable<UserDTO> getUsersParticipatingAtConference(int conferenceId)
+        public IEnumerable<UserDTO> getPCMembersForConference(int conferenceId)
         {
-            return _server.getUsersParticipatingAtConference(conferenceId);
+            return _server.getPCMembersForConference(conferenceId);
         }
         public SectionDTO addsection(SectionDTO section)
         {
             return _server.addSection(section);
+        }
+
+        public IEnumerable<UserDTO> getPCMembersAvailableForSectionChair(int conferenId)
+        {
+            return _server.getPCMembersAvailableForSectionChair(conferenId);
+        }
+        public void deleteSection(int id)
+        {
+            _server.deleteSection(id);
+        }
+
+        public UserDTO getChairOfConference(int confId)
+        {
+            return _server.getChairOfConference(confId);
         }
     }
 }

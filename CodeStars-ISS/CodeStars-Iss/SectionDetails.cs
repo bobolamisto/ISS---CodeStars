@@ -51,9 +51,10 @@ namespace CodeStars_Iss
 
         private void loadCombo()
         {
-            var users = ctrl.getUsersParticipatingAtConference(conferenceId);
+            var users = ctrl.getPCMembersAvailableForSectionChair(conferenceId);            
             comboBoxChair.DataSource = users;
             comboBoxChair.DisplayMember = "Username";
+            
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
