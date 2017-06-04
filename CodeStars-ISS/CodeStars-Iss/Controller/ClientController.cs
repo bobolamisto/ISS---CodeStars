@@ -138,6 +138,12 @@ namespace CodeStars_Iss.Controller
 
         }
 
+        public IEnumerable<UserDTO> getAllValidatedUsers()
+        {
+            return _server.findAll().Where(u => u.Validation == AccountState.Validated.ToString());
+
+        }
+
         public ProposalDTO RemovePaper(int idPaper)
         {
             return _server.RemovePaper( idPaper);
@@ -220,6 +226,11 @@ namespace CodeStars_Iss.Controller
         public UserDTO getChairOfConference(int confId)
         {
             return _server.getChairOfConference(confId);
+        }
+
+        public User_ConferenceDTO addCoChair(User_ConferenceDTO coChair)
+        {
+            return _server.addUserConference(coChair);
         }
     }
 }

@@ -152,5 +152,16 @@ namespace services.Services
                 return userConverter.convertToDTOModel(part.User);
             }
         }
+        public User_ConferenceDTO addUserConference(User_ConferenceDTO userConference)
+        {
+            using (var uow = new UnitOfWork())
+            { 
+                var userConfereceRepo = uow.getRepository<User_Conference>();
+                var newUserConference = userConfereceRepo.save(converter.convertToPOCOModel(userConference));
+                uow.saveChanges();
+                userConference.Id = newUserConference.Id;
+                return userConference;
+            }
+        }
     }
 }

@@ -131,7 +131,15 @@ namespace CodeStars_Iss
         //adaug co chair
         private void ButtonCoChair_Click(object sender, EventArgs e)
         {
-
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a conference!");
+                return;
+            }
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            AddCoChair p = new AddCoChair(ctrl, user, conf);
+            p.Show();
         }
 
         //updatez o lucrare

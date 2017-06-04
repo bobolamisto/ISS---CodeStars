@@ -376,5 +376,10 @@ namespace Server.ServicesImplementation
         {
             return _userConferenceService.getChairOfConference(confId);
         }
+        
+        public User_ConferenceDTO addUserConference(User_ConferenceDTO userConference)
+        {
+            return _userConferenceService.addUserConference(userConference);
+        }   
     }
 }
