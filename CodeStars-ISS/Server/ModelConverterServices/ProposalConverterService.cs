@@ -25,7 +25,9 @@ namespace Server.ModelConverterServices
             dto.Abstract = model.Abstract;
             dto.FullPaper = model.FullPaper;
             dto.Keywords = model.Keywords;
+            dto.Collaborators = model.Collaborators;
             dto.ParticipationId = model.ParticipationId;
+            dto.SectionId = model.SectionId;
             return dto;
         }
 
@@ -38,6 +40,8 @@ namespace Server.ModelConverterServices
             poco.Abstract = model.Abstract;
             poco.FullPaper = model.FullPaper;
             poco.Keywords = model.Keywords;
+            poco.Collaborators = model.Collaborators;
+            poco.SectionId = model.SectionId;
             poco.ParticipationId = model.ParticipationId;
             return poco;
         }
