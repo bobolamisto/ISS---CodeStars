@@ -44,6 +44,11 @@ namespace CodeStars_Iss
 
         private void Landing_Load(object sender, EventArgs e)
         {
+            if (this.user.Admin == true)
+                buttonSwitch.Visible = true;
+            else
+                buttonSwitch.Visible = false;
+
             conferinte = new DataTable();
             conferinte.Columns.Add("Name", typeof(string));
             conferinte.Columns.Add("Domain", typeof(string));
@@ -212,7 +217,12 @@ namespace CodeStars_Iss
             }
             var selectedRow = GridViewConferinte.SelectedRows[0];
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
-            
+
+            var chair = ctrl.getChairOfConference(conf.Id);
+            if (chair!=null&&user.Id == chair.Id)
+                buttonSections.Visible = true;
+            else buttonSections.Visible = false;
+
             var prop = ctrl.GetUserProposal(user.Id, conf.Id);
             if (prop == null)
                 return;
@@ -262,6 +272,18 @@ namespace CodeStars_Iss
             var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
             ManageAuthors p = new ManageAuthors(ctrl, prop);
             p.Show();
+        }
+
+        private void GridViewConferinte_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void buttonSwitch_Click(object sender, EventArgs e)
+        {
+            LandingAdmin window = new LandingAdmin(this.ctrl, this.user);
+            window.Show();
+            this.Close();
         }
     }
 }

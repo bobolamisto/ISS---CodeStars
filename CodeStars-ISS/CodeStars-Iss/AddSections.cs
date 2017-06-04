@@ -42,25 +42,30 @@ namespace CodeStars_Iss
 
         public void initializeData()
         {
+            
             labelConference.Text = conference.Name + ", Edition " + conference.Edition;
             labelConferenceStarts.Text = conference.StartDate;
             labelConferenceEnds.Text = conference.EndDate;
 
-            reloadGridRemainingProposals(ctrl.getProposalsOutsideSections(conference.Id));
-
             sections = ctrl.getSectionsOfConference(conference.Id).ToList();
-            if(sections.Count==0)
+            if(sections.Count>0)
+                currentSection = sections[0];
+            reloadGridRemainingProposals(ctrl.getProposalsOutsideSections(conference.Id));
+            if (sections.Count==0)
             { 
                 return;
             }
-            currentSection = sections[0];
+            
             labelSectionStarts.Text = currentSection.StartDate;
             labelSectionEnds.Text = currentSection.EndDate;
+            
             reloadGridChosenProposals(ctrl.GetProposalsOfSection(currentSection.Id));
         }
 
         private void reloadGridChosenProposals(IEnumerable<ProposalDTO> proposals)
         {
+            chosenProposals.Clear();
+
             labelChosenProposals.Text = "Chosen Proposals For Section \'" + currentSection.Title + "\'";
             labelSectionStarts.Text = currentSection.StartDate;
             labelSectionEnds.Text = currentSection.EndDate;
@@ -78,6 +83,8 @@ namespace CodeStars_Iss
 
         private void reloadGridRemainingProposals(IEnumerable<ProposalDTO> proposals)
         {
+            remainingProposals.Clear();
+
             foreach (var item in proposals)
             {
                 DataRow c = remainingProposals.NewRow();
@@ -103,7 +110,7 @@ namespace CodeStars_Iss
                 MessageBox.Show("This is the first section.");
                 return;
             }
-            int index = sections.IndexOf(ctrl.getSectionById(currentSection.Id));
+            int index = sections.IndexOf(currentSection);
             currentSection = sections.ElementAt(index - 1);
             reloadGridChosenProposals(ctrl.GetProposalsOfSection(currentSection.Id));
         }
@@ -120,7 +127,7 @@ namespace CodeStars_Iss
                 MessageBox.Show("This is the last section.");
                 return;
             }
-            int index = sections.IndexOf(ctrl.getSectionById(currentSection.Id));
+            int index = sections.IndexOf(currentSection);
             currentSection = sections.ElementAt(index + 1);
             reloadGridChosenProposals(ctrl.GetProposalsOfSection(currentSection.Id));
         }
@@ -178,8 +185,26 @@ namespace CodeStars_Iss
 
         private void buttonAddSection_Click(object sender, EventArgs e)
         {
+            if(ctrl.getPCMembersAvailableForSectionChair(conference.Id).ToList().Count==0  )
+            {
+                MessageBox.Show("There are no available PC Members tobe Section Chair.");
+                return;
+            }
             var window = new SectionDetails(conference.Id,ctrl,this);
             window.Show();
+        }
+
+        private void buttonRemoveSection_Click(object sender, EventArgs e)
+        {
+            if(ctrl.GetProposalsOfSection(currentSection.Id).ToList().Count!=0)
+            {
+                MessageBox.Show("If  you want to delete this section you must remove all proposals from it.");
+                return;
+            }
+            ctrl.deleteSection(currentSection.Id);
+            currentSection = null;
+            initializeData();
+            setVisibility();
         }
     }
 }

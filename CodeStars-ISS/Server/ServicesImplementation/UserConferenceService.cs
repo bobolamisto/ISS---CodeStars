@@ -11,10 +11,12 @@ namespace services.Services
     public class UserConferenceService : IUserConferenceService
     {
         private ConferenceConverterService converter;
+        private UserConverterService userConverter;
 
         public UserConferenceService()
         {
             converter = new ConferenceConverterService();
+            userConverter = new UserConverterService();
         }
 
         public ConferenceDTO AddConference(int idUser, ConferenceDTO conferenceDTO)
@@ -107,7 +109,7 @@ namespace services.Services
             }
         }
 
-        public IEnumerable<UserDTO> getUsersParticipatingAtConference(int conferenceId)
+        public IEnumerable<UserDTO> getPCMembersForConference(int conferenceId)
         {
             using(var uow=new UnitOfWork())
             {
@@ -122,8 +124,33 @@ namespace services.Services
             }
         }
 
-       
+        public IEnumerable<UserDTO> getPCMembersAvailableForSectionChair(int conferenId)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var sections = uow.getRepository<Conference>().get(conferenId).Sections;
+                var availableMembers = new List<UserDTO>();
+                var members = getPCMembersForConference(conferenId);
+                foreach(var member in members)
+                {
+                    var isChair = sections.FirstOrDefault(s => s.ChairId == member.Id);
+                    if (isChair == null)
+                        availableMembers.Add(member);
+                }
+                return availableMembers;
+            }
+        }
 
-       
+        public UserDTO getChairOfConference(int confId)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var part = uow.getRepository<User_Conference>().getAll().FirstOrDefault(p => p.ConferenceId == confId &&
+                                                                        p.Role == UserRole.Chair);
+                if (part == null)
+                    return null;
+                return userConverter.convertToDTOModel(part.User);
+            }
+        }
     }
 }

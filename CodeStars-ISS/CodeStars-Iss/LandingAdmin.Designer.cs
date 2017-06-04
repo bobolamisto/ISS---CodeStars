@@ -44,6 +44,7 @@
             this.buttonDeclineUser = new System.Windows.Forms.Button();
             this.panelAcceptDeclineUsers = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonSwitch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConferences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.panelAcceptDeclineConferences.SuspendLayout();
@@ -238,11 +239,23 @@
             this.label3.Text = "View Users:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // buttonSwitch
+            // 
+            this.buttonSwitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSwitch.Location = new System.Drawing.Point(1159, 2);
+            this.buttonSwitch.Name = "buttonSwitch";
+            this.buttonSwitch.Size = new System.Drawing.Size(191, 27);
+            this.buttonSwitch.TabIndex = 18;
+            this.buttonSwitch.Text = "Switch to User Page";
+            this.buttonSwitch.UseVisualStyleBackColor = true;
+            this.buttonSwitch.Click += new System.EventHandler(this.buttonSwitch_Click);
+            // 
             // LandingAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1484, 543);
+            this.ClientSize = new System.Drawing.Size(1362, 543);
+            this.Controls.Add(this.buttonSwitch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panelAcceptDeclineUsers);
             this.Controls.Add(this.buttonPendingUsers);
@@ -285,5 +298,6 @@
         private System.Windows.Forms.Button buttonDeclineUser;
         private System.Windows.Forms.Panel panelAcceptDeclineUsers;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonSwitch;
     }
 }

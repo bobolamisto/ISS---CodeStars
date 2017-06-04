@@ -161,6 +161,7 @@
             this.buttonRemoveSection.TabIndex = 9;
             this.buttonRemoveSection.Text = "Remove Section";
             this.buttonRemoveSection.UseVisualStyleBackColor = true;
+            this.buttonRemoveSection.Click += new System.EventHandler(this.buttonRemoveSection_Click);
             // 
             // labelConference
             // 

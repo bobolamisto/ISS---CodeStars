@@ -176,5 +176,12 @@ namespace CodeStars_Iss
         {
 
         }
+
+        private void buttonSwitch_Click(object sender, EventArgs e)
+        {
+            Landing window = new Landing(this.ctrl, this.user);
+            window.Show();
+            this.Close();
+        }
     }
 }

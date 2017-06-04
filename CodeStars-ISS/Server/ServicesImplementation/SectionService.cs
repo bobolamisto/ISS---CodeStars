@@ -24,11 +24,6 @@ namespace Server.ServicesImplementation
             using (var uow = new UnitOfWork())
             {
                 var repo = uow.getRepository<Section>();
-                var existing = repo.getAll().FirstOrDefault(s => s.ConferenceId == section.ConferenceId &&
-                                                                  s.EndDate == DateTime.Parse(section.EndDate) &&
-                                                                  s.StartDate == DateTime.Parse(section.StartDate));
-                if (existing != null)
-                    return null;
                 var saved = repo.save(converter.convertToPOCOModel(section));
                 uow.saveChanges();
                 return converter.convertToDTOModel(saved);
@@ -43,13 +38,6 @@ namespace Server.ServicesImplementation
                 var existing = repo.getAll().FirstOrDefault(s => s.Id == id);
                 if (existing == null)
                     return;
-                var proposalsRepo = uow.getRepository<Proposal>();
-                foreach(var p in existing.Proposals)
-                {
-                    p.SectionId = null;
-                    proposalsRepo.update(p.Id, p);
-                    uow.saveChanges();
-                }
                 repo.remove(id);
                 uow.saveChanges();
             }
