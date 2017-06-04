@@ -19,7 +19,9 @@ namespace Model.Mapping
             Property(p => p.Abstract);
             Property(p => p.FullPaper);
             Property(p => p.Keywords);
+            Property(p => p.Collaborators);
             Property(p => p.ParticipationId);
+            Property(p => p.SectionId);
             Property(p => p.ProposalState);
             HasRequired(p => p.Participation).WithMany().HasForeignKey(p => p.ParticipationId);
             HasOptional(p => p.Section).WithMany(s => s.Proposals).HasForeignKey(p => p.SectionId);

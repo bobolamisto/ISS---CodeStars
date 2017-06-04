@@ -21,6 +21,7 @@ namespace Model.Domain
         public string Abstract { get; set; }
         public string FullPaper { get; set; }
         public string Keywords { get; set; }
+        public string Collaborators { get; set; }
         public int ParticipationId { get; set; }
         public int? SectionId { get; set; }
         public ProposalState ProposalState { get; set; }
