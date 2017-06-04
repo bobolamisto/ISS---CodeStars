@@ -45,6 +45,11 @@ namespace CodeStars_Iss.Controller
             return _server.logIn(username, password);
         }
 
+        internal IEnumerable<UserDTO> searchStringInUsers(string text)
+        {
+            return _server.searchSubstringInUser(text);
+        }
+
         public UserDTO updateAccount(int id, string username, string password, string firstname, string lastname, string email, string webpage, Boolean admin)
         {
             var user = new UserDTO { Id = id, Username = username, Password = password, FirstName = firstname, LastName = lastname, Email = email, WebPage = webpage, Admin = admin };

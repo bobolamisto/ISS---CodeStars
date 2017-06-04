@@ -16,7 +16,7 @@ namespace Server.ServicesImplementation
         private User_ConferenceConverterService _userConferenceConverter;
 
         public ProposalService()
-        {
+        {        
             _proposalConverter = new ProposalConverterService();
             _userConferenceConverter = new User_ConferenceConverterService();
         }
@@ -46,6 +46,34 @@ namespace Server.ServicesImplementation
                 section.Proposals.Add(proposal);
                 uow.saveChanges();
             }
+        }
+
+        
+        public int evaluateProposal(int id)
+        {
+            var okRejected = true;
+            var okAccepted = true;
+            var proposal = this.getProposalById(id);
+            using (var uow = new UnitOfWork())
+            {
+                var reviews = uow.getRepository<Review>().getAll().Where(r => r.ProposalId.Equals(id));
+                
+                foreach(Review r in reviews)
+                {
+                    if (r.Mark.Equals(Mark.Accept.ToString()) || r.Mark.Equals(Mark.StrongAccept.ToString()) || r.Mark.Equals(Mark.WeakAccept.ToString()))
+                        okRejected = false;
+                    else
+                        okAccepted = false;
+                }
+            }
+            if (okAccepted == true)
+                return 1;
+            if (okRejected == false)
+                return 0;
+            else
+                return -1;
+
+            //in functie de rezultat trimit e-mail
         }
 
         public ProposalDTO FindProposal(string title,string subject,string keywords) { 
@@ -183,6 +211,22 @@ namespace Server.ServicesImplementation
                 paperRepo.update(paperDto.Id, _proposalConverter.convertToPOCOModel(paperDto));
                 uow.saveChanges();
                 return _proposalConverter.convertToDTOModel(paperRepo.get(paperDto.Id));
+            }
+        }
+
+        public void evaluateAllProposalsForAConference(int conferenceId)
+        {           
+            using (var uow = new UnitOfWork())
+            {               
+                var proposals = uow.getRepository<Proposal>().getAll().Where(r => r.Participation.ConferenceId.Equals(conferenceId));
+                foreach (Proposal r in proposals)
+                {
+                    var reviews = uow.getRepository<Review>().getAll().Where(e => e.ProposalId.Equals(r.Id));
+                    if (reviews.Count() >= 3)
+                    {
+                        this.evaluateProposal(r.Id);
+                    }
+                }
             }
         }
 

@@ -125,5 +125,13 @@ namespace server.ServicesImplementation
                 return user.Id;
             }
         }
+
+        public IEnumerable<UserDTO> searchSubstringInUser(string text)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                return converter.convertToDTOList(uow.getRepository<User>().getAll().Where(u =>( u.FirstName.StartsWith(text)) || u.LastName.StartsWith(text)));
+            }
+        }
     }
 }

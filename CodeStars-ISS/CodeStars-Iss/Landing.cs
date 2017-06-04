@@ -250,5 +250,18 @@ namespace CodeStars_Iss
             AddSections window = new AddSections(conf, ctrl);
             window.Show();
         }
+
+        private void ManageAuthorsButton_Click(object sender, EventArgs e)
+        {
+            if (GridViewProposals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a proposals!");
+                return;
+            }
+            var selectedRow = GridViewProposals.SelectedRows[0];
+            var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+            ManageAuthors p = new ManageAuthors(ctrl, prop);
+            p.Show();
+        }
     }
 }
