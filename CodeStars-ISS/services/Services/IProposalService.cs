@@ -38,5 +38,12 @@ namespace services.Services
         void removeProposalFromAnySection(int idProposal);
         ProposalDTO getProposalById(int id);
         IEnumerable<ProposalDTO> getProposalsOutsideSections(int conferenceId);
+
+        /// <summary>
+        /// 1 -accepted, 0 -rejected, -1 -reevaluate
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        int evaluateProposal(int id);
     }
 }

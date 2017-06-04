@@ -126,6 +126,11 @@ namespace Server.ServicesImplementation
             return _userService.findAll();
         }
 
+        public IEnumerable<UserDTO> searchSubstringInUser(string text)
+        {
+            return _userService.searchSubstringInUser(text);
+        }
+
 
         //methods from IUserConferenceService
         public ConferenceDTO AddConference(int idUser, ConferenceDTO conference)
@@ -355,6 +360,11 @@ namespace Server.ServicesImplementation
         public IEnumerable<UserDTO> getUsersParticipatingAtConference(int conferenceId)
         {
             return _userConferenceService.getUsersParticipatingAtConference(conferenceId);
+        }
+
+        public int evaluateProposal(int id)
+        {
+            return _proposalService.evaluateProposal(id);
         }
     }
 }

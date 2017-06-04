@@ -50,6 +50,7 @@
             this.buttonMyConferencesAsListener = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonSections = new System.Windows.Forms.Button();
+            this.ManageAuthorsButton = new System.Windows.Forms.Button();
             this.PanelCoChair.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).BeginInit();
             this.panelReviewProposal.SuspendLayout();
@@ -207,10 +208,11 @@
             // 
             // panelUpdateProposal
             // 
+            this.panelUpdateProposal.Controls.Add(this.ManageAuthorsButton);
             this.panelUpdateProposal.Controls.Add(this.buttonUpdateProposal);
-            this.panelUpdateProposal.Location = new System.Drawing.Point(607, 615);
+            this.panelUpdateProposal.Location = new System.Drawing.Point(461, 615);
             this.panelUpdateProposal.Name = "panelUpdateProposal";
-            this.panelUpdateProposal.Size = new System.Drawing.Size(140, 47);
+            this.panelUpdateProposal.Size = new System.Drawing.Size(286, 47);
             this.panelUpdateProposal.TabIndex = 15;
             // 
             // buttonUpdateProposal
@@ -289,6 +291,16 @@
             this.buttonSections.UseVisualStyleBackColor = true;
             this.buttonSections.Click += new System.EventHandler(this.buttonSections_Click);
             // 
+            // ManageAuthorsButton
+            // 
+            this.ManageAuthorsButton.Location = new System.Drawing.Point(146, 10);
+            this.ManageAuthorsButton.Name = "ManageAuthorsButton";
+            this.ManageAuthorsButton.Size = new System.Drawing.Size(130, 30);
+            this.ManageAuthorsButton.TabIndex = 1;
+            this.ManageAuthorsButton.Text = "Manage Authors";
+            this.ManageAuthorsButton.UseVisualStyleBackColor = true;
+            this.ManageAuthorsButton.Click += new System.EventHandler(this.ManageAuthorsButton_Click);
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -352,6 +364,7 @@
         private System.Windows.Forms.Button buttonMyConferencesAsListener;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonSections;
+        private System.Windows.Forms.Button ManageAuthorsButton;
     }
 }
 

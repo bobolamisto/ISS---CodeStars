@@ -18,6 +18,8 @@ namespace services.Services
         User_ConferenceDTO buyTicket(int idU, int idC);
         IEnumerable<UserDTO> findAll();
         int findByUsername(string username);
-        
+        IEnumerable<UserDTO> searchSubstringInUser(string text);
+
+
     }
 }
