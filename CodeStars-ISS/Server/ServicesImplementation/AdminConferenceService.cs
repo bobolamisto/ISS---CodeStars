@@ -5,21 +5,30 @@ using Model.Domain;
 using Model.DTOModels;
 using Persistence.Repository;
 using Server.ModelConverterServices;
+using Server.ServicesImplementation;
 
 namespace services.Services
 {
     public class AdminConferenceService : IAdminConferenceService
     {
         private ConferenceConverterService converter;
-
+        private EmailService emailService;
         public AdminConferenceService()
         {
             converter = new ConferenceConverterService();
+            emailService = new EmailService();
         }
 
         public void AcceptConferenceProposal(int idConference)
         {
             ChangeConferenceState(idConference, ConferenceState.Building);
+            using (var uow = new UnitOfWork())
+            {
+                var repoUser_Conf = uow.getRepository<User_Conference>();
+                var chair = repoUser_Conf.getAll().FirstOrDefault(x => x.ConferenceId == idConference && x.Role == UserRole.Chair).User;
+                emailService.SendEmail(chair.Email, "Conference proposal accepted", "Your conference proposal was accepted. Now you can update co-chairs, abstract date, full paper date.");
+            }
+            
         }
 
         public void DeclineConferencProposal(int idConference)
@@ -30,6 +39,12 @@ namespace services.Services
         public void AcceptFullConference(int idConference)
         {
             ChangeConferenceState(idConference, ConferenceState.Accepted);
+            using (var uow = new UnitOfWork())
+            {
+                var repoUser_Conf = uow.getRepository<User_Conference>();
+                var chair = repoUser_Conf.getAll().FirstOrDefault(x => x.ConferenceId == idConference && x.Role == UserRole.Chair).User;
+                emailService.SendEmail(chair.Email, "Conference proposal accepted", "Your conference proposal was accepted.");
+            }
         }
 
         public IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState)
@@ -62,6 +77,7 @@ namespace services.Services
                 if (user != null)
                 {
                     user.Validation = AccountState.Validated;
+                    emailService.SendEmail(user.Email, "Account validated", "Your account on Conferences Platform was validated");
                 }
                 uow.saveChanges();
             }
