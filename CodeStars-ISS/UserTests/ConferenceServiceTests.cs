@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Model;
 //using Model;
 using Model.DTOModels;
 //using Model.Domain;
@@ -24,14 +25,14 @@ namespace UserTests
        // private void PrepareData()
        // {
          //   using (var model = new DatabaseContext())
-         //   {
-          //      model.Conferences.Add(new ConferenceDTO {Id=1,Name = "nume1", Edition = 11, StartDate = "12.05.2015", EndDate = "14.05.2015", Domain = "domeniu1", AbstractDeadline = "10.05.2015", FullPaperDeadline = "09.05.2015", MainDescription = "descriere1", Price = 111, State = "state1" });
+          //  {
+            //    model.Conferences.Add(new ConferenceDTO {Id=1,Name = "nume1", Edition = 11, StartDate = "12.05.2015", EndDate = "14.05.2015", Domain = "domeniu1", AbstractDeadline = "10.05.2015", FullPaperDeadline = "09.05.2015", MainDescription = "descriere1", Price = 111, State = "state1" });
                
 
 
-          //      model.SaveChanges();
-          //  }
-     //   }
+              //  model.SaveChanges();
+           // }
+       // }
    
         //-------------------------------------------------------------------------------------------------
         //pica
