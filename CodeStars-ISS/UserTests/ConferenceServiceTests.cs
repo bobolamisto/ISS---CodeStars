@@ -31,7 +31,6 @@ namespace UserTests
             }
         }
 
-        [TestMethod]
         public void TestConferenceServiceAddConf()
         {
             var service = new UserConferenceService();
@@ -76,8 +75,6 @@ namespace UserTests
                 Assert.AreEqual(2, service.GetAllConferences().ToList().Count);
             }
         }
-
-        
 
     } 
 }
