@@ -48,6 +48,7 @@
             this.labelSectionStarts = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBoxSectionDates = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewAllProposals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewChosenProposals)).BeginInit();
             this.groupBoxSectionDates.SuspendLayout();
@@ -256,11 +257,21 @@
             this.groupBoxSectionDates.TabIndex = 19;
             this.groupBoxSectionDates.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(894, 439);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 39);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Done";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // AddSections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(975, 483);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBoxSectionDates);
             this.Controls.Add(this.labelConferenceEnds);
             this.Controls.Add(this.label5);
@@ -310,5 +321,6 @@
         private System.Windows.Forms.Label labelSectionStarts;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBoxSectionDates;
+        private System.Windows.Forms.Button button1;
     }
 }
