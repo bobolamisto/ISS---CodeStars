@@ -153,21 +153,10 @@ namespace Model
                         errors.Add(new DbValidationError("Lastname", "Lastname's first letter must pe uppercase"));
                 }
 
-                
-               // bool IsValidEmail(string email)
-               // {
-                 //   try
-                  //  {
-                    //    var addr = new System.Net.Mail.MailAddress(email);
-                     //   return addr.Address == email;
-                   // }
-                  //  catch
-                  //  {
-                    //    return false;
-                   // }
-               // }
-               // if (IsValidEmail(user.Email)==false)
-                 //   errors.Add(new DbValidationError("Email", "This email is not valid"));
+ 
+                var addr = new System.Net.Mail.MailAddress(user.Email);
+                if (addr.Address!=user.Email)
+                    errors.Add(new DbValidationError("Email", "This email is not valid"));
 
                 if (user.WebPage == "")
                     errors.Add(new DbValidationError("Webpage", "Webpage can't be null"));
