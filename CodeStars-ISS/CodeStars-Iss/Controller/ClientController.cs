@@ -40,6 +40,11 @@ namespace CodeStars_Iss.Controller
             return _server.removeAccount(id);
         }
 
+        internal void addColaborator(string text, ProposalDTO prop)
+        {
+            _server.addColaborator(text, prop.Id);
+        }
+
         public UserDTO logIn(string username, string password)
         {
             return _server.logIn(username, password);
