@@ -64,7 +64,7 @@ namespace CodeStars_Iss.Controller
         // methods from IUserConferenceService
         public void addConference(int uId, int cId, string cName, DateTime cStartDate, DateTime cEndDate, string Cdomain, DateTime CabstractDeadline, DateTime cFullPaperDeadline, float Price, string Description)
         {
-            var c = new ConferenceDTO() { Name = cName, StartDate = cStartDate.ToString(), EndDate = cEndDate.ToString(), Domain = Cdomain, AbstractDeadline = CabstractDeadline.ToString(), FullPaperDeadline = cFullPaperDeadline.ToString(), Price = Price, State = ConferenceState.Proposed.ToString(), MainDescription = Description};
+            var c = new ConferenceDTO() { Name = cName, StartDate = cStartDate.ToString(), EndDate = cEndDate.ToString(), Domain = Cdomain, AbstractDeadline = CabstractDeadline.ToString(), FullPaperDeadline = cFullPaperDeadline.ToString(), Price = Price, State = ConferenceState.Proposed.ToString(), MainDescription = Description };
             _server.AddConference(uId, c);
         }
 
@@ -112,7 +112,7 @@ namespace CodeStars_Iss.Controller
             return _server.GetFilteredConferences(state);
         }
 
-        public ConferenceDTO FindConference(string startDate,string endDate)
+        public ConferenceDTO FindConference(string startDate, string endDate)
         {
             return _server.FindConference(startDate, endDate);
         }
@@ -127,14 +127,14 @@ namespace CodeStars_Iss.Controller
             return _server.GetUserProposals(idUser);
         }
 
-        public ProposalDTO AddProposal(int idUser,int idConf,ProposalDTO proposal)
+        public ProposalDTO AddProposal(int idUser, int idConf, ProposalDTO proposal)
         {
             return _server.AddPaper(idUser, idConf, proposal);
         }
 
         public IEnumerable<UserDTO> getAllUsers()
         {
-           return _server.findAll().Where(u => u.Validation == AccountState.Waiting.ToString());
+            return _server.findAll().Where(u => u.Validation == AccountState.Waiting.ToString());
 
         }
 
@@ -146,17 +146,17 @@ namespace CodeStars_Iss.Controller
 
         public ProposalDTO RemovePaper(int idPaper)
         {
-            return _server.RemovePaper( idPaper);
+            return _server.RemovePaper(idPaper);
         }
 
         public ProposalDTO UpdatePaper(ProposalDTO paperDto)
         {
-            return _server.UpdatePaper( paperDto);
+            return _server.UpdatePaper(paperDto);
         }
 
         public ProposalDTO FindProposal(string title, string subject, string keywords)
         {
-            return _server.FindProposal(title,subject,keywords);
+            return _server.FindProposal(title, subject, keywords);
         }
 
         public List<EnumObject> getData<E>()
@@ -231,15 +231,16 @@ namespace CodeStars_Iss.Controller
         public User_ConferenceDTO addCoChair(User_ConferenceDTO coChair)
         {
             return _server.addUserConference(coChair);
-
-        public IEnumerable<ProposalDTO> getProposalsByState(ProposalState proposalState)
-        {
-            return _server.GetProposalsByState(proposalState);
         }
+            public IEnumerable<ProposalDTO> getProposalsByState(ProposalState proposalState)
+            {
+                return _server.GetProposalsByState(proposalState);
+            }
 
-        public IEnumerable<ProposalDTO> getProposalsByState(int idUser, ProposalState proposalState)
-        {
-            return _server.GetProposalsByState(idUser, proposalState);
-        }
+            public IEnumerable<ProposalDTO> getProposalsByState(int idUser, ProposalState proposalState)
+            {
+                return _server.GetProposalsByState(idUser, proposalState);
+            }
+        
     }
 }
