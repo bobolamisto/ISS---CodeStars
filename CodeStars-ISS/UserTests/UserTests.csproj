@@ -80,6 +80,7 @@
     <Compile Include="ConferenceServiceTests.cs" />
     <Compile Include="EffortProviderFactory.cs" />
     <Compile Include="ProposalModelTest.cs" />
+    <Compile Include="ReviewServiceTest.cs" />
     <Compile Include="ServerServiceTests.cs" />
     <Compile Include="TestInitialize.cs" />
     <Compile Include="UserModelTests.cs" />
