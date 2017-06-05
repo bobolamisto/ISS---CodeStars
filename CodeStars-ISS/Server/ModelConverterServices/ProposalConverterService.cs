@@ -28,6 +28,8 @@ namespace Server.ModelConverterServices
             dto.Collaborators = model.Collaborators;
             dto.ParticipationId = model.ParticipationId;
             dto.SectionId = model.SectionId;
+            dto.ProposalState = model.ProposalState;
+
             return dto;
         }
 
@@ -43,6 +45,7 @@ namespace Server.ModelConverterServices
             poco.Collaborators = model.Collaborators;
             poco.SectionId = model.SectionId;
             poco.ParticipationId = model.ParticipationId;
+            poco.ProposalState = model.ProposalState;
             return poco;
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model.Domain;
 
 namespace Model.DTOModels
 {
@@ -18,6 +19,7 @@ namespace Model.DTOModels
         public string Collaborators { get; set; }
         public int ParticipationId { get; set; }
         public int? SectionId { get; set; }
+        public ProposalState ProposalState { get; set; }
 
         public ProposalDTO() { }
         public ProposalDTO(int id, string title, string subject, string bastract, string fullpaper, string keywords, int partID,int secId)

@@ -233,9 +233,14 @@ namespace Server.ServicesImplementation
             return _proposalService.GetUserProposals(idUser);
         }
 
-        public IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf)
+        public IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState)
         {
-            return _proposalService.GetProposalsToBeReviewed(idUser, idConf);
+            return _proposalService.GetProposalsByState(proposalState);
+        }
+
+        public IEnumerable<ProposalDTO> GetProposalsByState(int idUser, ProposalState proposalState)
+        {
+            return _proposalService.GetProposalsByState(idUser, proposalState);
         }
 
         public IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId)

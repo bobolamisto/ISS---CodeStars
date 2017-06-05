@@ -107,6 +107,12 @@
     <Compile Include="ManageAuthors.Designer.cs">
       <DependentUpon>ManageAuthors.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyProposals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyProposals.Designer.cs">
+      <DependentUpon>MyProposals.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReviewProposal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageAuthors.resx">
       <DependentUpon>ManageAuthors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyProposals.resx">
+      <DependentUpon>MyProposals.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

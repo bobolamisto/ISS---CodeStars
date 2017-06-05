@@ -221,5 +221,15 @@ namespace CodeStars_Iss.Controller
         {
             return _server.getChairOfConference(confId);
         }
+
+        public IEnumerable<ProposalDTO> getProposalsByState(ProposalState proposalState)
+        {
+            return _server.GetProposalsByState(proposalState);
+        }
+
+        public IEnumerable<ProposalDTO> getProposalsByState(int idUser, ProposalState proposalState)
+        {
+            return _server.GetProposalsByState(idUser, proposalState);
+        }
     }
 }
