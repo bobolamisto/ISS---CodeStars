@@ -189,5 +189,10 @@ namespace CodeStars_Iss
             var window = new MyProposals(ctrl, user, OpenedFrom.AdminWindow);
             window.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
