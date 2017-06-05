@@ -81,8 +81,6 @@ namespace Model
                     errors.Add(new DbValidationError("FullPaper", "Proposal fullpaper can't be null"));
                 if (proposal.Keywords == "")
                     errors.Add(new DbValidationError("Keywords", "Proposal keywords can't be null"));
-                if (proposal.Collaborators == "")
-                    errors.Add(new DbValidationError("Collaborators", "Proposal collaborators can't be null"));
                 if ((proposal.ProposalState!=ProposalState.Accepted) && (proposal.ProposalState != ProposalState.Declined) && (proposal.ProposalState != ProposalState.Pending))
                     errors.Add(new DbValidationError("ProposalState", "ProposalState must be Accepted, Declined or Pending"));
 
