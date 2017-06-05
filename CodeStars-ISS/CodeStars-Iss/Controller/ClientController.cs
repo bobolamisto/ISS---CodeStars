@@ -231,6 +231,7 @@ namespace CodeStars_Iss.Controller
         public User_ConferenceDTO addCoChair(User_ConferenceDTO coChair)
         {
             return _server.addUserConference(coChair);
+
         }
         public IEnumerable<ProposalDTO> getProposalsByState(ProposalState proposalState)
         {
@@ -244,5 +245,6 @@ namespace CodeStars_Iss.Controller
         {
             return _server.addUserConference(coChair);
         }
+
     }
 }
