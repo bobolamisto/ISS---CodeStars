@@ -66,8 +66,123 @@ namespace Model
                 if (errors.Count > 0)
                     return new DbEntityValidationResult(entityEntry, errors);
             }
+            if (entityEntry.Entity is Proposal && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            {
+                var proposal = (Proposal)entityEntry.Entity;
+
+               
+                if (proposal.Title == "")
+                    errors.Add(new DbValidationError("Title", "Proposal title can't be null"));
+                if (proposal.Subject == "")
+                    errors.Add(new DbValidationError("Subject", "Proposal subject can't be null"));
+                if (proposal.Abstract == "")
+                    errors.Add(new DbValidationError("Abstract", "Proposal abstract can't be null"));
+                if (proposal.FullPaper == "")
+                    errors.Add(new DbValidationError("FullPaper", "Proposal fullpaper can't be null"));
+                if (proposal.Keywords == "")
+                    errors.Add(new DbValidationError("Keywords", "Proposal keywords can't be null"));
+                if (proposal.Collaborators == "")
+                    errors.Add(new DbValidationError("Collaborators", "Proposal collaborators can't be null"));
+                if ((proposal.ProposalState!=ProposalState.Accepted) || (proposal.ProposalState != ProposalState.Declined) || (proposal.ProposalState != ProposalState.Pending))
+                    errors.Add(new DbValidationError("ProposalState", "ProposalState must be Accepted, Declined or Pending"));
+
+                if (errors.Count > 0)
+                    return new DbEntityValidationResult(entityEntry, errors);
+            }
+
+            if (entityEntry.Entity is Review && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            {
+                var review = (Review)entityEntry.Entity;
+                if (review.Recommendation == "")
+                    errors.Add(new DbValidationError("Recommendation", "Review recommendation can't be null"));
+                if ((review.Mark != Mark.StrongAccept) || (review.Mark != Mark.Accept) || (review.Mark != Mark.WeakAccept) || (review.Mark != Mark.BorderlinePaper) || (review.Mark != Mark.WeakReject) || (review.Mark != Mark.Reject) || (review.Mark != Mark.StrongReject))
+                    errors.Add(new DbValidationError("Mark", "Mark must be StrongAccept, Accept, WeakAccept, BordelinePaper, WeakReject, Reject or StrongReject"));
+                if (errors.Count > 0)
+                    return new DbEntityValidationResult(entityEntry, errors);
+            }
+
+            if (entityEntry.Entity is User_Conference && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            {
+                var userconf = (User_Conference)entityEntry.Entity;
+
+                if ((userconf.Role != UserRole.Chair) || (userconf.Role != UserRole.CoChair) || (userconf.Role != UserRole.Listener) || (userconf.Role != UserRole.Speaker) || (userconf.Role != UserRole.Reviewer))
+                    errors.Add(new DbValidationError("Role", "Role must be Chair, CoChair, Listener, Speaker or Reviewer"));
+                if (errors.Count > 0)
+                    return new DbEntityValidationResult(entityEntry, errors);
+            }
+
+            if (entityEntry.Entity is Section && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            {
+                var section = (Section)entityEntry.Entity;
+                if (section.Title == "")
+                    errors.Add(new DbValidationError("Title", "Section title can't be null"));
+                if (section.StartDate.CompareTo(section.EndDate) >= 0)
+                    errors.Add(new DbValidationError("EndDate", String.Format("The end date must be after start date ({0})", section.StartDate)));
+                
+                if (Sections.Any(s => s.Id != section.Id &&
+                        (section.EndDate.CompareTo(s.StartDate) >= 0 && section.StartDate.CompareTo(s.EndDate) <= 0)))
+                    errors.Add(new DbValidationError("StartDate", String.Format("The section '{0}' time must be in some of the conferences", section.Title )));
+                if (section.ChairId < 0)
+                    errors.Add(new DbValidationError("ChairId", "Section ChairId must be positive"));
+
+                if (errors.Count > 0)
+                    return new DbEntityValidationResult(entityEntry, errors);
+            }
+
+            if (entityEntry.Entity is User && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            {
+                var user = (User)entityEntry.Entity;
+                if (user.Username == "")
+                    errors.Add(new DbValidationError("Username", "Username can't be null"));
+                if (user.Password == "")
+                    errors.Add(new DbValidationError("Password", "Password can't be null"));
+
+                string str = user.FirstName;
+                bool isLetter = !String.IsNullOrEmpty(str) && Char.IsLetter(str[0]);
+                if (isLetter == true)
+                {
+                    if (str[0] >= 'A' && str[0] <= 'Z')
+                        errors.Add(new DbValidationError("FirstName", "Firstname's first letter must pe uppercase"));
+                }
+
+                string str1 = user.LastName;
+                bool isLetter1 = !String.IsNullOrEmpty(str) && Char.IsLetter(str1[0]);
+                if (isLetter1 == true)
+                {
+                    if (str1[0] >= 'A' && str1[0] <= 'Z')
+                        errors.Add(new DbValidationError("Lastname", "Lastname's first letter must pe uppercase"));
+                }
+
+                
+               // bool IsValidEmail(string email)
+               // {
+                 //   try
+                  //  {
+                    //    var addr = new System.Net.Mail.MailAddress(email);
+                     //   return addr.Address == email;
+                   // }
+                  //  catch
+                  //  {
+                    //    return false;
+                   // }
+               // }
+               // if (IsValidEmail(user.Email)==false)
+                 //   errors.Add(new DbValidationError("Email", "This email is not valid"));
+
+                if (user.WebPage == "")
+                    errors.Add(new DbValidationError("Webpage", "Webpage can't be null"));
+
+                if ((user.Validation != AccountState.Validated) || (user.Validation != AccountState.Waiting) || (user.Validation != AccountState.Unvalidated))
+                    errors.Add(new DbValidationError("Validation", "Validation must be Validated, Waiting or Unvalidated"));
+
+                if (errors.Count > 0)
+                    return new DbEntityValidationResult(entityEntry, errors);
+            }
+
             return base.ValidateEntity(entityEntry, items);
         }
+
         
+
     }
 }
