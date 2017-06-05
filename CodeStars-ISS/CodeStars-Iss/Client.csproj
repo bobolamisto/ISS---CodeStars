@@ -151,6 +151,12 @@
     <Compile Include="UserRegistration.Designer.cs">
       <DependentUpon>UserRegistration.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewReviewsForProposal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewReviewsForProposal.Designer.cs">
+      <DependentUpon>ViewReviewsForProposal.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddCoChair.resx">
       <DependentUpon>AddCoChair.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserRegistration.resx">
       <DependentUpon>UserRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewReviewsForProposal.resx">
+      <DependentUpon>ViewReviewsForProposal.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Client.nuspec" />
     <None Include="package.builder.json" />
