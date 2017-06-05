@@ -29,14 +29,14 @@ namespace UserTests
         {
             using (var model = new DatabaseContext())
             {
-                model.Users.Add(new User { Id = 2, Username = "User11", FirstName = "First11", LastName = "Last11", Password = "password1", Email = "test1@gmail.com", WebPage = "test1.com", Admin = true, ConferenceParticipations = null });
-                model.Users.Add(new User { Id = 10, Username = "User10", FirstName = "First10", LastName = "Last10", Password = "password1", Email = "test1@gmail.com", WebPage = "test1.com", Admin = true, ConferenceParticipations = null });
+                model.Users.Add(new User { Id = 2, Username = "User11", FirstName = "First11", LastName = "Last11", Password = "password1", Email = "test1@gmail.com", WebPage = "test1.com", Admin = true,Validation=AccountState.Validated});
+                model.Users.Add(new User { Id = 10, Username = "User10", FirstName = "First10", LastName = "Last10", Password = "password1", Email = "test1@gmail.com", WebPage = "test1.com", Admin = true,Validation=AccountState.Validated });
 
-                model.Sections.Add(new Section { Id = 25, Title = "titlu", StartDate = new DateTime(2018, 10, 25), EndDate = new DateTime(2018, 10, 30),   ChairId = 10, ConferenceId = 55 });
+                model.Sections.Add(new Section { Id = 25, Title = "titlu", StartDate = new DateTime(2018, 10, 25), EndDate = new DateTime(2018, 10, 30), ChairId = 10, ConferenceId = 55 });
 
                 model.Proposals.Add(new Proposal { Id = 1, Title = "Title", Subject = "subject", Abstract = "abstract", FullPaper = "full paper", Keywords = "keyword1", Collaborators = "Colab1", ParticipationId = 25, SectionId = 25, ProposalState = ProposalState.Accepted });
 
-                model.Conferences.Add(new Conference { Id = 55, Name = "name", StartDate = new DateTime(2018, 10, 25), EndDate = new DateTime(2018, 10, 30), Domain = "domain", MainDescription = "md", Edition = 1, Price = 25, AbstractDeadline = new DateTime(2018, 09, 20), FullPaperDeadline = new DateTime(2018, 09, 25), State = ConferenceState.Proposed });
+                model.Conferences.Add(new Conference { Id = 55, Name = "name", StartDate = new DateTime(2018, 10, 25), EndDate = new DateTime(2018, 10, 30), Domain = "domain", MainDescription = "md", Edition = 1, Price = 25, AbstractDeadline = new DateTime(2018, 10, 27), FullPaperDeadline = new DateTime(2018, 10, 28), State = ConferenceState.Proposed });
 
                 model.ConferenceParticipations.Add(new User_Conference { Id = 25, Role = UserRole.Listener, ConferenceId = 55, UserId = 2 });
 
@@ -108,8 +108,7 @@ namespace UserTests
             PrepareData();
             ReviewDTO revdto = new ReviewDTO
             {
-                Id = 256,
-                Mark="Accept",
+                Mark=Mark.Accept.ToString(),
                 Recommendation="recomm",
                 ProposalId=1,
                 ReviewerId=1
@@ -117,8 +116,7 @@ namespace UserTests
             };
             ReviewDTO revDtoNew = new ReviewDTO
             {
-                Id = 256,
-                Mark = "Accept",
+                Mark = Mark.Accept.ToString(),
                 Recommendation = "recommendations",
                 ProposalId = 1,
                 ReviewerId = 1
