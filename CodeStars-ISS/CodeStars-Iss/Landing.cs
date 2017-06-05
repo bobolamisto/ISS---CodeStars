@@ -292,5 +292,19 @@ namespace CodeStars_Iss
             window.Show();
             this.Close();
         }
+
+        //se adauga reviewer
+        private void ButtonReviewer_Click(object sender, EventArgs e)
+        {
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a conference!");
+                return;
+            }
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            AddReviewer p = new AddReviewer(ctrl, user, conf);
+            p.Show();
+        }
     }
 }

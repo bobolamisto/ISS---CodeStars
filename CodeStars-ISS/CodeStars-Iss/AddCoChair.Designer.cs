@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.selectCoChairLabel = new System.Windows.Forms.Label();
-            this.selectCoChairComboBox = new System.Windows.Forms.ComboBox();
             this.addCoChairButton = new System.Windows.Forms.Button();
             this.conferenceNameLabel = new System.Windows.Forms.Label();
+            this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // selectCoChairLabel
@@ -39,17 +39,9 @@
             this.selectCoChairLabel.AutoSize = true;
             this.selectCoChairLabel.Location = new System.Drawing.Point(32, 43);
             this.selectCoChairLabel.Name = "selectCoChairLabel";
-            this.selectCoChairLabel.Size = new System.Drawing.Size(78, 13);
+            this.selectCoChairLabel.Size = new System.Drawing.Size(94, 13);
             this.selectCoChairLabel.TabIndex = 0;
-            this.selectCoChairLabel.Text = "Select co-chair";
-            // 
-            // selectCoChairComboBox
-            // 
-            this.selectCoChairComboBox.FormattingEnabled = true;
-            this.selectCoChairComboBox.Location = new System.Drawing.Point(35, 59);
-            this.selectCoChairComboBox.Name = "selectCoChairComboBox";
-            this.selectCoChairComboBox.Size = new System.Drawing.Size(121, 21);
-            this.selectCoChairComboBox.TabIndex = 1;
+            this.selectCoChairLabel.Text = "Insert a username ";
             // 
             // addCoChairButton
             // 
@@ -70,14 +62,21 @@
             this.conferenceNameLabel.TabIndex = 3;
             this.conferenceNameLabel.Text = "Conference: ";
             // 
+            // usernameTextBox
+            // 
+            this.usernameTextBox.Location = new System.Drawing.Point(32, 62);
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.usernameTextBox.TabIndex = 4;
+            // 
             // AddCoChair
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 160);
+            this.ClientSize = new System.Drawing.Size(301, 124);
+            this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.conferenceNameLabel);
             this.Controls.Add(this.addCoChairButton);
-            this.Controls.Add(this.selectCoChairComboBox);
             this.Controls.Add(this.selectCoChairLabel);
             this.Name = "AddCoChair";
             this.Text = "AddCoChair";
@@ -89,8 +88,8 @@
         #endregion
 
         private System.Windows.Forms.Label selectCoChairLabel;
-        private System.Windows.Forms.ComboBox selectCoChairComboBox;
         private System.Windows.Forms.Button addCoChairButton;
         private System.Windows.Forms.Label conferenceNameLabel;
+        private System.Windows.Forms.TextBox usernameTextBox;
     }
 }
