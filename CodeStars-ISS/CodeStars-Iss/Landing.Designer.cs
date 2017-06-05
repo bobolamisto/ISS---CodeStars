@@ -52,6 +52,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonSections = new System.Windows.Forms.Button();
             this.buttonSwitch = new System.Windows.Forms.Button();
+            this.PanelReviewer = new System.Windows.Forms.Panel();
+            this.ButtonReviewer = new System.Windows.Forms.Button();
             this.PanelCoChair.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).BeginInit();
             this.panelReviewProposal.SuspendLayout();
@@ -59,6 +61,7 @@
             this.panelUpdateProposal.SuspendLayout();
             this.panelAddProposal.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.PanelReviewer.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -314,11 +317,30 @@
             this.buttonSwitch.UseVisualStyleBackColor = true;
             this.buttonSwitch.Click += new System.EventHandler(this.buttonSwitch_Click);
             // 
+            // PanelReviewer
+            // 
+            this.PanelReviewer.Controls.Add(this.ButtonReviewer);
+            this.PanelReviewer.Location = new System.Drawing.Point(897, 261);
+            this.PanelReviewer.Name = "PanelReviewer";
+            this.PanelReviewer.Size = new System.Drawing.Size(127, 50);
+            this.PanelReviewer.TabIndex = 22;
+            // 
+            // ButtonReviewer
+            // 
+            this.ButtonReviewer.Location = new System.Drawing.Point(11, 14);
+            this.ButtonReviewer.Name = "ButtonReviewer";
+            this.ButtonReviewer.Size = new System.Drawing.Size(103, 23);
+            this.ButtonReviewer.TabIndex = 1;
+            this.ButtonReviewer.Text = "Add Reviewer";
+            this.ButtonReviewer.UseVisualStyleBackColor = true;
+            this.ButtonReviewer.Click += new System.EventHandler(this.ButtonReviewer_Click);
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 692);
+            this.Controls.Add(this.PanelReviewer);
             this.Controls.Add(this.buttonSwitch);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonMyConferencesAsListener);
@@ -350,6 +372,7 @@
             this.panelUpdateProposal.ResumeLayout(false);
             this.panelAddProposal.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.PanelReviewer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,6 +403,8 @@
         private System.Windows.Forms.Button buttonSections;
         private System.Windows.Forms.Button ManageAuthorsButton;
         private System.Windows.Forms.Button buttonSwitch;
+        private System.Windows.Forms.Panel PanelReviewer;
+        private System.Windows.Forms.Button ButtonReviewer;
     }
 }
 

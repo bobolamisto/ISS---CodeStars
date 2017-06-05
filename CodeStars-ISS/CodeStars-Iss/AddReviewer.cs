@@ -13,32 +13,31 @@ using System.Windows.Forms;
 
 namespace CodeStars_Iss
 {
-    public partial class AddCoChair : Form
+    public partial class AddReviewer : Form
     {
         private ClientController _clientController;
         private UserDTO _user;
         private ConferenceDTO _conference;
-
-        public AddCoChair(ClientController clientController, UserDTO user, ConferenceDTO conference)
+        public AddReviewer(ClientController clientController, UserDTO user, ConferenceDTO conference)
         {
             _clientController = clientController;
             _user = user;
             _conference = conference;
             InitializeComponent();
-            conferenceNameLabel.Text = $"{conferenceNameLabel.Text} {_conference.Name}";
+            ConferenceNameLabel.Text = $"{ConferenceNameLabel.Text} {_conference.Name}";
         }
 
-        private void addCoChairButton_Click(object sender, EventArgs e)
+        private void AddReviewerButton_Click(object sender, EventArgs e)
         {
             var users = _clientController
-               .getAllValidatedUsers()
-               .Where(user => user.Id != _user.Id)
-               .ToList();
+              .getAllValidatedUsers()
+              .Where(user => user.Id != _user.Id)
+              .ToList();
             var exist = false;
             var userId = 0;
-            foreach(var user in users)
+            foreach (var user in users)
             {
-                if (user.Username.Equals(usernameTextBox.Text))
+                if (user.Username.Equals(UsernameTextBox.Text))
                 {
                     exist = true;
                     userId = user.Id;
@@ -56,12 +55,13 @@ namespace CodeStars_Iss
                     {
                         UserId = userId,
                         ConferenceId = _conference.Id,
-                        Role = UserRole.CoChair.ToString()
+                        Role = UserRole.Reviewer.ToString()
                     };
-                    _clientController.addCoChair(userConference);
-                    MessageBox.Show("The co-chair was added successfully");
+                    _clientController.addReviewer(userConference);
+                    MessageBox.Show("The reviewer was added successfully");
                     this.Close();
-                }else
+                }
+                else
                 {
                     MessageBox.Show("This user already has a role!");
                 }

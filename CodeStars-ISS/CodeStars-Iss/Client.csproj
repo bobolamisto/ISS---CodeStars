@@ -82,6 +82,12 @@
     <Compile Include="AddProposal.Designer.cs">
       <DependentUpon>AddProposal.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddReviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddReviewer.Designer.cs">
+      <DependentUpon>AddReviewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddSections.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddProposal.resx">
       <DependentUpon>AddProposal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddReviewer.resx">
+      <DependentUpon>AddReviewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddSections.resx">
       <DependentUpon>AddSections.cs</DependentUpon>
