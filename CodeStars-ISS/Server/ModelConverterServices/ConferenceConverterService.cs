@@ -45,6 +45,17 @@ namespace Server.ModelConverterServices
             return poco;
         }
 
+        public User_Conference convertToPOCOModel(User_ConferenceDTO model)
+        {
+            User_Conference poco = new User_Conference();
+            poco.Id = model.Id;
+            poco.ConferenceId = model.ConferenceId;
+            poco.UserId = model.UserId;
+            poco.Role = (UserRole)Enum.Parse(typeof(UserRole), model.Role, true);
+            
+            return poco;
+        }
+
         public IEnumerable<ConferenceDTO> convertToDTOList(IEnumerable<Conference> conferences)
         {
             return conferences.Select(convertToDTOModel).ToList();

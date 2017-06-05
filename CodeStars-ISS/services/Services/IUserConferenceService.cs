@@ -42,5 +42,10 @@ namespace services.Services
         IEnumerable<UserDTO> getPCMembersForConference(int conferenceId);
         IEnumerable<UserDTO> getPCMembersAvailableForSectionChair(int conferenId);
         UserDTO getChairOfConference(int confId);
+
+        /// <summary>
+        /// Adds a user conference.
+        /// </summary>
+        User_ConferenceDTO addUserConference(User_ConferenceDTO userConferenceDTO);
     }
 }
