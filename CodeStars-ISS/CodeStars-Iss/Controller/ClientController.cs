@@ -95,6 +95,11 @@ namespace CodeStars_Iss.Controller
             _server.ModifyDescription(uId, c);
         }
 
+        public ConferenceDTO updateConference(ConferenceDTO conferenceDTO)
+        {
+            return _server.updateConference(conferenceDTO);
+        }
+
         //methods from IAdminConferenceService
         public void acceptConferenceProposal(int idConference)
         {

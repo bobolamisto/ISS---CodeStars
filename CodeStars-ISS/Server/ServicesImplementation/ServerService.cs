@@ -392,6 +392,9 @@ namespace Server.ServicesImplementation
             return _userConferenceService.addUserConference(userConference);
         }
 
-        
+        public ConferenceDTO updateConference(ConferenceDTO conferenceDTO)
+        {
+            return _userConferenceService.updateConference(conferenceDTO);
+        }
     }
 }
