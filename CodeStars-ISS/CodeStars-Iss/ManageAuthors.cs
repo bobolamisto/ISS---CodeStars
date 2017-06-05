@@ -15,7 +15,6 @@ namespace CodeStars_Iss
     public partial class ManageAuthors : Form
     {
         
-        private DataTable users;
         private ProposalDTO prop;
         private ClientController ctr;
         public ManageAuthors(ClientController ctr,ProposalDTO prop)
@@ -26,44 +25,34 @@ namespace CodeStars_Iss
            
         }
 
-        private void ManageAuthors_Load(object sender, EventArgs e)
+        private void buttonAddColaborator_Click(object sender, EventArgs e)
         {
-            users = new DataTable();
-            users.Columns.Add("FirstName", typeof(string));
-            users.Columns.Add("LastName", typeof(string));
-      
-        }
-
-        private void reloadUsers(IEnumerable<UserDTO> items)
-        {
-            users.Clear();
-            foreach (var item in items)
+            string username = textBoxUsername.Text.ToString();
+            var users = ctr
+               .getAllValidatedUsers()
+               .ToList();
+            var exist = false;
+            var userId = 0;
+            foreach (var user in users)
             {
-
-                DataRow c = users.NewRow();
-                c["FirstName"] = item.FirstName;
-                c["LastName"] = item.LastName;
-                
-                users.Rows.Add(c);
+                if (user.Username.Equals(textBoxUsername.Text))
+                {
+                    exist = true;
+                    userId = user.Id;
+                }
             }
-            dataGridUsers.DataSource = users;
-        }
-
-        private void textBoxSearch_TextChanged(object sender, EventArgs e)
-        {
-            string text = textBoxSearch.Text;
-            var items = ctr.searchStringInUsers(text);
-            reloadUsers(items);
-        }
-
-        private void buttonAddAuthor_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Author succesfully added!");
-        }
-
-        private void buttonRemoveAuthor_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Author succesfully removed! ");
+            if (exist)
+            {
+                    ctr.addColaborator(textBoxUsername.Text, prop);
+                    
+                    MessageBox.Show("The colaborator was added successfully");
+                    this.Close();
+            }             
+           
+            else
+            {
+                MessageBox.Show("Please insert a valid username!");
+            }
         }
     }
 }

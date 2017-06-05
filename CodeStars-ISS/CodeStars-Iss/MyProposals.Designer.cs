@@ -31,6 +31,7 @@
             this.GridViewProposals = new System.Windows.Forms.DataGridView();
             this.comboBoxProposalState = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonAddColaborators = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewProposals)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,11 +61,22 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "My Proposed Papers";
             // 
+            // buttonAddColaborators
+            // 
+            this.buttonAddColaborators.Location = new System.Drawing.Point(437, 334);
+            this.buttonAddColaborators.Name = "buttonAddColaborators";
+            this.buttonAddColaborators.Size = new System.Drawing.Size(118, 23);
+            this.buttonAddColaborators.TabIndex = 3;
+            this.buttonAddColaborators.Text = "Add colaborators";
+            this.buttonAddColaborators.UseVisualStyleBackColor = true;
+            this.buttonAddColaborators.Click += new System.EventHandler(this.buttonAddColaborators_Click);
+            // 
             // MyProposals
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 334);
+            this.ClientSize = new System.Drawing.Size(593, 369);
+            this.Controls.Add(this.buttonAddColaborators);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxProposalState);
             this.Controls.Add(this.GridViewProposals);
@@ -82,5 +94,6 @@
         private System.Windows.Forms.DataGridView GridViewProposals;
         private System.Windows.Forms.ComboBox comboBoxProposalState;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonAddColaborators;
     }
 }

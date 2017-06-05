@@ -357,6 +357,11 @@ namespace Server.ServicesImplementation
             return _proposalService.getProposalsOutsideSections(conferenceId);
         }
 
+        public void addColaborator(string username, int id)
+        {
+            _proposalService.addColaborator(username, id);
+        }
+
         public int findByUsername(string username)
         {
             return _userService.findByUsername(username);
@@ -367,9 +372,9 @@ namespace Server.ServicesImplementation
             return _userConferenceService.getPCMembersForConference(conferenceId);
         }
 
-        public int evaluateProposal(int id)
+        public void evaluateProposal(int id)
         {
-            return _proposalService.evaluateProposal(id);
+             _proposalService.evaluateProposal(id);
         }
 
         public IEnumerable<UserDTO> getPCMembersAvailableForSectionChair(int conferenId)
@@ -385,6 +390,8 @@ namespace Server.ServicesImplementation
         public User_ConferenceDTO addUserConference(User_ConferenceDTO userConference)
         {
             return _userConferenceService.addUserConference(userConference);
-        }   
+        }
+
+        
     }
 }

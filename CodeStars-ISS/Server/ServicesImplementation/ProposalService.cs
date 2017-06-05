@@ -50,7 +50,7 @@ namespace Server.ServicesImplementation
         }
 
         
-        public int evaluateProposal(int id)
+        public void evaluateProposal(int id)
         {
             var okRejected = true;
             var okAccepted = true;
@@ -68,13 +68,14 @@ namespace Server.ServicesImplementation
                 }
             }
             if (okAccepted == true)
-                return 1;
-            if (okRejected == false)
-                return 0;
-            else
-                return -1;
+                proposal.ProposalState = ProposalState.Accepted;
 
-            //in functie de rezultat trimit e-mail
+            if (okRejected == false)
+                proposal.ProposalState = ProposalState.Declined;
+
+            else
+                proposal.ProposalState = ProposalState.Pending;
+
         }
 
         public ProposalDTO FindProposal(string title,string subject,string keywords) { 
@@ -236,6 +237,22 @@ namespace Server.ServicesImplementation
                 return uow.getRepository<User_Conference>()
                     .getAll()
                     .FirstOrDefault(userConference => userConference.UserId == idUser && userConference.ConferenceId == idConferinta);
+            }
+        }
+
+        public void addColaborator(string username, int id)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var proposals = uow.getRepository<Proposal>().getAll();
+                foreach(Proposal p in proposals)
+                {
+                    if (p.Id.Equals(id))
+                    {
+                        p.Collaborators += "username; ";
+                    }
+                }
+                uow.saveChanges();
             }
         }
     }

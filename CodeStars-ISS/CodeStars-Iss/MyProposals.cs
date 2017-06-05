@@ -77,5 +77,13 @@ namespace CodeStars_Iss
                 ? _ctrl.getProposalsByState(selectedState)
                 : _ctrl.getProposalsByState(_user.Id, selectedState);
         }
+
+        private void buttonAddColaborators_Click(object sender, EventArgs e)
+        {
+            var selectedRow = GridViewProposals.SelectedRows[0];
+            var prop = _ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+            ManageAuthors m = new ManageAuthors(_ctrl, prop);
+            m.Show();
+        }
     }
 }

@@ -45,11 +45,8 @@ namespace services.Services
         ProposalDTO getProposalById(int id);
         IEnumerable<ProposalDTO> getProposalsOutsideSections(int conferenceId);
 
-        /// <summary>
-        /// 1 -accepted, 0 -rejected, -1 -reevaluate
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        int evaluateProposal(int id);
+        void evaluateProposal(int id);
+
+        void addColaborator(string username, int id);
     }
 }
