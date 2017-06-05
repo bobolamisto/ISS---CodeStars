@@ -26,10 +26,10 @@ namespace UserTests
         {
             using (var model = new DatabaseContext())
             {
-                model.Users.Add(new User { Id = 1, Username = "User1", FirstName = "First1", LastName = "Last1", Password = "password1", Email = "test1@gmail.com", WebPage = "test1.com", Admin = true, ConferenceParticipations = null });
-                model.Users.Add(new User { Id = 2, Username = "User2", FirstName = "First2", LastName = "Last2", Password = "password2", Email = "test2@gmail.com", WebPage = "test2.com", Admin = false, ConferenceParticipations = null });
-                model.Users.Add(new User { Id = 3, Username = "User3", FirstName = "First3", LastName = "Last3", Password = "password3", Email = "test3@gmail.com", WebPage = "test3.com", Admin = false, ConferenceParticipations = null });
-                model.Users.Add(new User { Id = 4, Username = "User4", FirstName = "First4", LastName = "Last4", Password = "password4", Email = "test4@gmail.com", WebPage = "test4.com", Admin = true, ConferenceParticipations = null });
+                model.Users.Add(new User { Id = 1, Username = "User1", FirstName = "First1", LastName = "Last1", Password = "password1", Email = "test1@gmail.com", WebPage = "test1.com", Admin = true, Validation=AccountState.Validated });
+                model.Users.Add(new User { Id = 2, Username = "User2", FirstName = "First2", LastName = "Last2", Password = "password2", Email = "test2@gmail.com", WebPage = "test2.com", Admin = false, Validation=AccountState.Validated});
+                model.Users.Add(new User { Id = 3, Username = "User3", FirstName = "First3", LastName = "Last3", Password = "password3", Email = "test3@gmail.com", WebPage = "test3.com", Admin = false, Validation=AccountState.Validated });
+                model.Users.Add(new User { Id = 4, Username = "User4", FirstName = "First4", LastName = "Last4", Password = "password4", Email = "test4@gmail.com", WebPage = "test4.com", Admin = true, Validation=AccountState.Validated});
 
                 model.SaveChanges();
             }

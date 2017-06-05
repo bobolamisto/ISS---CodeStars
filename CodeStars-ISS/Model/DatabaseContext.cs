@@ -83,7 +83,7 @@ namespace Model
                     errors.Add(new DbValidationError("Keywords", "Proposal keywords can't be null"));
                 if (proposal.Collaborators == "")
                     errors.Add(new DbValidationError("Collaborators", "Proposal collaborators can't be null"));
-                if ((proposal.ProposalState!=ProposalState.Accepted) || (proposal.ProposalState != ProposalState.Declined) || (proposal.ProposalState != ProposalState.Pending))
+                if ((proposal.ProposalState!=ProposalState.Accepted) && (proposal.ProposalState != ProposalState.Declined) && (proposal.ProposalState != ProposalState.Pending))
                     errors.Add(new DbValidationError("ProposalState", "ProposalState must be Accepted, Declined or Pending"));
 
                 if (errors.Count > 0)
@@ -95,7 +95,7 @@ namespace Model
                 var review = (Review)entityEntry.Entity;
                 if (review.Recommendation == "")
                     errors.Add(new DbValidationError("Recommendation", "Review recommendation can't be null"));
-                if ((review.Mark != Mark.StrongAccept) || (review.Mark != Mark.Accept) || (review.Mark != Mark.WeakAccept) || (review.Mark != Mark.BorderlinePaper) || (review.Mark != Mark.WeakReject) || (review.Mark != Mark.Reject) || (review.Mark != Mark.StrongReject))
+                if ((review.Mark != Mark.StrongAccept) && (review.Mark != Mark.Accept) && (review.Mark != Mark.WeakAccept) && (review.Mark != Mark.BorderlinePaper) && (review.Mark != Mark.WeakReject) && (review.Mark != Mark.Reject) && (review.Mark != Mark.StrongReject))
                     errors.Add(new DbValidationError("Mark", "Mark must be StrongAccept, Accept, WeakAccept, BordelinePaper, WeakReject, Reject or StrongReject"));
                 if (errors.Count > 0)
                     return new DbEntityValidationResult(entityEntry, errors);
@@ -105,7 +105,7 @@ namespace Model
             {
                 var userconf = (User_Conference)entityEntry.Entity;
 
-                if ((userconf.Role != UserRole.Chair) || (userconf.Role != UserRole.CoChair) || (userconf.Role != UserRole.Listener) || (userconf.Role != UserRole.Speaker) || (userconf.Role != UserRole.Reviewer))
+                if ((userconf.Role != UserRole.Chair) && (userconf.Role != UserRole.CoChair) && (userconf.Role != UserRole.Listener) && (userconf.Role != UserRole.Speaker) && (userconf.Role != UserRole.Reviewer))
                     errors.Add(new DbValidationError("Role", "Role must be Chair, CoChair, Listener, Speaker or Reviewer"));
                 if (errors.Count > 0)
                     return new DbEntityValidationResult(entityEntry, errors);
@@ -141,7 +141,7 @@ namespace Model
                 bool isLetter = !String.IsNullOrEmpty(str) && Char.IsLetter(str[0]);
                 if (isLetter == true)
                 {
-                    if (str[0] >= 'A' && str[0] <= 'Z')
+                    if (str[0] <= 'A' || str[0] >= 'Z')
                         errors.Add(new DbValidationError("FirstName", "Firstname's first letter must pe uppercase"));
                 }
 
@@ -149,19 +149,19 @@ namespace Model
                 bool isLetter1 = !String.IsNullOrEmpty(str) && Char.IsLetter(str1[0]);
                 if (isLetter1 == true)
                 {
-                    if (str1[0] >= 'A' && str1[0] <= 'Z')
+                    if (str1[0] <= 'A' || str1[0] >= 'Z')
                         errors.Add(new DbValidationError("Lastname", "Lastname's first letter must pe uppercase"));
                 }
 
- 
+
                 var addr = new System.Net.Mail.MailAddress(user.Email);
-                if (addr.Address!=user.Email)
+                if (addr.Address != user.Email)
                     errors.Add(new DbValidationError("Email", "This email is not valid"));
 
                 if (user.WebPage == "")
                     errors.Add(new DbValidationError("Webpage", "Webpage can't be null"));
 
-                if ((user.Validation != AccountState.Validated) || (user.Validation != AccountState.Waiting) || (user.Validation != AccountState.Unvalidated))
+                if ((user.Validation != AccountState.Validated) && (user.Validation != AccountState.Waiting) && (user.Validation != AccountState.Unvalidated))
                     errors.Add(new DbValidationError("Validation", "Validation must be Validated, Waiting or Unvalidated"));
 
                 if (errors.Count > 0)
