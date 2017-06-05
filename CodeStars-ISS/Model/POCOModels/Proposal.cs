@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace Model.Domain
 {
+    public enum ProposalState
+    {
+        Accepted,
+        Declined,
+        Pending
+    }
     public class Proposal
     {
         public int Id { get; set; }
@@ -15,8 +21,10 @@ namespace Model.Domain
         public string Abstract { get; set; }
         public string FullPaper { get; set; }
         public string Keywords { get; set; }
+        public string Collaborators { get; set; }
         public int ParticipationId { get; set; }
         public int? SectionId { get; set; }
+        public ProposalState ProposalState { get; set; }
         public virtual User_Conference Participation { get; set; }
         public virtual Section Section { get; set; }        
     }

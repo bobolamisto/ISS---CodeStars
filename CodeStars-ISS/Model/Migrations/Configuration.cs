@@ -47,10 +47,10 @@ namespace Model.Migrations
 
             var proposals = new Proposal[]
             {
-                new Proposal{Id=1,Title="Proposal1",Subject="Subject1",Abstract="url",FullPaper="url",Keywords="k1,k2",ParticipationId=2},
-                new Proposal{Id=2,Title="Proposal2",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=3},
-                new Proposal{Id=3,Title="Proposal3",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=5},
-                new Proposal{Id=4,Title="Proposal4",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=7}
+                new Proposal{Id=1,Title="Proposal1",Subject="Subject1",Abstract="url",FullPaper="url",Keywords="k1,k2",ParticipationId=2, ProposalState = ProposalState.Accepted},
+                new Proposal{Id=2,Title="Proposal2",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=3, ProposalState = ProposalState.Declined},
+                new Proposal{Id=3,Title="Proposal3",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=5, ProposalState = ProposalState.Pending},
+                new Proposal{Id=4,Title="Proposal4",Subject="Subject2",Abstract="url",FullPaper="url",Keywords="k3,k4",ParticipationId=7, ProposalState = ProposalState.Pending}
             };
 
             var reviews = new Review[]

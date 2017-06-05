@@ -1,6 +1,7 @@
 ﻿using Model.DTOModels;
 using System.Collections;
 using System.Collections.Generic;
+using Model.Domain;
 
 namespace services.Services
 {
@@ -28,9 +29,14 @@ namespace services.Services
 
         IEnumerable<ProposalDTO> GetUserProposals(int idUser);
         /// <summary>
-        /// Propunerile care trebuie evaluate de la conferinta la care eu sunt chair
+        /// Propunerile in functie de stadiu
         /// </summary>
-        IEnumerable<ProposalDTO> GetProposalsToBeReviewed(int idUser, int idConf);
+        IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState);
+
+        /// <summary>
+        /// Propunerile unui user in functie de stadiu
+        /// </summary>
+        IEnumerable<ProposalDTO> GetProposalsByState(int idUser, ProposalState proposalState);
 
         ProposalDTO FindProposal( string title,string subject,string keywords);
         IEnumerable<ProposalDTO> GetProposalsOfSection(int sectionId);

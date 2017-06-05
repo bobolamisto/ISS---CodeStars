@@ -231,6 +231,15 @@ namespace CodeStars_Iss.Controller
         public User_ConferenceDTO addCoChair(User_ConferenceDTO coChair)
         {
             return _server.addUserConference(coChair);
+
+        public IEnumerable<ProposalDTO> getProposalsByState(ProposalState proposalState)
+        {
+            return _server.GetProposalsByState(proposalState);
+        }
+
+        public IEnumerable<ProposalDTO> getProposalsByState(int idUser, ProposalState proposalState)
+        {
+            return _server.GetProposalsByState(idUser, proposalState);
         }
     }
 }

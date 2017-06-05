@@ -176,9 +176,8 @@ namespace CodeStars_Iss
         //lucrarile mele 
         private void buttonMyProposals_Click(object sender, EventArgs e)
         {
-            panelUpdateProposal.Visible = true;
-            var items = ctrl.GetUserProposals(user.Id);
-            reloadProposals(items);
+            var window = new MyProposals(ctrl, user, OpenedFrom.UserWindow);
+            window.Show();
         }
 
         //adaug lucrare la o conferinta la care particip ca speaker
