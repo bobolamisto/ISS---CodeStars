@@ -307,7 +307,7 @@ namespace Server.ServicesImplementation
 
         public IEnumerable<ReviewDTO> getAllForProposal(int proposalId)
         {
-            throw new NotImplementedException();
+            return _reviewService.getAllForProposal(proposalId);
         }
 
 

@@ -34,6 +34,8 @@ namespace CodeStars_Iss
             if(ok!=null)
             {
                 MessageBox.Show("Review added successfully");
+                ViewReviewsForProposal vrfpWindow = new ViewReviewsForProposal(this.ctrl, this.proposal.Id);
+                vrfpWindow.Show();
                 this.Close();
             }
         }

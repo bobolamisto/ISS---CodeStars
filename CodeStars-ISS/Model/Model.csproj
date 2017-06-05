@@ -65,6 +65,10 @@
     <Compile Include="DTOModels\EnumObject.cs" />
     <Compile Include="DTOModels\SectionDTO.cs" />
     <Compile Include="Mapping\SectionMap.cs" />
+    <Compile Include="Migrations\201706051658047_start.cs" />
+    <Compile Include="Migrations\201706051658047_start.Designer.cs">
+      <DependentUpon>201706051658047_start.cs</DependentUpon>
+    </Compile>
     <Compile Include="POCOModels\Conference.cs" />
     <Compile Include="POCOModels\Proposal.cs" />
     <Compile Include="POCOModels\Review.cs" />
@@ -91,6 +95,11 @@
     <None Include="Model.nuspec" />
     <None Include="package.builder.json" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706051658047_start.resx">
+      <DependentUpon>201706051658047_start.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets" Condition="Exists('..\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets')" />

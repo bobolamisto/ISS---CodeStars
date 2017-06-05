@@ -90,7 +90,6 @@ namespace CodeStars_Iss.Controller
             _server.ModifyDescription(uId, c);
         }
 
-
         //methods from IAdminConferenceService
         public void acceptConferenceProposal(int idConference)
         {
@@ -167,6 +166,11 @@ namespace CodeStars_Iss.Controller
         public ReviewDTO addReview(ReviewDTO model)
         {
             return _server.addReview(model);
+        }
+
+        public IEnumerable<ReviewDTO> getAllForProposal(int proposalId)
+        {
+            return _server.getAllForProposal(proposalId);
         }
 
         public IEnumerable<SectionDTO> getSectionsOfConference(int id)
@@ -246,5 +250,7 @@ namespace CodeStars_Iss.Controller
             return _server.addUserConference(coChair);
         }
 
+
+        //methods for I
     }
 }
