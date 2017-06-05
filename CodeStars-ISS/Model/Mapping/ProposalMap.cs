@@ -23,6 +23,7 @@ namespace Model.Mapping
             Property(p => p.ParticipationId);
             Property(p => p.SectionId);
             Property(p => p.ProposalState);
+
             HasRequired(p => p.Participation).WithMany().HasForeignKey(p => p.ParticipationId);
             HasOptional(p => p.Section).WithMany(s => s.Proposals).HasForeignKey(p => p.SectionId);
         }

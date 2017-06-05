@@ -29,6 +29,7 @@ namespace Server.ModelConverterServices
             dto.ParticipationId = model.ParticipationId;
             dto.SectionId = model.SectionId;
             dto.ProposalState = model.ProposalState;
+
             return dto;
         }
 
