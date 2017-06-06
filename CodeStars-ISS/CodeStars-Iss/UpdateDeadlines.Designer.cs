@@ -61,7 +61,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(278, 53);
+            this.label3.Location = new System.Drawing.Point(355, 53);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 13);
             this.label3.TabIndex = 2;
@@ -79,7 +79,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(278, 72);
+            this.label5.Location = new System.Drawing.Point(355, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(121, 13);
             this.label5.TabIndex = 4;
@@ -89,21 +89,23 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(134, 69);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(182, 20);
             this.textBox1.TabIndex = 5;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(405, 69);
+            this.textBox2.Location = new System.Drawing.Point(482, 69);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(182, 20);
             this.textBox2.TabIndex = 6;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // buttonUpdateAbstract
             // 
             this.buttonUpdateAbstract.Location = new System.Drawing.Point(15, 95);
             this.buttonUpdateAbstract.Name = "buttonUpdateAbstract";
-            this.buttonUpdateAbstract.Size = new System.Drawing.Size(219, 23);
+            this.buttonUpdateAbstract.Size = new System.Drawing.Size(301, 23);
             this.buttonUpdateAbstract.TabIndex = 7;
             this.buttonUpdateAbstract.Text = "Update abstract deadline";
             this.buttonUpdateAbstract.UseVisualStyleBackColor = true;
@@ -111,9 +113,9 @@
             // 
             // buttonUpdateFull
             // 
-            this.buttonUpdateFull.Location = new System.Drawing.Point(281, 95);
+            this.buttonUpdateFull.Location = new System.Drawing.Point(358, 95);
             this.buttonUpdateFull.Name = "buttonUpdateFull";
-            this.buttonUpdateFull.Size = new System.Drawing.Size(224, 23);
+            this.buttonUpdateFull.Size = new System.Drawing.Size(306, 23);
             this.buttonUpdateFull.TabIndex = 8;
             this.buttonUpdateFull.Text = "Update full paper deadline";
             this.buttonUpdateFull.UseVisualStyleBackColor = true;
@@ -123,7 +125,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 128);
+            this.ClientSize = new System.Drawing.Size(676, 128);
             this.Controls.Add(this.buttonUpdateFull);
             this.Controls.Add(this.buttonUpdateAbstract);
             this.Controls.Add(this.textBox2);

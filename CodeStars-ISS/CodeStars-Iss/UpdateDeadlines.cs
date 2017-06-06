@@ -40,21 +40,26 @@ namespace CodeStars_Iss
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
+                HandleException(ex);
             }
         }
 
         private void buttonUpdateFull_Click(object sender, EventArgs e)
         {
-            _conf.FullPaperDeadline = textBox1.Text;
             try
             {
+                _conf.FullPaperDeadline = textBox1.Text;
                 _ctrl.updateConference(_conf);
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
+                HandleException(ex);
             }
+        }
+
+        private void HandleException(System.Exception ex)
+        {
+            MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
         }
     }
 }
