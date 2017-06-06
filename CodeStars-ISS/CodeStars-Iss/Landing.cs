@@ -252,12 +252,6 @@ namespace CodeStars_Iss
             var selectedRow = GridViewProposals.SelectedRows[0];
             var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
 
-            if (isReviewer()==false)
-            {
-                MessageBox.Show("You do not have permission to make review for this conference.");
-                return;
-            }
-
             if (allowReview(prop)==false)
             {
                 MessageBox.Show("You already made a review for this proposal.");
@@ -276,6 +270,7 @@ namespace CodeStars_Iss
             panelAddProposal.Visible = true;
         }
 
+
         private void GridViewConferinte_Click(object sender, EventArgs e)
         {
             if (GridViewConferinte.SelectedRows.Count == 0)
@@ -289,6 +284,22 @@ namespace CodeStars_Iss
             if (chair!=null&&user.Id == chair.Id)
                 buttonSections.Visible = true;
             else buttonSections.Visible = false;
+            if (isReviewer())
+            {
+                buttonReviewProposal.Visible = true;
+            }
+            else
+            {
+                buttonReviewProposal.Visible = false;
+            }
+            if (updateAllowed(conf))
+            {
+                buttonUpdateDeadlines.Visible = true;
+            }
+            else
+            {
+                buttonUpdateDeadlines.Visible = false;
+            }
 
             var prop = ctrl.GetUserProposal(user.Id, conf.Id);
             if (prop == null)
@@ -368,7 +379,7 @@ namespace CodeStars_Iss
         }
 
         /*
-         * verifica daca userul curent este chair sau co-chair pentru conferinta primita ca parametru, adica daca are permisiunea sa facca update la deadlineuri sau nu
+         * verifica daca userul curent este chair sau co-chair pentru conferinta primita ca parametru, adica daca are permisiunea sa faca update la deadlineuri sau nu
          * daca este chair sau co-chair la conferinta primita ca parametru, returneaza true
          * altfel, returneaza false
         */
@@ -406,11 +417,6 @@ namespace CodeStars_Iss
         
             var selectedRow = GridViewConferinte.SelectedRows[0];
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
-            if (updateAllowed(conf) == false)
-            {
-                MessageBox.Show("You are not allowed to update the deadlines.\nOnly chairs and co-chairs have permision for this operation.");
-                return;
-            }
 
             UpdateDeadlines ud = new UpdateDeadlines(ctrl, conf);
             ud.Show();
