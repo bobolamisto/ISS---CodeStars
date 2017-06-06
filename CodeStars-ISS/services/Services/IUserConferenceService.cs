@@ -47,5 +47,10 @@ namespace services.Services
         /// Adds a user conference.
         /// </summary>
         User_ConferenceDTO addUserConference(User_ConferenceDTO userConferenceDTO);
+
+        /// <summary>
+        /// Update a conference
+        /// </summary>
+        ConferenceDTO updateConference(ConferenceDTO conferenceDTO);
     }
 }

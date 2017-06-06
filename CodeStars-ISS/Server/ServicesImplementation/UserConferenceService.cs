@@ -44,6 +44,20 @@ namespace services.Services
             }
         }
 
+        public ConferenceDTO updateConference(ConferenceDTO conferenceDTO)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var repo = uow.getRepository<Conference>();
+                var conf = repo.get(conferenceDTO.Id);
+                if (conf == null)
+                    return null;
+                repo.update(conferenceDTO.Id, converter.convertToPOCOModel(conferenceDTO));
+                uow.saveChanges();
+                return conferenceDTO;
+            }
+        }
+
         public IEnumerable<ConferenceDTO> GetRelevantConferences(int idUser, UserRole userRole)
         {
             using (var uow = new UnitOfWork())

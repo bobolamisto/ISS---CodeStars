@@ -194,17 +194,77 @@ namespace CodeStars_Iss
             p.Show();
         }
 
+        /* 
+         * verifica daca s-a facut deja sau nu review la proposalul dat ca parametru de catre userul curent
+         * daca da, returneaza false
+         * daca nu, returneaza true
+        */
+        private bool allowReview(ProposalDTO prop)
+        {
+            var reviews = ctrl.getAllForProposal(prop.Id);
+            foreach (var review in reviews)
+            {
+                if (review.ReviewerId == user.Id)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /*
+         * verifica daca userul curent este sau nu reviewer la conferinta curenta
+         * daca da, returneaza true
+         * daca nu, returneaza false
+         */
+        private bool isReviewer()
+        {
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            var conferences = ctrl.getRelevantConferences(user.Id, "Reviewer");
+            
+            foreach (var conference in conferences)
+            {
+                if (conference.Id == conf.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         //fac review la un proposal
         private void buttonReviewProposal_Click(object sender, EventArgs e)
         {
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a conference.");
+                return;
+            }
+
             if (GridViewProposals.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a proposal!");
                 return;
             }
+
             var selectedRow = GridViewProposals.SelectedRows[0];
             var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
-            ReviewProposal p = new ReviewProposal(ctrl,prop,user.Id);
+
+            if (isReviewer()==false)
+            {
+                MessageBox.Show("You do not have permission to make review for this conference.");
+                return;
+            }
+
+            if (allowReview(prop)==false)
+            {
+                MessageBox.Show("You already made a review for this proposal.");
+                return;
+            }
+
+            ReviewProposal p = new ReviewProposal(ctrl, prop, user.Id);
             p.Show();
             //this.Hide();
         }
@@ -305,6 +365,55 @@ namespace CodeStars_Iss
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
             AddReviewer p = new AddReviewer(ctrl, user, conf);
             p.Show();
+        }
+
+        /*
+         * verifica daca userul curent este chair sau co-chair pentru conferinta primita ca parametru, adica daca are permisiunea sa facca update la deadlineuri sau nu
+         * daca este chair sau co-chair la conferinta primita ca parametru, returneaza true
+         * altfel, returneaza false
+        */
+        private bool updateAllowed(ConferenceDTO conferenceDTO)
+        {
+            var allowedConferences1 = ctrl.getRelevantConferences(conferenceDTO.Id, "Chair");
+            
+            foreach (var conf in allowedConferences1)
+            {
+                if (conf.Id == conferenceDTO.Id)
+                {
+                    return true;
+                }
+            }
+
+            var allowedConferences2 = ctrl.getRelevantConferences(conferenceDTO.Id, "CoChair");
+            foreach (var conf in allowedConferences2)
+            {
+                if (conf.Id == conferenceDTO.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void buttonUpdateDeadlines_Click(object sender, EventArgs e)
+        {
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a conference!");
+                return;
+            }
+        
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            if (updateAllowed(conf) == false)
+            {
+                MessageBox.Show("You are not allowed to update the deadlines.\nOnly chairs and co-chairs have permision for this operation.");
+                return;
+            }
+
+            UpdateDeadlines ud = new UpdateDeadlines(ctrl, conf);
+            ud.Show();
         }
     }
 }

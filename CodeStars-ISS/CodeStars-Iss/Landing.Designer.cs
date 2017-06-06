@@ -54,6 +54,8 @@
             this.buttonSwitch = new System.Windows.Forms.Button();
             this.PanelReviewer = new System.Windows.Forms.Panel();
             this.ButtonReviewer = new System.Windows.Forms.Button();
+            this.panelUpdateDeadlines = new System.Windows.Forms.Panel();
+            this.buttonUpdateDeadlines = new System.Windows.Forms.Button();
             this.PanelCoChair.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).BeginInit();
             this.panelReviewProposal.SuspendLayout();
@@ -62,6 +64,7 @@
             this.panelAddProposal.SuspendLayout();
             this.panel1.SuspendLayout();
             this.PanelReviewer.SuspendLayout();
+            this.panelUpdateDeadlines.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -335,11 +338,30 @@
             this.ButtonReviewer.UseVisualStyleBackColor = true;
             this.ButtonReviewer.Click += new System.EventHandler(this.ButtonReviewer_Click);
             // 
+            // panelUpdateDeadlines
+            // 
+            this.panelUpdateDeadlines.Controls.Add(this.buttonUpdateDeadlines);
+            this.panelUpdateDeadlines.Location = new System.Drawing.Point(257, 261);
+            this.panelUpdateDeadlines.Name = "panelUpdateDeadlines";
+            this.panelUpdateDeadlines.Size = new System.Drawing.Size(148, 50);
+            this.panelUpdateDeadlines.TabIndex = 21;
+            // 
+            // buttonUpdateDeadlines
+            // 
+            this.buttonUpdateDeadlines.Location = new System.Drawing.Point(3, 15);
+            this.buttonUpdateDeadlines.Name = "buttonUpdateDeadlines";
+            this.buttonUpdateDeadlines.Size = new System.Drawing.Size(142, 23);
+            this.buttonUpdateDeadlines.TabIndex = 0;
+            this.buttonUpdateDeadlines.Text = "Update deadlines";
+            this.buttonUpdateDeadlines.UseVisualStyleBackColor = true;
+            this.buttonUpdateDeadlines.Click += new System.EventHandler(this.buttonUpdateDeadlines_Click);
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 692);
+            this.Controls.Add(this.panelUpdateDeadlines);
             this.Controls.Add(this.PanelReviewer);
             this.Controls.Add(this.buttonSwitch);
             this.Controls.Add(this.panel1);
@@ -373,6 +395,7 @@
             this.panelAddProposal.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.PanelReviewer.ResumeLayout(false);
+            this.panelUpdateDeadlines.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,6 +428,8 @@
         private System.Windows.Forms.Button buttonSwitch;
         private System.Windows.Forms.Panel PanelReviewer;
         private System.Windows.Forms.Button ButtonReviewer;
+        private System.Windows.Forms.Panel panelUpdateDeadlines;
+        private System.Windows.Forms.Button buttonUpdateDeadlines;
     }
 }
 
