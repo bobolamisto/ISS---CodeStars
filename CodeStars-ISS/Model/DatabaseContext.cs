@@ -59,6 +59,8 @@ namespace Model
                     errors.Add(new DbValidationError("Name", "Conference name can't be null"));
                 if (conference.Domain == "")
                     errors.Add(new DbValidationError("Domain", "Conference domain can't be null"));
+                if (conference.MainDescription == "")
+                    errors.Add(new DbValidationError("Main Description", "Conference description can't be null"));
                 if (conference.AbstractDeadline.CompareTo(conference.EndDate) >= 0)
                     errors.Add(new DbValidationError("AbstractDeadline", String.Format("The deadline for abstracts submission must be before {0}", conference.EndDate)));
                 if (conference.FullPaperDeadline.CompareTo(conference.EndDate) >= 0)
@@ -66,10 +68,9 @@ namespace Model
                 if (errors.Count > 0)
                     return new DbEntityValidationResult(entityEntry, errors);
             }
-            if (entityEntry.Entity is Proposal && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            else if (entityEntry.Entity is Proposal && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
             {
                 var proposal = (Proposal)entityEntry.Entity;
-
                
                 if (proposal.Title == "")
                     errors.Add(new DbValidationError("Title", "Proposal title can't be null"));
@@ -77,8 +78,6 @@ namespace Model
                     errors.Add(new DbValidationError("Subject", "Proposal subject can't be null"));
                 if (proposal.Abstract == "")
                     errors.Add(new DbValidationError("Abstract", "Proposal abstract can't be null"));
-                if (proposal.FullPaper == "")
-                    errors.Add(new DbValidationError("FullPaper", "Proposal fullpaper can't be null"));
                 if (proposal.Keywords == "")
                     errors.Add(new DbValidationError("Keywords", "Proposal keywords can't be null"));
                 if ((proposal.ProposalState!=ProposalState.Accepted) && (proposal.ProposalState != ProposalState.Declined) && (proposal.ProposalState != ProposalState.Pending))
@@ -88,7 +87,7 @@ namespace Model
                     return new DbEntityValidationResult(entityEntry, errors);
             }
 
-            if (entityEntry.Entity is Review && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            else if (entityEntry.Entity is Review && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
             {
                 var review = (Review)entityEntry.Entity;
                 if (review.Recommendation == "")
@@ -99,7 +98,7 @@ namespace Model
                     return new DbEntityValidationResult(entityEntry, errors);
             }
 
-            if (entityEntry.Entity is User_Conference && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            else if (entityEntry.Entity is User_Conference && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
             {
                 var userconf = (User_Conference)entityEntry.Entity;
 
@@ -109,38 +108,39 @@ namespace Model
                     return new DbEntityValidationResult(entityEntry, errors);
             }
 
-            if (entityEntry.Entity is Section && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            else if (entityEntry.Entity is Section && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
             {
                 var section = (Section)entityEntry.Entity;
                 if (section.Title == "")
                     errors.Add(new DbValidationError("Title", "Section title can't be null"));
                 if (section.StartDate.CompareTo(section.EndDate) >= 0)
                     errors.Add(new DbValidationError("EndDate", String.Format("The end date must be after start date ({0})", section.StartDate)));
-                
-                if (Sections.Any(s => s.Id != section.Id &&
-                        (section.EndDate.CompareTo(s.StartDate) >= 0 && section.StartDate.CompareTo(s.EndDate) <= 0)))
-                    errors.Add(new DbValidationError("StartDate", String.Format("The section '{0}' time must be in some of the conferences", section.Title )));
-                if (section.ChairId < 0)
-                    errors.Add(new DbValidationError("ChairId", "Section ChairId must be positive"));
+
+                var conference = Conferences.FirstOrDefault(c => c.Id == section.ConferenceId);
+                if (section.StartDate.CompareTo(conference.StartDate) < 0 || section.StartDate.CompareTo(conference.EndDate) > 0)
+                    errors.Add(new DbValidationError("Start Date", String.Format("The section must begin after the conference start date")));
+
+                if (section.EndDate.CompareTo(conference.EndDate) > 0)
+                    errors.Add(new DbValidationError("End Date", String.Format("The section must end before the conference end date")));
+               
 
                 if (errors.Count > 0)
                     return new DbEntityValidationResult(entityEntry, errors);
             }
 
-            if (entityEntry.Entity is User && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
+            else if (entityEntry.Entity is User && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
             {
                 var user = (User)entityEntry.Entity;
                 if (user.Username == "")
                     errors.Add(new DbValidationError("Username", "Username can't be null"));
                 if (user.Password == "")
                     errors.Add(new DbValidationError("Password", "Password can't be null"));
-
                 string str = user.FirstName;
                 bool isLetter = !String.IsNullOrEmpty(str) && Char.IsLetter(str[0]);
                 if (isLetter == true)
                 {
                     if (str[0] <= 'A' || str[0] >= 'Z')
-                        errors.Add(new DbValidationError("FirstName", "Firstname's first letter must pe uppercase"));
+                        errors.Add(new DbValidationError("FirstName", "Firstname must begin with uppercase"));
                 }
 
                 string str1 = user.LastName;
@@ -148,9 +148,8 @@ namespace Model
                 if (isLetter1 == true)
                 {
                     if (str1[0] <= 'A' || str1[0] >= 'Z')
-                        errors.Add(new DbValidationError("Lastname", "Lastname's first letter must pe uppercase"));
+                        errors.Add(new DbValidationError("Lastname", "Lastname must begin with uppercase"));
                 }
-
 
                 var addr = new System.Net.Mail.MailAddress(user.Email);
                 if (addr.Address != user.Email)
@@ -167,9 +166,7 @@ namespace Model
             }
 
             return base.ValidateEntity(entityEntry, items);
-        }
-
-        
+        }       
 
     }
 }

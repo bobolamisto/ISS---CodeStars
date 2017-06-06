@@ -260,7 +260,9 @@ namespace CodeStars_Iss.Controller
             return _server.addUserConference(coChair);
         }
 
-
-        //methods for I
+        public void updateSection(SectionDTO section)
+        {
+            _server.updateSection(section);
+        }
     }
 }

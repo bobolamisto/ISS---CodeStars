@@ -19,11 +19,11 @@ namespace Model.Migrations
         protected override void Seed(DatabaseContext context)
         {
              var users = new User[] {
-                new User { Id = 1, Username = "test", Password = "098F6BCD4621D373CADE4E832627B4F6", FirstName = "Test", LastName = "Ttest", Email = "test@test.com", WebPage = "test.com", Admin = true,Validation=AccountState.Validated },
+                new User { Id = 1, Username = "chair1", Password = "098F6BCD4621D373CADE4E832627B4F6", FirstName = "Test", LastName = "Ttest", Email = "test@test.com", WebPage = "test.com", Admin = true,Validation=AccountState.Validated },
                 new User { Id = 2, Username = "bogdan", Password = "C0797F6426DF677E3A720E208EF458CE", FirstName = "Test", LastName = "Ttest", Email = "test@test.com", WebPage = "test.com", Admin = true,Validation=AccountState.Validated },
-                new User { Id = 3, Username = "test2", Password = "098F6BCD4621D373CADE4E832627B4F6", FirstName = "Ttest", LastName = "Test", Email = "test@test.com", WebPage = "test.com", Admin = false,Validation=AccountState.Validated },
-                new User { Id = 4, Username = "test3", Password = "098F6BCD4621D373CADE4E832627B4F6", FirstName = "Ttest", LastName = "Test", Email = "test@test.com", WebPage = "test.com", Admin = false,Validation=AccountState.Validated },
-                new User { Id = 5, Username = "test4", Password = "098F6BCD4621D373CADE4E832627B4F6", FirstName = "Ttest", LastName = "Test", Email = "test@test.com", WebPage = "test.com", Admin = false,Validation=AccountState.Validated }
+                new User { Id = 3, Username = "cochair1", Password = "098F6BCD4621D373CADE4E832627B4F6", FirstName = "Ttest", LastName = "Test", Email = "test@test.com", WebPage = "test.com", Admin = false,Validation=AccountState.Validated },
+                new User { Id = 4, Username = "cochair", Password = "098F6BCD4621D373CADE4E832627B4F6", FirstName = "Ttest", LastName = "Test", Email = "test@test.com", WebPage = "test.com", Admin = false,Validation=AccountState.Validated },
+                new User { Id = 5,Username="reviewer1", Password = "098F6BCD4621D373CADE4E832627B4F6", FirstName = "Ttest", LastName = "Test", Email = "test@test.com", WebPage = "test.com", Admin = false,Validation=AccountState.Validated }
              };
 
             var conferences = new Conference[]

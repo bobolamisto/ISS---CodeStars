@@ -187,10 +187,10 @@ namespace CodeStars_Iss
         {
             if(ctrl.getPCMembersAvailableForSectionChair(conference.Id).ToList().Count==0  )
             {
-                MessageBox.Show("There are no available PC Members tobe Section Chair.");
+                MessageBox.Show("There are no available PC Members to be Section Chair.");
                 return;
             }
-            var window = new SectionDetails(conference.Id,ctrl,this);
+            var window = new SectionDetails(this.conference.Id, this.ctrl, this, null);
             window.Show();
         }
 
@@ -205,6 +205,23 @@ namespace CodeStars_Iss
             currentSection = null;
             initializeData();
             setVisibility();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ctrl.getProposalsOutsideSections(conference.Id).ToList().Count > 0)
+            {
+                MessageBox.Show("You should not let proposals outside sections!!");
+                return;
+            }
+            else
+                this.Close();
+        }
+
+        private void buttonUpdateSection_Click(object sender, EventArgs e)
+        {
+            var window = new SectionDetails(conference.Id, ctrl, this, currentSection);
+            window.Show();
         }
     }
 }
