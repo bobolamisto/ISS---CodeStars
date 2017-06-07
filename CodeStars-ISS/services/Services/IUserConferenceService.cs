@@ -52,5 +52,9 @@ namespace services.Services
         /// Update a conference
         /// </summary>
         ConferenceDTO updateConference(ConferenceDTO conferenceDTO);
+
+        void updateUserRole(int userId, int confId, UserRole role);
+
+        User_ConferenceDTO GetParticipationOfProposal(int proposalId);
     }
 }

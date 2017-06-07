@@ -14,15 +14,6 @@ using System.Windows.Forms;
 
 namespace CodeStars_Iss
 {
-    //TextBoxName
-    //TextBoxStartDate - masked
-    //TextBoxEndDate - masked
-    //ButtonAddConference - pentru a adauga
-    //TextBoxDomain
-    //TextBoxTicket
-    //TextBoxAbstractDeadeline - masked
-    //TextBoxFullPaperDeadline - masked
-    //TextBoxMainDescription
     public partial class AddConference : Form
     {
         private ClientController ctrl;
@@ -62,7 +53,16 @@ namespace CodeStars_Iss
             DateTime abstractDate = DateTime.Parse(abstractTime);
             DateTime fullPaperDate = DateTime.Parse(fullPaperTime);
             string pret = TextBoxTicket.Text;
-            float price = float.Parse(pret);
+            float price;
+            try
+            {
+                price = float.Parse(pret);
+            }
+            catch(Exception ec)
+            {
+                MessageBox.Show("Invalid price.");
+                return;
+            }
             
 
             try
@@ -80,6 +80,11 @@ namespace CodeStars_Iss
         private void TextBoxFullPaperDeadline_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

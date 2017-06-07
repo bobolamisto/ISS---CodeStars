@@ -143,7 +143,7 @@ namespace CodeStars_Iss.Controller
 
         public IEnumerable<UserDTO> getAllUsers()
         {
-            return _server.findAll().Where(u => u.Validation == AccountState.Waiting.ToString());
+            return _server.findAll();
 
         }
 
@@ -247,9 +247,9 @@ namespace CodeStars_Iss.Controller
             return _server.addUserConference(coChair);
 
         }
-        public IEnumerable<ProposalDTO> getProposalsByState(ProposalState proposalState)
+        public IEnumerable<ProposalDTO> getProposalsByState(ProposalState proposalState,int confId)
         {
-            return _server.GetProposalsByState(proposalState);
+            return _server.GetProposalsByState(proposalState,confId);
         }
         public IEnumerable<ProposalDTO> getProposalsByState(int idUser, ProposalState proposalState)
         {
@@ -263,6 +263,30 @@ namespace CodeStars_Iss.Controller
         public void updateSection(SectionDTO section)
         {
             _server.updateSection(section);
+        }
+
+        public UserDTO RejectNewUser(UserDTO userDto)
+        {
+            return _server.AcceptNewUser(userDto);
+        }
+
+        public IEnumerable<UserDTO> findUsersByAccountState(AccountState state)
+        {
+            return _server.findUsersByAccountState(state);
+        }
+
+        public ProposalState evaluateProposal(int id)
+        {
+            return _server.evaluateProposal(id);
+        }
+
+        public void updateUserRole(int userId, int confId, UserRole role)
+        {
+            _server.updateUserRole(userId, confId, role);
+        }
+        public User_ConferenceDTO GetParticipationOfProposal(int proposalId)
+        {
+            return _server.GetParticipationOfProposal(proposalId);
         }
     }
 }

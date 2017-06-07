@@ -19,6 +19,7 @@ namespace services.Services
         IEnumerable<UserDTO> findAll();
         int findByUsername(string username);
         IEnumerable<UserDTO> searchSubstringInUser(string text);
+        IEnumerable<UserDTO> findUsersByAccountState(AccountState state);
 
 
     }

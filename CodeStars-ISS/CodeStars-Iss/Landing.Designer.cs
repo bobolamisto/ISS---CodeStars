@@ -36,33 +36,25 @@
             this.ButtonCoChair = new System.Windows.Forms.Button();
             this.ButtonAddConference = new System.Windows.Forms.Button();
             this.GridViewConferinte = new System.Windows.Forms.DataGridView();
-            this.panelReviewProposal = new System.Windows.Forms.Panel();
-            this.buttonReviewProposal = new System.Windows.Forms.Button();
-            this.GridViewProposals = new System.Windows.Forms.DataGridView();
-            this.buttonProposalsToBeReviewed = new System.Windows.Forms.Button();
+            this.buttonSubmittedProposals = new System.Windows.Forms.Button();
             this.buttonMyProposals = new System.Windows.Forms.Button();
-            this.panelUpdateProposal = new System.Windows.Forms.Panel();
-            this.ManageAuthorsButton = new System.Windows.Forms.Button();
-            this.buttonUpdateProposal = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonMyConferencesAsSpeaker = new System.Windows.Forms.Button();
             this.panelAddProposal = new System.Windows.Forms.Panel();
             this.buttonAddProposal = new System.Windows.Forms.Button();
             this.buttonMyConferencesAsListener = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelSections = new System.Windows.Forms.Panel();
             this.buttonSections = new System.Windows.Forms.Button();
             this.buttonSwitch = new System.Windows.Forms.Button();
             this.PanelReviewer = new System.Windows.Forms.Panel();
             this.ButtonReviewer = new System.Windows.Forms.Button();
             this.panelUpdateDeadlines = new System.Windows.Forms.Panel();
             this.buttonUpdateDeadlines = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.PanelCoChair.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).BeginInit();
-            this.panelReviewProposal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewProposals)).BeginInit();
-            this.panelUpdateProposal.SuspendLayout();
             this.panelAddProposal.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelSections.SuspendLayout();
             this.PanelReviewer.SuspendLayout();
             this.panelUpdateDeadlines.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +63,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(281, 15);
+            this.label2.Location = new System.Drawing.Point(632, 63);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(158, 31);
@@ -80,10 +72,10 @@
             // 
             // ButtonMyConferences
             // 
-            this.ButtonMyConferences.Location = new System.Drawing.Point(37, 217);
+            this.ButtonMyConferences.Location = new System.Drawing.Point(122, 225);
             this.ButtonMyConferences.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonMyConferences.Name = "ButtonMyConferences";
-            this.ButtonMyConferences.Size = new System.Drawing.Size(165, 38);
+            this.ButtonMyConferences.Size = new System.Drawing.Size(198, 38);
             this.ButtonMyConferences.TabIndex = 4;
             this.ButtonMyConferences.Text = "Conferences I\'m chair at";
             this.ButtonMyConferences.UseVisualStyleBackColor = true;
@@ -91,10 +83,10 @@
             // 
             // ButtonAllConferences
             // 
-            this.ButtonAllConferences.Location = new System.Drawing.Point(37, 173);
+            this.ButtonAllConferences.Location = new System.Drawing.Point(122, 163);
             this.ButtonAllConferences.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonAllConferences.Name = "ButtonAllConferences";
-            this.ButtonAllConferences.Size = new System.Drawing.Size(165, 38);
+            this.ButtonAllConferences.Size = new System.Drawing.Size(198, 38);
             this.ButtonAllConferences.TabIndex = 5;
             this.ButtonAllConferences.Text = "All Conferences";
             this.ButtonAllConferences.UseVisualStyleBackColor = true;
@@ -102,10 +94,10 @@
             // 
             // ButtonBuyTicket
             // 
-            this.ButtonBuyTicket.Location = new System.Drawing.Point(37, 67);
+            this.ButtonBuyTicket.Location = new System.Drawing.Point(278, 15);
             this.ButtonBuyTicket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonBuyTicket.Name = "ButtonBuyTicket";
-            this.ButtonBuyTicket.Size = new System.Drawing.Size(165, 27);
+            this.ButtonBuyTicket.Size = new System.Drawing.Size(198, 57);
             this.ButtonBuyTicket.TabIndex = 6;
             this.ButtonBuyTicket.Text = "Buy Ticket";
             this.ButtonBuyTicket.UseVisualStyleBackColor = true;
@@ -114,18 +106,18 @@
             // PanelCoChair
             // 
             this.PanelCoChair.Controls.Add(this.ButtonCoChair);
-            this.PanelCoChair.Location = new System.Drawing.Point(756, 261);
+            this.PanelCoChair.Location = new System.Drawing.Point(1055, 541);
             this.PanelCoChair.Margin = new System.Windows.Forms.Padding(2);
             this.PanelCoChair.Name = "PanelCoChair";
-            this.PanelCoChair.Size = new System.Drawing.Size(127, 50);
+            this.PanelCoChair.Size = new System.Drawing.Size(172, 61);
             this.PanelCoChair.TabIndex = 7;
             // 
             // ButtonCoChair
             // 
-            this.ButtonCoChair.Location = new System.Drawing.Point(19, 15);
+            this.ButtonCoChair.Location = new System.Drawing.Point(3, 11);
             this.ButtonCoChair.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonCoChair.Name = "ButtonCoChair";
-            this.ButtonCoChair.Size = new System.Drawing.Size(92, 20);
+            this.ButtonCoChair.Size = new System.Drawing.Size(166, 37);
             this.ButtonCoChair.TabIndex = 0;
             this.ButtonCoChair.Text = "Add Co-Chair";
             this.ButtonCoChair.UseVisualStyleBackColor = true;
@@ -133,10 +125,10 @@
             // 
             // ButtonAddConference
             // 
-            this.ButtonAddConference.Location = new System.Drawing.Point(37, 15);
+            this.ButtonAddConference.Location = new System.Drawing.Point(25, 15);
             this.ButtonAddConference.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonAddConference.Name = "ButtonAddConference";
-            this.ButtonAddConference.Size = new System.Drawing.Size(165, 32);
+            this.ButtonAddConference.Size = new System.Drawing.Size(198, 57);
             this.ButtonAddConference.TabIndex = 8;
             this.ButtonAddConference.Text = "Add Conference";
             this.ButtonAddConference.UseVisualStyleBackColor = true;
@@ -150,114 +142,41 @@
             this.GridViewConferinte.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridViewConferinte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridViewConferinte.GridColor = System.Drawing.SystemColors.Control;
-            this.GridViewConferinte.Location = new System.Drawing.Point(240, 53);
+            this.GridViewConferinte.Location = new System.Drawing.Point(475, 151);
             this.GridViewConferinte.Name = "GridViewConferinte";
             this.GridViewConferinte.ReadOnly = true;
             this.GridViewConferinte.RowHeadersVisible = false;
             this.GridViewConferinte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridViewConferinte.Size = new System.Drawing.Size(771, 193);
+            this.GridViewConferinte.Size = new System.Drawing.Size(734, 334);
             this.GridViewConferinte.TabIndex = 9;
             this.GridViewConferinte.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewConferinte_CellContentClick);
             this.GridViewConferinte.Click += new System.EventHandler(this.GridViewConferinte_Click);
             // 
-            // panelReviewProposal
+            // buttonSubmittedProposals
             // 
-            this.panelReviewProposal.Controls.Add(this.buttonReviewProposal);
-            this.panelReviewProposal.Location = new System.Drawing.Point(756, 612);
-            this.panelReviewProposal.Name = "panelReviewProposal";
-            this.panelReviewProposal.Size = new System.Drawing.Size(133, 50);
-            this.panelReviewProposal.TabIndex = 11;
-            // 
-            // buttonReviewProposal
-            // 
-            this.buttonReviewProposal.Location = new System.Drawing.Point(6, 14);
-            this.buttonReviewProposal.Name = "buttonReviewProposal";
-            this.buttonReviewProposal.Size = new System.Drawing.Size(105, 29);
-            this.buttonReviewProposal.TabIndex = 0;
-            this.buttonReviewProposal.Text = "Review proposal";
-            this.buttonReviewProposal.UseVisualStyleBackColor = true;
-            this.buttonReviewProposal.Click += new System.EventHandler(this.buttonReviewProposal_Click);
-            // 
-            // GridViewProposals
-            // 
-            this.GridViewProposals.AllowUserToAddRows = false;
-            this.GridViewProposals.AllowUserToDeleteRows = false;
-            this.GridViewProposals.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.GridViewProposals.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.GridViewProposals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewProposals.GridColor = System.Drawing.SystemColors.Control;
-            this.GridViewProposals.Location = new System.Drawing.Point(240, 341);
-            this.GridViewProposals.Name = "GridViewProposals";
-            this.GridViewProposals.ReadOnly = true;
-            this.GridViewProposals.RowHeadersVisible = false;
-            this.GridViewProposals.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridViewProposals.Size = new System.Drawing.Size(771, 254);
-            this.GridViewProposals.TabIndex = 12;
-            // 
-            // buttonProposalsToBeReviewed
-            // 
-            this.buttonProposalsToBeReviewed.Location = new System.Drawing.Point(37, 497);
-            this.buttonProposalsToBeReviewed.Name = "buttonProposalsToBeReviewed";
-            this.buttonProposalsToBeReviewed.Size = new System.Drawing.Size(165, 44);
-            this.buttonProposalsToBeReviewed.TabIndex = 13;
-            this.buttonProposalsToBeReviewed.Text = "Proposals to be reviewed";
-            this.buttonProposalsToBeReviewed.UseVisualStyleBackColor = true;
-            this.buttonProposalsToBeReviewed.Click += new System.EventHandler(this.buttonProposalsToBeReviewed_Click);
+            this.buttonSubmittedProposals.Location = new System.Drawing.Point(426, 640);
+            this.buttonSubmittedProposals.Name = "buttonSubmittedProposals";
+            this.buttonSubmittedProposals.Size = new System.Drawing.Size(232, 44);
+            this.buttonSubmittedProposals.TabIndex = 13;
+            this.buttonSubmittedProposals.Text = "All Submitted Proposals";
+            this.buttonSubmittedProposals.UseVisualStyleBackColor = true;
+            this.buttonSubmittedProposals.Click += new System.EventHandler(this.buttonSubmittedProposals_Click);
             // 
             // buttonMyProposals
             // 
-            this.buttonMyProposals.Location = new System.Drawing.Point(37, 557);
+            this.buttonMyProposals.Location = new System.Drawing.Point(698, 640);
             this.buttonMyProposals.Name = "buttonMyProposals";
-            this.buttonMyProposals.Size = new System.Drawing.Size(165, 38);
+            this.buttonMyProposals.Size = new System.Drawing.Size(232, 44);
             this.buttonMyProposals.TabIndex = 14;
             this.buttonMyProposals.Text = "My proposals";
             this.buttonMyProposals.UseVisualStyleBackColor = true;
             this.buttonMyProposals.Click += new System.EventHandler(this.buttonMyProposals_Click);
             // 
-            // panelUpdateProposal
-            // 
-            this.panelUpdateProposal.Controls.Add(this.ManageAuthorsButton);
-            this.panelUpdateProposal.Controls.Add(this.buttonUpdateProposal);
-            this.panelUpdateProposal.Location = new System.Drawing.Point(461, 615);
-            this.panelUpdateProposal.Name = "panelUpdateProposal";
-            this.panelUpdateProposal.Size = new System.Drawing.Size(286, 47);
-            this.panelUpdateProposal.TabIndex = 15;
-            // 
-            // ManageAuthorsButton
-            // 
-            this.ManageAuthorsButton.Location = new System.Drawing.Point(146, 10);
-            this.ManageAuthorsButton.Name = "ManageAuthorsButton";
-            this.ManageAuthorsButton.Size = new System.Drawing.Size(130, 30);
-            this.ManageAuthorsButton.TabIndex = 1;
-            this.ManageAuthorsButton.Text = "Manage Authors";
-            this.ManageAuthorsButton.UseVisualStyleBackColor = true;
-            this.ManageAuthorsButton.Click += new System.EventHandler(this.ManageAuthorsButton_Click);
-            // 
-            // buttonUpdateProposal
-            // 
-            this.buttonUpdateProposal.Location = new System.Drawing.Point(12, 10);
-            this.buttonUpdateProposal.Name = "buttonUpdateProposal";
-            this.buttonUpdateProposal.Size = new System.Drawing.Size(118, 30);
-            this.buttonUpdateProposal.TabIndex = 0;
-            this.buttonUpdateProposal.Text = "Update proposal";
-            this.buttonUpdateProposal.UseVisualStyleBackColor = true;
-            this.buttonUpdateProposal.Click += new System.EventHandler(this.buttonUpdateProposal_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(327, 312);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 26);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Proposals";
-            // 
             // buttonMyConferencesAsSpeaker
             // 
-            this.buttonMyConferencesAsSpeaker.Location = new System.Drawing.Point(37, 261);
+            this.buttonMyConferencesAsSpeaker.Location = new System.Drawing.Point(122, 423);
             this.buttonMyConferencesAsSpeaker.Name = "buttonMyConferencesAsSpeaker";
-            this.buttonMyConferencesAsSpeaker.Size = new System.Drawing.Size(165, 38);
+            this.buttonMyConferencesAsSpeaker.Size = new System.Drawing.Size(198, 38);
             this.buttonMyConferencesAsSpeaker.TabIndex = 17;
             this.buttonMyConferencesAsSpeaker.Text = "Conferences I\'m speaker at";
             this.buttonMyConferencesAsSpeaker.UseVisualStyleBackColor = true;
@@ -266,16 +185,16 @@
             // panelAddProposal
             // 
             this.panelAddProposal.Controls.Add(this.buttonAddProposal);
-            this.panelAddProposal.Location = new System.Drawing.Point(589, 261);
+            this.panelAddProposal.Location = new System.Drawing.Point(977, 640);
             this.panelAddProposal.Name = "panelAddProposal";
-            this.panelAddProposal.Size = new System.Drawing.Size(148, 50);
+            this.panelAddProposal.Size = new System.Drawing.Size(232, 44);
             this.panelAddProposal.TabIndex = 18;
             // 
             // buttonAddProposal
             // 
-            this.buttonAddProposal.Location = new System.Drawing.Point(18, 15);
+            this.buttonAddProposal.Location = new System.Drawing.Point(0, 0);
             this.buttonAddProposal.Name = "buttonAddProposal";
-            this.buttonAddProposal.Size = new System.Drawing.Size(105, 23);
+            this.buttonAddProposal.Size = new System.Drawing.Size(232, 44);
             this.buttonAddProposal.TabIndex = 0;
             this.buttonAddProposal.Text = "Add Proposal";
             this.buttonAddProposal.UseVisualStyleBackColor = true;
@@ -283,27 +202,27 @@
             // 
             // buttonMyConferencesAsListener
             // 
-            this.buttonMyConferencesAsListener.Location = new System.Drawing.Point(37, 308);
+            this.buttonMyConferencesAsListener.Location = new System.Drawing.Point(122, 486);
             this.buttonMyConferencesAsListener.Name = "buttonMyConferencesAsListener";
-            this.buttonMyConferencesAsListener.Size = new System.Drawing.Size(165, 38);
+            this.buttonMyConferencesAsListener.Size = new System.Drawing.Size(198, 38);
             this.buttonMyConferencesAsListener.TabIndex = 19;
             this.buttonMyConferencesAsListener.Text = "Conferences I\'m listener at";
             this.buttonMyConferencesAsListener.UseVisualStyleBackColor = true;
             this.buttonMyConferencesAsListener.Click += new System.EventHandler(this.buttonMyConferencesAsListener_Click);
             // 
-            // panel1
+            // panelSections
             // 
-            this.panel1.Controls.Add(this.buttonSections);
-            this.panel1.Location = new System.Drawing.Point(422, 261);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(148, 50);
-            this.panel1.TabIndex = 20;
+            this.panelSections.Controls.Add(this.buttonSections);
+            this.panelSections.Location = new System.Drawing.Point(582, 541);
+            this.panelSections.Name = "panelSections";
+            this.panelSections.Size = new System.Drawing.Size(172, 61);
+            this.panelSections.TabIndex = 20;
             // 
             // buttonSections
             // 
-            this.buttonSections.Location = new System.Drawing.Point(3, 15);
+            this.buttonSections.Location = new System.Drawing.Point(3, 11);
             this.buttonSections.Name = "buttonSections";
-            this.buttonSections.Size = new System.Drawing.Size(142, 23);
+            this.buttonSections.Size = new System.Drawing.Size(166, 37);
             this.buttonSections.TabIndex = 0;
             this.buttonSections.Text = "Manage Sections";
             this.buttonSections.UseVisualStyleBackColor = true;
@@ -311,10 +230,10 @@
             // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(812, 11);
+            this.buttonSwitch.Location = new System.Drawing.Point(1150, 15);
             this.buttonSwitch.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSwitch.Name = "buttonSwitch";
-            this.buttonSwitch.Size = new System.Drawing.Size(165, 32);
+            this.buttonSwitch.Size = new System.Drawing.Size(201, 32);
             this.buttonSwitch.TabIndex = 21;
             this.buttonSwitch.Text = "Switch to Admin Page";
             this.buttonSwitch.UseVisualStyleBackColor = true;
@@ -323,16 +242,16 @@
             // PanelReviewer
             // 
             this.PanelReviewer.Controls.Add(this.ButtonReviewer);
-            this.PanelReviewer.Location = new System.Drawing.Point(897, 261);
+            this.PanelReviewer.Location = new System.Drawing.Point(815, 541);
             this.PanelReviewer.Name = "PanelReviewer";
-            this.PanelReviewer.Size = new System.Drawing.Size(127, 50);
+            this.PanelReviewer.Size = new System.Drawing.Size(172, 61);
             this.PanelReviewer.TabIndex = 22;
             // 
             // ButtonReviewer
             // 
-            this.ButtonReviewer.Location = new System.Drawing.Point(11, 14);
+            this.ButtonReviewer.Location = new System.Drawing.Point(3, 11);
             this.ButtonReviewer.Name = "ButtonReviewer";
-            this.ButtonReviewer.Size = new System.Drawing.Size(103, 23);
+            this.ButtonReviewer.Size = new System.Drawing.Size(166, 37);
             this.ButtonReviewer.TabIndex = 1;
             this.ButtonReviewer.Text = "Add Reviewer";
             this.ButtonReviewer.UseVisualStyleBackColor = true;
@@ -341,39 +260,57 @@
             // panelUpdateDeadlines
             // 
             this.panelUpdateDeadlines.Controls.Add(this.buttonUpdateDeadlines);
-            this.panelUpdateDeadlines.Location = new System.Drawing.Point(257, 261);
+            this.panelUpdateDeadlines.Location = new System.Drawing.Point(352, 541);
             this.panelUpdateDeadlines.Name = "panelUpdateDeadlines";
-            this.panelUpdateDeadlines.Size = new System.Drawing.Size(148, 50);
+            this.panelUpdateDeadlines.Size = new System.Drawing.Size(172, 61);
             this.panelUpdateDeadlines.TabIndex = 21;
             // 
             // buttonUpdateDeadlines
             // 
-            this.buttonUpdateDeadlines.Location = new System.Drawing.Point(3, 15);
+            this.buttonUpdateDeadlines.Location = new System.Drawing.Point(3, 11);
             this.buttonUpdateDeadlines.Name = "buttonUpdateDeadlines";
-            this.buttonUpdateDeadlines.Size = new System.Drawing.Size(142, 23);
+            this.buttonUpdateDeadlines.Size = new System.Drawing.Size(166, 37);
             this.buttonUpdateDeadlines.TabIndex = 0;
             this.buttonUpdateDeadlines.Text = "Update deadlines";
             this.buttonUpdateDeadlines.UseVisualStyleBackColor = true;
             this.buttonUpdateDeadlines.Click += new System.EventHandler(this.buttonUpdateDeadlines_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(122, 354);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(198, 38);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Conferences I\'m reviewer at";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(122, 287);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(198, 38);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "Conferences I\'m co-chair at";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 692);
+            this.ClientSize = new System.Drawing.Size(1362, 726);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panelUpdateDeadlines);
             this.Controls.Add(this.PanelReviewer);
             this.Controls.Add(this.buttonSwitch);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelSections);
             this.Controls.Add(this.buttonMyConferencesAsListener);
             this.Controls.Add(this.panelAddProposal);
             this.Controls.Add(this.buttonMyConferencesAsSpeaker);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.panelUpdateProposal);
             this.Controls.Add(this.buttonMyProposals);
-            this.Controls.Add(this.buttonProposalsToBeReviewed);
-            this.Controls.Add(this.GridViewProposals);
-            this.Controls.Add(this.panelReviewProposal);
+            this.Controls.Add(this.buttonSubmittedProposals);
             this.Controls.Add(this.GridViewConferinte);
             this.Controls.Add(this.ButtonAddConference);
             this.Controls.Add(this.PanelCoChair);
@@ -389,11 +326,8 @@
             this.Load += new System.EventHandler(this.Landing_Load);
             this.PanelCoChair.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).EndInit();
-            this.panelReviewProposal.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewProposals)).EndInit();
-            this.panelUpdateProposal.ResumeLayout(false);
             this.panelAddProposal.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.panelSections.ResumeLayout(false);
             this.PanelReviewer.ResumeLayout(false);
             this.panelUpdateDeadlines.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -410,26 +344,21 @@
         private System.Windows.Forms.Button ButtonCoChair;
         private System.Windows.Forms.Button ButtonAddConference;
         private System.Windows.Forms.DataGridView GridViewConferinte;
-        private System.Windows.Forms.Panel panelReviewProposal;
-        private System.Windows.Forms.Button buttonReviewProposal;
-        private System.Windows.Forms.DataGridView GridViewProposals;
-        private System.Windows.Forms.Button buttonProposalsToBeReviewed;
+        private System.Windows.Forms.Button buttonSubmittedProposals;
         private System.Windows.Forms.Button buttonMyProposals;
-        private System.Windows.Forms.Panel panelUpdateProposal;
-        private System.Windows.Forms.Button buttonUpdateProposal;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonMyConferencesAsSpeaker;
         private System.Windows.Forms.Panel panelAddProposal;
         private System.Windows.Forms.Button buttonAddProposal;
         private System.Windows.Forms.Button buttonMyConferencesAsListener;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelSections;
         private System.Windows.Forms.Button buttonSections;
-        private System.Windows.Forms.Button ManageAuthorsButton;
         private System.Windows.Forms.Button buttonSwitch;
         private System.Windows.Forms.Panel PanelReviewer;
         private System.Windows.Forms.Button ButtonReviewer;
         private System.Windows.Forms.Panel panelUpdateDeadlines;
         private System.Windows.Forms.Button buttonUpdateDeadlines;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

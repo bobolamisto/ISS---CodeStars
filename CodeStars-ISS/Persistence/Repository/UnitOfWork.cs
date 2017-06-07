@@ -47,7 +47,7 @@ namespace Persistence.Repository
                 {
                     foreach (DbValidationError error in entityErr.ValidationErrors)
                     {
-                        errors += String.Format("Error Property Name {0} : Error Message: {1} \n",
+                        errors += String.Format("{0} : Error: {1} \n",
                         error.PropertyName, error.ErrorMessage);
                     }
                 }

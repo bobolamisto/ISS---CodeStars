@@ -35,19 +35,22 @@ namespace CodeStars_Iss
                 MessageBox.Show("Password doesn't match");
                 return;
             }
-            var account = uc.createAccount(username, pass, fName, lName, email, webPage);
-            if (account==null)
+            try
             {
-                MessageBox.Show("This username already exists");
-                return;
-            }
-            {
+                var account = uc.createAccount(username, pass, fName, lName, email, webPage);
+                if (account == null)
+                {
+                    MessageBox.Show("This username already exists");
+                    return;
+                }
                 MessageBox.Show("Account created successfully. Wait for confirmation.");
                 this.Hide();
                 LogIn l = new LogIn(uc);
                 l.Show();
-
-
+            }
+            catch(Exception ee)
+            {
+                MessageBox.Show(ee.Message);
             }
 
         }

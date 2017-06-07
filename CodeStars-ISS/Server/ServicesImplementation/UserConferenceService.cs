@@ -12,11 +12,13 @@ namespace services.Services
     {
         private ConferenceConverterService converter;
         private UserConverterService userConverter;
+        private User_ConferenceConverterService userCOnferenceConverter;
 
         public UserConferenceService()
         {
             converter = new ConferenceConverterService();
             userConverter = new UserConverterService();
+            userCOnferenceConverter = new User_ConferenceConverterService();
         }
 
         public ConferenceDTO AddConference(int idUser, ConferenceDTO conferenceDTO)
@@ -66,6 +68,7 @@ namespace services.Services
                 {
                     return conference.Participations.Count(userConference => userConference.UserId == idUser && userConference.Role == userRole) != 0;
                 });
+                relevantConferences = relevantConferences.Where(c => c.State == ConferenceState.Accepted);
                 return converter.convertToDTOList(relevantConferences);
             }
         }
@@ -175,6 +178,30 @@ namespace services.Services
                 uow.saveChanges();
                 userConference.Id = newUserConference.Id;
                 return userConference;
+            }
+        }
+
+        public void updateUserRole(int userId, int confId, UserRole role)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var repo = uow.getRepository<User_Conference>();
+                var part = repo.getAll().FirstOrDefault(p => p.UserId == userId && p.ConferenceId == confId);
+                if (part == null)
+                    return;
+                part.Role = role;
+                repo.update(part.Id, part);
+                uow.saveChanges();
+            }
+        }
+
+        public User_ConferenceDTO GetParticipationOfProposal(int proposalId)
+        {
+            using (var uow = new UnitOfWork())
+            {
+                var proposalRepo = uow.getRepository<Proposal>();
+                var proposal = proposalRepo.get(proposalId);
+                return userCOnferenceConverter.convertToDTOModel(proposal.Participation);
             }
         }
     }

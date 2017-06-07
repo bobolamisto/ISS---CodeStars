@@ -92,6 +92,7 @@
             this.Controls.Add(this.textBoxAbstract);
             this.Name = "UpdateProposal";
             this.Text = "UpdateProposal";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UpdateProposal_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

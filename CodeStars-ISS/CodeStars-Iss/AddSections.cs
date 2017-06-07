@@ -100,7 +100,12 @@ namespace CodeStars_Iss
 
         private void buttonPreviousSection_Click(object sender, EventArgs e)
         {
-            if(sections.Count==1)
+            if (this.currentSection==null)
+            {
+                MessageBox.Show("There are no sections.");
+                return;
+            }
+            if (sections.Count==1)
             {
                 MessageBox.Show("This is the only section.");
                 return;
@@ -117,6 +122,11 @@ namespace CodeStars_Iss
 
         private void buttonNextSection_Click(object sender, EventArgs e)
         {
+            if (this.currentSection == null)
+            {
+                MessageBox.Show("There are no sections.");
+                return;
+            }
             if (sections.Count == 1)
             {
                 MessageBox.Show("This is the only section.");
@@ -196,6 +206,11 @@ namespace CodeStars_Iss
 
         private void buttonRemoveSection_Click(object sender, EventArgs e)
         {
+            if(this.currentSection==null)
+            {
+                MessageBox.Show("This conference hasn't sections yet.");
+                return;
+            }
             if(ctrl.GetProposalsOfSection(currentSection.Id).ToList().Count!=0)
             {
                 MessageBox.Show("If  you want to delete this section you must remove all proposals from it.");
@@ -215,11 +230,24 @@ namespace CodeStars_Iss
                 return;
             }
             else
-                this.Close();
+            {
+                foreach(var s in this.sections)
+                    if(ctrl.GetProposalsOfSection(s.Id).ToList().Count==0)
+                    {
+                        MessageBox.Show("You should not let empty sections.");
+                        return;
+                    }
+            }
+            this.Close();
         }
 
         private void buttonUpdateSection_Click(object sender, EventArgs e)
         {
+            if (this.currentSection == null)
+            {
+                MessageBox.Show("This conference hasn't sections yet.");
+                return;
+            }
             var window = new SectionDetails(conference.Id, ctrl, this, currentSection);
             window.Show();
         }

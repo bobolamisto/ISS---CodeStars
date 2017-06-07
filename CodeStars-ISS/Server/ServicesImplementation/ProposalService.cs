@@ -50,7 +50,7 @@ namespace Server.ServicesImplementation
         }
 
         
-        public void evaluateProposal(int id)
+        public ProposalState evaluateProposal(int id)
         {
             var okRejected = true;
             var okAccepted = true;
@@ -68,13 +68,16 @@ namespace Server.ServicesImplementation
                 }
             }
             if (okAccepted == true)
-                proposal.ProposalState = ProposalState.Accepted;
+              proposal.ProposalState = ProposalState.Accepted;
 
             if (okRejected == false)
                 proposal.ProposalState = ProposalState.Declined;
 
             else
                 proposal.ProposalState = ProposalState.Pending;
+
+            this.UpdatePaper(proposal);
+            return proposal.ProposalState;
 
         }
 
@@ -119,11 +122,11 @@ namespace Server.ServicesImplementation
             }
         }
 
-        public IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState)
+        public IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState,int confId)
         {
             using(var uow = new UnitOfWork())
             {
-                var proposals = uow.getRepository<Proposal>().getAll().Where(proposal => proposal.ProposalState == proposalState);
+                var proposals = uow.getRepository<Proposal>().getAll().Where(proposal => proposal.ProposalState == proposalState&&proposal.Participation.ConferenceId==confId);
                 return _proposalConverter.convertToDTOList(proposals);
             }
         }
@@ -249,11 +252,13 @@ namespace Server.ServicesImplementation
                 {
                     if (p.Id.Equals(id))
                     {
-                        p.Collaborators += "username; ";
+                        p.Collaborators += username+"; ";
                     }
                 }
                 uow.saveChanges();
             }
         }
+
+        
     }
 }

@@ -45,7 +45,7 @@ namespace CodeStars_Iss
             }
             else
             {
-                MessageBox.Show("Invalid credintials");
+                MessageBox.Show("Invalid credentials");
             }
         }
 

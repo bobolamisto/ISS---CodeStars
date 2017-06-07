@@ -12,16 +12,16 @@ using System.Windows.Forms;
 
 namespace CodeStars_Iss
 {
-    //textBoxAbstract
-    //textBoxFull
     public partial class UpdateProposal : Form
     {
         private ClientController ctrl;
         private ProposalDTO proposal;
-        public UpdateProposal(ClientController ctrl,ProposalDTO prop)
+        private MyProposals window;
+        public UpdateProposal(ClientController ctrl,ProposalDTO prop,MyProposals win)
         {
             this.ctrl = ctrl;
             this.proposal = prop;
+            this.window = win;
             InitializeComponent();
         }
 
@@ -30,13 +30,25 @@ namespace CodeStars_Iss
         {
             this.proposal.Abstract = textBoxAbstract.Text;
             this.proposal.FullPaper = textBoxFull.Text;
-            var ok = ctrl.UpdatePaper(this.proposal);
-            if (ok != null)
+            try
             {
-                MessageBox.Show("Proposal updated successfully!");
-                this.Close();
+                var ok = ctrl.UpdatePaper(this.proposal);
+                if (ok != null)
+                {
+                    MessageBox.Show("Proposal updated successfully!");
+                    this.Close();
+                }
+            }
+            catch(Exception ee)
+            {
+                MessageBox.Show(ee.Message);
             }
             
+        }
+
+        private void UpdateProposal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.window.reloadProposals(this.window.getItems());
         }
     }
 }

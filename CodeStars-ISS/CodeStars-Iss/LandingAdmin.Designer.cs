@@ -45,7 +45,8 @@
             this.panelAcceptDeclineUsers = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonSwitch = new System.Windows.Forms.Button();
-            this.buttonAllProposals = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConferences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
             this.panelAcceptDeclineConferences.SuspendLayout();
@@ -63,13 +64,13 @@
             this.dataGridConferences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridConferences.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridConferences.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridConferences.Location = new System.Drawing.Point(196, 114);
+            this.dataGridConferences.Location = new System.Drawing.Point(340, 84);
             this.dataGridConferences.MultiSelect = false;
             this.dataGridConferences.Name = "dataGridConferences";
             this.dataGridConferences.ReadOnly = true;
             this.dataGridConferences.RowHeadersVisible = false;
             this.dataGridConferences.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridConferences.Size = new System.Drawing.Size(609, 368);
+            this.dataGridConferences.Size = new System.Drawing.Size(732, 262);
             this.dataGridConferences.TabIndex = 0;
             // 
             // dataGridUsers
@@ -83,13 +84,13 @@
             this.dataGridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridUsers.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridUsers.Location = new System.Drawing.Point(1068, 114);
+            this.dataGridUsers.Location = new System.Drawing.Point(418, 413);
             this.dataGridUsers.MultiSelect = false;
             this.dataGridUsers.Name = "dataGridUsers";
             this.dataGridUsers.ReadOnly = true;
             this.dataGridUsers.RowHeadersVisible = false;
             this.dataGridUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridUsers.Size = new System.Drawing.Size(342, 368);
+            this.dataGridUsers.Size = new System.Drawing.Size(359, 243);
             this.dataGridUsers.TabIndex = 1;
             this.dataGridUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsers_CellContentClick);
             // 
@@ -97,7 +98,7 @@
             // 
             this.Conferences.AutoSize = true;
             this.Conferences.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Conferences.Location = new System.Drawing.Point(398, 76);
+            this.Conferences.Location = new System.Drawing.Point(577, 27);
             this.Conferences.Name = "Conferences";
             this.Conferences.Size = new System.Drawing.Size(129, 24);
             this.Conferences.TabIndex = 2;
@@ -107,7 +108,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1220, 76);
+            this.label2.Location = new System.Drawing.Point(507, 368);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 24);
             this.label2.TabIndex = 3;
@@ -117,7 +118,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 136);
+            this.label1.Location = new System.Drawing.Point(133, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 18);
             this.label1.TabIndex = 4;
@@ -126,7 +127,7 @@
             // buttonPendingConferences
             // 
             this.buttonPendingConferences.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPendingConferences.Location = new System.Drawing.Point(43, 208);
+            this.buttonPendingConferences.Location = new System.Drawing.Point(158, 169);
             this.buttonPendingConferences.Name = "buttonPendingConferences";
             this.buttonPendingConferences.Size = new System.Drawing.Size(91, 34);
             this.buttonPendingConferences.TabIndex = 6;
@@ -137,7 +138,7 @@
             // buttonAcceptedConferences
             // 
             this.buttonAcceptedConferences.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAcceptedConferences.Location = new System.Drawing.Point(43, 164);
+            this.buttonAcceptedConferences.Location = new System.Drawing.Point(158, 125);
             this.buttonAcceptedConferences.Name = "buttonAcceptedConferences";
             this.buttonAcceptedConferences.Size = new System.Drawing.Size(91, 38);
             this.buttonAcceptedConferences.TabIndex = 7;
@@ -148,7 +149,7 @@
             // buttonReviewConferences
             // 
             this.buttonReviewConferences.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReviewConferences.Location = new System.Drawing.Point(43, 248);
+            this.buttonReviewConferences.Location = new System.Drawing.Point(158, 209);
             this.buttonReviewConferences.Name = "buttonReviewConferences";
             this.buttonReviewConferences.Size = new System.Drawing.Size(91, 32);
             this.buttonReviewConferences.TabIndex = 8;
@@ -160,7 +161,7 @@
             // 
             this.panelAcceptDeclineConferences.Controls.Add(this.buttonDeclineConference);
             this.panelAcceptDeclineConferences.Controls.Add(this.buttonAcceptConference);
-            this.panelAcceptDeclineConferences.Location = new System.Drawing.Point(21, 310);
+            this.panelAcceptDeclineConferences.Location = new System.Drawing.Point(136, 271);
             this.panelAcceptDeclineConferences.Name = "panelAcceptDeclineConferences";
             this.panelAcceptDeclineConferences.Size = new System.Drawing.Size(157, 100);
             this.panelAcceptDeclineConferences.TabIndex = 9;
@@ -201,9 +202,9 @@
             // buttonPendingUsers
             // 
             this.buttonPendingUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPendingUsers.Location = new System.Drawing.Point(922, 164);
+            this.buttonPendingUsers.Location = new System.Drawing.Point(862, 500);
             this.buttonPendingUsers.Name = "buttonPendingUsers";
-            this.buttonPendingUsers.Size = new System.Drawing.Size(123, 38);
+            this.buttonPendingUsers.Size = new System.Drawing.Size(145, 38);
             this.buttonPendingUsers.TabIndex = 11;
             this.buttonPendingUsers.Text = "Pending Users";
             this.buttonPendingUsers.UseVisualStyleBackColor = true;
@@ -224,7 +225,7 @@
             // 
             this.panelAcceptDeclineUsers.Controls.Add(this.buttonDeclineUser);
             this.panelAcceptDeclineUsers.Controls.Add(this.buttonAcceptUser);
-            this.panelAcceptDeclineUsers.Location = new System.Drawing.Point(886, 310);
+            this.panelAcceptDeclineUsers.Location = new System.Drawing.Point(848, 608);
             this.panelAcceptDeclineUsers.Name = "panelAcceptDeclineUsers";
             this.panelAcceptDeclineUsers.Size = new System.Drawing.Size(176, 100);
             this.panelAcceptDeclineUsers.TabIndex = 16;
@@ -233,7 +234,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(922, 135);
+            this.label3.Location = new System.Drawing.Point(884, 433);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 16);
             this.label3.TabIndex = 17;
@@ -243,7 +244,7 @@
             // buttonSwitch
             // 
             this.buttonSwitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSwitch.Location = new System.Drawing.Point(1159, 2);
+            this.buttonSwitch.Location = new System.Drawing.Point(1159, 12);
             this.buttonSwitch.Name = "buttonSwitch";
             this.buttonSwitch.Size = new System.Drawing.Size(191, 27);
             this.buttonSwitch.TabIndex = 18;
@@ -251,22 +252,35 @@
             this.buttonSwitch.UseVisualStyleBackColor = true;
             this.buttonSwitch.Click += new System.EventHandler(this.buttonSwitch_Click);
             // 
-            // buttonAllProposals
+            // button1
             // 
-            this.buttonAllProposals.Location = new System.Drawing.Point(43, 440);
-            this.buttonAllProposals.Name = "buttonAllProposals";
-            this.buttonAllProposals.Size = new System.Drawing.Size(91, 32);
-            this.buttonAllProposals.TabIndex = 20;
-            this.buttonAllProposals.Text = "All Proposals";
-            this.buttonAllProposals.UseVisualStyleBackColor = true;
-            this.buttonAllProposals.Click += new System.EventHandler(this.buttonAllProposals_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(862, 544);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(145, 38);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Declined Users";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(862, 456);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(145, 38);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "Accepted Users";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // LandingAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 543);
-            this.Controls.Add(this.buttonAllProposals);
+            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonSwitch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panelAcceptDeclineUsers);
@@ -311,6 +325,7 @@
         private System.Windows.Forms.Panel panelAcceptDeclineUsers;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonSwitch;
-        private System.Windows.Forms.Button buttonAllProposals;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

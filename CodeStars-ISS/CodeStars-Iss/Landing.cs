@@ -27,7 +27,6 @@ namespace CodeStars_Iss
         private ClientController ctrl;
         private UserDTO user;
         private DataTable conferinte;
-        private DataTable proposals;
         public Landing(ClientController c,UserDTO user)
         {
             this.user = user;
@@ -35,8 +34,10 @@ namespace CodeStars_Iss
             InitializeComponent();
             PanelCoChair.Visible = false;
             panelAddProposal.Visible = false;
-            panelReviewProposal.Visible = false;
-            panelUpdateProposal.Visible = false;
+            PanelReviewer.Visible = false;
+            panelUpdateDeadlines.Visible = false;
+            panelSections.Visible = false;
+            buttonSubmittedProposals.Visible = false;
             
             this.WindowState = FormWindowState.Maximized;
             
@@ -59,12 +60,12 @@ namespace CodeStars_Iss
             var items = ctrl.getAllConferences();
             reloadConferences(items);
 
-            proposals = new DataTable();
-            proposals.Columns.Add("Title", typeof(string));
-            proposals.Columns.Add("Subject", typeof(string));
-            proposals.Columns.Add("Abstract", typeof(string));
-            proposals.Columns.Add("Full Paper", typeof(string));
-            proposals.Columns.Add("Key Words", typeof(string));
+            //proposals = new DataTable();
+            //proposals.Columns.Add("Title", typeof(string));
+            //proposals.Columns.Add("Subject", typeof(string));
+            //proposals.Columns.Add("Abstract", typeof(string));
+            //proposals.Columns.Add("Full Paper", typeof(string));
+            //proposals.Columns.Add("Key Words", typeof(string));
         }
 
         //Conferintele la care sunt owner -> adaug co-chairs
@@ -73,6 +74,11 @@ namespace CodeStars_Iss
             var items = ctrl.getRelevantConferences(user.Id, (UserRole.Chair).ToString());
             reloadConferences(items);
             PanelCoChair.Visible = true;
+            panelAddProposal.Visible = false;
+            PanelReviewer.Visible = true;
+            panelUpdateDeadlines.Visible = true;
+            panelSections.Visible = true;
+            buttonSubmittedProposals.Visible = true;
         }
 
         private void ButtonAddConference_Click(object sender, EventArgs e)
@@ -105,11 +111,15 @@ namespace CodeStars_Iss
 
         private void ButtonAllConferences_Click(object sender, EventArgs e)
         {
+            ButtonBuyTicket.Visible = true;
             var items = ctrl.getAllConferences();
             reloadConferences(items);
             PanelCoChair.Visible = false;
-
-
+            panelAddProposal.Visible = false;
+            PanelReviewer.Visible = false;
+            panelUpdateDeadlines.Visible = false;
+            panelSections.Visible = false;
+            buttonSubmittedProposals.Visible = false;
         }
 
         private void ButtonBuyTicket_Click(object sender, EventArgs e)
@@ -138,6 +148,11 @@ namespace CodeStars_Iss
             }
             var selectedRow = GridViewConferinte.SelectedRows[0];
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            if (DateTime.Parse(conf.StartDate).CompareTo(DateTime.Now) <= 0)
+            {
+                MessageBox.Show("You can't modify a conference which has already started.");
+                return;
+            }
             AddCoChair p = new AddCoChair(ctrl, user, conf);
             p.Show();
         }
@@ -145,16 +160,15 @@ namespace CodeStars_Iss
         //updatez o lucrare
         private void buttonUpdateProposal_Click(object sender, EventArgs e)
         {
-            if (GridViewProposals.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a proposals!");
-                return;
-            }
-            var selectedRow = GridViewProposals.SelectedRows[0];
-            var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
-            UpdateProposal p = new UpdateProposal(ctrl,prop);
-            p.Show();
-            //this.Hide();
+            //if (GridViewProposals.SelectedRows.Count == 0)
+            //{
+            //    MessageBox.Show("Please select a proposals!");
+            //    return;
+            //}
+            //var selectedRow = GridViewProposals.SelectedRows[0];
+            //var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+            //UpdateProposal p = new UpdateProposal(ctrl,prop);
+            //p.Show();
         }
 
         //Conferintele la care particip ca si speaker -> unde trebuie sa imi adaug lucrarile
@@ -162,21 +176,19 @@ namespace CodeStars_Iss
         {
             var items = ctrl.getRelevantConferences(user.Id, (UserRole.Speaker).ToString());
             reloadConferences(items);
+            PanelCoChair.Visible = false;
             panelAddProposal.Visible = true;
+            PanelReviewer.Visible = false;
+            panelUpdateDeadlines.Visible = false;
+            panelSections.Visible =false;
+            buttonSubmittedProposals.Visible = false;
         }
-
-        //lucrarile la care pot sa fac review
-        private void buttonProposalsToBeReviewed_Click(object sender, EventArgs e)
-        {
-            panelReviewProposal.Visible = true;
-            var items = ctrl.GetUserProposals(user.Id);
-            reloadProposals(items);
-        }
+        
 
         //lucrarile mele 
         private void buttonMyProposals_Click(object sender, EventArgs e)
         {
-            var window = new MyProposals(ctrl, user, OpenedFrom.UserWindow);
+            var window = new MyProposals(ctrl, user, OpenedFrom.UserWindow,null);
             window.Show();
         }
 
@@ -190,6 +202,11 @@ namespace CodeStars_Iss
             }
             var selectedRow = GridViewConferinte.SelectedRows[0];
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            if (DateTime.Parse(conf.AbstractDeadline).CompareTo(DateTime.Now) <= 0)
+            {
+                MessageBox.Show("You've missed the deadline.Sorry.");
+                return;
+            }
             AddProposal p = new AddProposal(ctrl,user.Id,conf.Id);
             p.Show();
         }
@@ -199,75 +216,46 @@ namespace CodeStars_Iss
          * daca da, returneaza false
          * daca nu, returneaza true
         */
-        private bool allowReview(ProposalDTO prop)
-        {
-            var reviews = ctrl.getAllForProposal(prop.Id);
-            foreach (var review in reviews)
-            {
-                if (review.ReviewerId == user.Id)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        /*
-         * verifica daca userul curent este sau nu reviewer la conferinta curenta
-         * daca da, returneaza true
-         * daca nu, returneaza false
-         */
-        private bool isReviewer()
-        {
-            var selectedRow = GridViewConferinte.SelectedRows[0];
-            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
-            var conferences = ctrl.getRelevantConferences(user.Id, "Reviewer");
-            
-            foreach (var conference in conferences)
-            {
-                if (conference.Id == conf.Id)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        
 
         //fac review la un proposal
         private void buttonReviewProposal_Click(object sender, EventArgs e)
         {
-            if (GridViewConferinte.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a conference.");
-                return;
-            }
+            //if (GridViewConferinte.SelectedRows.Count == 0)
+            //{
+            //    MessageBox.Show("Please select a conference.");
+            //    return;
+            //}
 
-            if (GridViewProposals.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a proposal!");
-                return;
-            }
+            //if (GridViewProposals.SelectedRows.Count == 0)
+            //{
+            //    MessageBox.Show("Please select a proposal!");
+            //    return;
+            //}
 
-            var selectedRow = GridViewProposals.SelectedRows[0];
-            var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+            //var selectedRow = GridViewProposals.SelectedRows[0];
+            //var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
 
-            if (allowReview(prop)==false)
-            {
-                MessageBox.Show("You already made a review for this proposal.");
-                return;
-            }
+            //if (allowReview(prop)==false)
+            //{
+            //    MessageBox.Show("You already made a review for this proposal.");
+            //    return;
+            //}
 
-            ReviewProposal p = new ReviewProposal(ctrl, prop, user.Id);
-            p.Show();
-            //this.Hide();
+            //ReviewProposal p = new ReviewProposal(ctrl, prop, user.Id);
+            //p.Show();
         }
 
         private void buttonMyConferencesAsListener_Click(object sender, EventArgs e)
         {
             var items = ctrl.getRelevantConferences(user.Id, (UserRole.Listener).ToString());
             reloadConferences(items);
+            PanelCoChair.Visible = false;
             panelAddProposal.Visible = true;
+            PanelReviewer.Visible = false;
+            panelUpdateDeadlines.Visible = false;
+            panelSections.Visible = false;
+            buttonSubmittedProposals.Visible = false;
         }
 
 
@@ -279,11 +267,7 @@ namespace CodeStars_Iss
             }
             var selectedRow = GridViewConferinte.SelectedRows[0];
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
-
-            var chair = ctrl.getChairOfConference(conf.Id);
-            if (chair!=null&&user.Id == chair.Id)
-                buttonSections.Visible = true;
-            else buttonSections.Visible = false;
+            /*
             if (isReviewer())
             {
                 buttonReviewProposal.Visible = true;
@@ -291,7 +275,7 @@ namespace CodeStars_Iss
             else
             {
                 buttonReviewProposal.Visible = false;
-            }
+            }*/
             if (updateAllowed(conf))
             {
                 buttonUpdateDeadlines.Visible = true;
@@ -300,31 +284,24 @@ namespace CodeStars_Iss
             {
                 buttonUpdateDeadlines.Visible = false;
             }
-
-            var prop = ctrl.GetUserProposal(user.Id, conf.Id);
-            if (prop == null)
-                return;
-
-            List<ProposalDTO> items = new List<ProposalDTO>();
-            items.Add(prop);
-            reloadProposals(items);
+            
         }
 
-        private void reloadProposals(IEnumerable<ProposalDTO> items)
-        {
-            proposals.Clear();
-                foreach (var item in items)
-                {
-                    DataRow c = proposals.NewRow();
-                    c["Title"] = item.Title;
-                    c["Subject"] = item.Subject;
-                    c["Abstract"] = item.Abstract;
-                    c["Full Paper"] = item.FullPaper;
-                    c["Key Words"] = item.Keywords;
-                    proposals.Rows.Add(c);
-                }
-            GridViewProposals.DataSource = proposals;
-        }
+        //private void reloadProposals(IEnumerable<ProposalDTO> items)
+        //{
+        //    proposals.Clear();
+        //        foreach (var item in items)
+        //        {
+        //            DataRow c = proposals.NewRow();
+        //            c["Title"] = item.Title;
+        //            c["Subject"] = item.Subject;
+        //            c["Abstract"] = item.Abstract;
+        //            c["Full Paper"] = item.FullPaper;
+        //            c["Key Words"] = item.Keywords;
+        //            proposals.Rows.Add(c);
+        //        }
+        //    GridViewProposals.DataSource = proposals;
+        //}
 
         private void buttonSections_Click(object sender, EventArgs e)
         {
@@ -335,22 +312,20 @@ namespace CodeStars_Iss
             }
             var selectedRow = GridViewConferinte.SelectedRows[0];
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            if (DateTime.Parse(conf.FullPaperDeadline).CompareTo(DateTime.Now) >= 0)
+            {
+                MessageBox.Show("There is still time for uploading proposals.");
+                return;
+            }
+            if(DateTime.Parse(conf.StartDate).CompareTo(DateTime.Now)<=0)
+            {
+                MessageBox.Show("You can't modify a conference which has already started.");
+                return;
+            }
             AddSections window = new AddSections(conf, ctrl);
             window.Show();
         }
-
-        private void ManageAuthorsButton_Click(object sender, EventArgs e)
-        {
-            if (GridViewProposals.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a proposals!");
-                return;
-            }
-            var selectedRow = GridViewProposals.SelectedRows[0];
-            var prop = ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
-            ManageAuthors p = new ManageAuthors(ctrl, prop);
-            p.Show();
-        }
+        
 
         private void GridViewConferinte_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -374,6 +349,11 @@ namespace CodeStars_Iss
             }
             var selectedRow = GridViewConferinte.SelectedRows[0];
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            if (DateTime.Parse(conf.StartDate).CompareTo(DateTime.Now) <= 0)
+            {
+                MessageBox.Show("You can't modify a conference which has already started.");
+                return;
+            }
             AddReviewer p = new AddReviewer(ctrl, user, conf);
             p.Show();
         }
@@ -418,8 +398,56 @@ namespace CodeStars_Iss
             var selectedRow = GridViewConferinte.SelectedRows[0];
             var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
 
+            if (DateTime.Parse(conf.StartDate).CompareTo(DateTime.Now) <= 0)
+            {
+                MessageBox.Show("You can't modify a conference which has already started.");
+                return;
+            }
             UpdateDeadlines ud = new UpdateDeadlines(ctrl, conf);
             ud.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var items = ctrl.getRelevantConferences(user.Id, (UserRole.CoChair).ToString());
+            reloadConferences(items);
+            PanelCoChair.Visible = false;
+            panelAddProposal.Visible = false;
+            PanelReviewer.Visible = true;
+            panelUpdateDeadlines.Visible = true;
+            panelSections.Visible = true;
+            buttonSubmittedProposals.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var items = ctrl.getRelevantConferences(user.Id, (UserRole.Reviewer).ToString());
+            reloadConferences(items);
+            PanelCoChair.Visible = false;
+            panelAddProposal.Visible = false;
+            PanelReviewer.Visible = false;
+            panelUpdateDeadlines.Visible = false;
+            panelSections.Visible = false;
+            buttonSubmittedProposals.Visible = true;
+        }
+
+        private void buttonSubmittedProposals_Click(object sender, EventArgs e)
+        {
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a conference!");
+                return;
+            }
+
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            if(DateTime.Parse(conf.StartDate).CompareTo(DateTime.Now)<=0)
+            {
+                MessageBox.Show("The conference has already started");
+                return;
+            }
+            MyProposals window = new MyProposals(this.ctrl,this.user, OpenedFrom.AdminWindow, conf);
+            window.Show();
         }
     }
 }

@@ -61,10 +61,10 @@ namespace Model
                     errors.Add(new DbValidationError("Domain", "Conference domain can't be null"));
                 if (conference.MainDescription == "")
                     errors.Add(new DbValidationError("Main Description", "Conference description can't be null"));
-                if (conference.AbstractDeadline.CompareTo(conference.EndDate) >= 0)
-                    errors.Add(new DbValidationError("AbstractDeadline", String.Format("The deadline for abstracts submission must be before {0}", conference.EndDate)));
-                if (conference.FullPaperDeadline.CompareTo(conference.EndDate) >= 0)
-                    errors.Add(new DbValidationError("FullPapersDeadline", String.Format("The deadline for full papers submission must be before {0}", conference.EndDate)));
+                if (conference.AbstractDeadline.CompareTo(conference.StartDate) >= 0)
+                    errors.Add(new DbValidationError("AbstractDeadline", String.Format("The deadline for abstracts submission must be before {0}", conference.StartDate)));
+                if (conference.FullPaperDeadline.CompareTo(conference.StartDate) >= 0)
+                    errors.Add(new DbValidationError("FullPapersDeadline", String.Format("The deadline for full papers submission must be before {0}", conference.StartDate)));
                 if (errors.Count > 0)
                     return new DbEntityValidationResult(entityEntry, errors);
             }
@@ -131,35 +131,25 @@ namespace Model
             else if (entityEntry.Entity is User && (entityEntry.State == EntityState.Added || entityEntry.State == EntityState.Modified))
             {
                 var user = (User)entityEntry.Entity;
-                if (user.Username == "")
+                if (user.Username == ""||user.Username==null)
                     errors.Add(new DbValidationError("Username", "Username can't be null"));
-                if (user.Password == "")
+                if (user.Password == ""||user.Password==null)
                     errors.Add(new DbValidationError("Password", "Password can't be null"));
-                string str = user.FirstName;
-                bool isLetter = !String.IsNullOrEmpty(str) && Char.IsLetter(str[0]);
-                if (isLetter == true)
-                {
-                    if (str[0] <= 'A' || str[0] >= 'Z')
-                        errors.Add(new DbValidationError("FirstName", "Firstname must begin with uppercase"));
-                }
-
-                string str1 = user.LastName;
-                bool isLetter1 = !String.IsNullOrEmpty(str) && Char.IsLetter(str1[0]);
-                if (isLetter1 == true)
-                {
-                    if (str1[0] <= 'A' || str1[0] >= 'Z')
-                        errors.Add(new DbValidationError("Lastname", "Lastname must begin with uppercase"));
-                }
-
-                var addr = new System.Net.Mail.MailAddress(user.Email);
-                if (addr.Address != user.Email)
+                if (user.FirstName==null||user.FirstName=="")
+                        errors.Add(new DbValidationError("FirstName", "Firstname can't be null"));
+                if (user.LastName == null || user.LastName == "")
+                        errors.Add(new DbValidationError("Lastname", "Lastname can't be null"));
+                if (user.Email == "" || user.Email == null)
                     errors.Add(new DbValidationError("Email", "This email is not valid"));
+                else
+                {
+                    var addr = new System.Net.Mail.MailAddress(user.Email);
+                    if (addr.Address != user.Email)
+                        errors.Add(new DbValidationError("Email", "This email is not valid"));
+                }
 
-                if (user.WebPage == "")
+                if (user.WebPage == ""||user.WebPage==null)
                     errors.Add(new DbValidationError("Webpage", "Webpage can't be null"));
-
-                if ((user.Validation != AccountState.Validated) && (user.Validation != AccountState.Waiting) && (user.Validation != AccountState.Unvalidated))
-                    errors.Add(new DbValidationError("Validation", "Validation must be Validated, Waiting or Unvalidated"));
 
                 if (errors.Count > 0)
                     return new DbEntityValidationResult(entityEntry, errors);

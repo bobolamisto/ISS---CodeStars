@@ -36,7 +36,8 @@ namespace server.ServicesImplementation
             using (var uow = new UnitOfWork())
             {
                 var userRepo = uow.getRepository<User>();
-                if (userRepo.get(userDTO.Id) != null)
+                var existing = userRepo.getAll().FirstOrDefault(u => u.Username == userDTO.Username);
+                if (existing != null)
                     return null;
                 userDTO.Validation = "Waiting";
                 userDTO.Password = _ecrypt.generateHash(userDTO.Password);
@@ -131,6 +132,16 @@ namespace server.ServicesImplementation
             using (var uow = new UnitOfWork())
             {
                 return converter.convertToDTOList(uow.getRepository<User>().getAll().Where(u =>( u.FirstName.StartsWith(text)) || u.LastName.StartsWith(text)));
+            }
+        }
+
+        public IEnumerable<UserDTO> findUsersByAccountState(AccountState state)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var repo = uow.getRepository<User>();
+                var users = repo.getAll().Where(u => u.Validation == state);
+                return converter.convertToDTOList(users);
             }
         }
     }

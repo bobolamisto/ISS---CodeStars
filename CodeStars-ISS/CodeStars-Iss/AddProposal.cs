@@ -1,4 +1,5 @@
 ﻿using CodeStars_Iss.Controller;
+using Model.DTOModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,11 @@ namespace CodeStars_Iss
             InitializeComponent();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         //add proposal
         private void buttonAddProposal_Click(object sender, EventArgs e)
         {
@@ -37,10 +43,17 @@ namespace CodeStars_Iss
             var abstrac = textBoxAbstract.Text;
             var fullpaper = textBoxFull.Text;
             var keywords = textBoxKeywords.Text;
-            var ok = ctr.AddProposal(userId, confId, new Model.DTOModels.ProposalDTO(0, title, subject, abstrac, fullpaper, keywords, 0,1));
-            if (ok != null)
-            { MessageBox.Show("Proposal added successfully!");
-                this.Close();
+            try { 
+            var ok = ctr.AddProposal(userId, confId, new ProposalDTO(0, title, subject, abstrac, fullpaper, keywords,0));
+                if (ok != null)
+                {
+                    MessageBox.Show("Proposal added successfully!");
+                    this.Close();
+                }
+            }
+            catch(Exception ee)
+            {
+                MessageBox.Show(ee.Message);
             }
         }
     }

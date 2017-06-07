@@ -39,7 +39,6 @@
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(148, 20);
             this.textBoxUsername.TabIndex = 2;
-       //     this.textBoxUsername.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // label2
             // 
@@ -70,7 +69,7 @@
             this.Controls.Add(this.textBoxUsername);
             this.Name = "ManageAuthors";
             this.Text = "ManageAuthors";
-        //    this.Load += new System.EventHandler(this.ManageAuthors_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManageAuthors_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

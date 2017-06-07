@@ -25,12 +25,14 @@ namespace CodeStars_Iss
         private UserDTO _user;
         private DataTable _dataTable;
         private OpenedFrom _openedFrom;
+        private ConferenceDTO _conference;
 
-        public MyProposals(ClientController controller, UserDTO user, OpenedFrom openedFrom)
+        public MyProposals(ClientController controller, UserDTO user, OpenedFrom openedFrom,ConferenceDTO conference)
         {
             _user = user;
             _ctrl = controller;
             _openedFrom = openedFrom;
+            _conference = conference;
             InitializeComponent();
         }
 
@@ -43,13 +45,30 @@ namespace CodeStars_Iss
             _dataTable.Columns.Add("Abstract Paper", typeof(string));
             _dataTable.Columns.Add("Full Paper", typeof(string));
             _dataTable.Columns.Add("Keywords", typeof(string));
+            _dataTable.Columns.Add("Collaborators", typeof(string));
 
             comboBoxProposalState.DataSource = Enum.GetValues(typeof(ProposalState));
 
             reloadProposals(getItems());
+
+            if (_conference == null)
+            {
+                panelUpdate.Visible = true;
+                buttonReviewProposal.Visible = false;
+                label1.Text = "My proposed papers";
+            }
+            else
+            {
+                panelUpdate.Visible = false;
+                buttonReviewProposal.Visible = true;
+                label1.Text = "Proposed papers for conference \'" + this._conference.Name + "\'";
+            }
+
+            
+
         }
 
-        private void reloadProposals(IEnumerable<ProposalDTO> items)
+        public void reloadProposals(IEnumerable<ProposalDTO> items)
         {
             _dataTable.Clear();
             foreach (var item in items)
@@ -60,6 +79,7 @@ namespace CodeStars_Iss
                 row["Abstract Paper"] = item.Abstract;
                 row["Full Paper"] = item.FullPaper;
                 row["Keywords"] = item.Keywords;
+                row["Collaborators"] = item.Collaborators;
                 _dataTable.Rows.Add(row);
             }
             GridViewProposals.DataSource = _dataTable;
@@ -70,20 +90,99 @@ namespace CodeStars_Iss
             reloadProposals(getItems());
         }
 
-        IEnumerable<ProposalDTO> getItems()
+        public IEnumerable<ProposalDTO> getItems()
         {
             var selectedState = (ProposalState) comboBoxProposalState.SelectedItem;
-            return _openedFrom == OpenedFrom.AdminWindow
-                ? _ctrl.getProposalsByState(selectedState)
+            //return _openedFrom == OpenedFrom.AdminWindow
+            return _conference!=null
+                ? _ctrl.getProposalsByState(selectedState,_conference.Id)
                 : _ctrl.getProposalsByState(_user.Id, selectedState);
         }
 
         private void buttonAddColaborators_Click(object sender, EventArgs e)
         {
+            if (GridViewProposals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a proposal!");
+                return;
+            }
             var selectedRow = GridViewProposals.SelectedRows[0];
             var prop = _ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
-            ManageAuthors m = new ManageAuthors(_ctrl, prop);
+            ManageAuthors m = new ManageAuthors(_ctrl, prop,this);
             m.Show();
+        }
+
+        private void buttonUpdateProposal_Click(object sender, EventArgs e)
+        {
+            if (GridViewProposals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a proposal!");
+                return;
+            }
+            var selectedRow = GridViewProposals.SelectedRows[0];
+            var prop = _ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+            UpdateProposal p = new UpdateProposal(_ctrl, prop,this);
+            p.Show();
+        }
+
+        private void MyProposals_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void buttonReviewProposal_Click(object sender, EventArgs e)
+        {
+
+            if (GridViewProposals.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a proposal!");
+                return;
+            }
+
+            var selectedRow = GridViewProposals.SelectedRows[0];
+            var prop = _ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+
+            if (allowReview(prop) == false)
+            {
+                MessageBox.Show("You already made a review for this proposal.");
+                return;
+            }
+
+            ReviewProposal p = new ReviewProposal(_ctrl, prop, _user.Id);
+            p.Show();
+        }
+
+        private bool allowReview(ProposalDTO prop)
+        {
+            var reviews = _ctrl.getAllForProposal(prop.Id);
+            foreach (var review in reviews)
+            {
+                if (review.ReviewerId == _user.Id)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /*
+         * verifica daca userul curent este sau nu reviewer la conferinta curenta
+         * daca da, returneaza true
+         * daca nu, returneaza false
+         */
+        private bool isReviewer()
+        {
+            var conferences = _ctrl.getRelevantConferences(_user.Id, "Reviewer");
+
+            foreach (var conference in conferences)
+            {
+                if (conference.Id == _conference.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

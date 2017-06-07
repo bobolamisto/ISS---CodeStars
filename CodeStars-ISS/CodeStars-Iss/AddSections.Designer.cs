@@ -254,7 +254,7 @@
             this.groupBoxSectionDates.Controls.Add(this.label7);
             this.groupBoxSectionDates.Location = new System.Drawing.Point(626, 48);
             this.groupBoxSectionDates.Name = "groupBoxSectionDates";
-            this.groupBoxSectionDates.Size = new System.Drawing.Size(160, 61);
+            this.groupBoxSectionDates.Size = new System.Drawing.Size(220, 61);
             this.groupBoxSectionDates.TabIndex = 19;
             this.groupBoxSectionDates.TabStop = false;
             // 

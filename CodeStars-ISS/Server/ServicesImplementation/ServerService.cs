@@ -233,9 +233,9 @@ namespace Server.ServicesImplementation
             return _proposalService.GetUserProposals(idUser);
         }
 
-        public IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState)
+        public IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState,int confId)
         {
-            return _proposalService.GetProposalsByState(proposalState);
+            return _proposalService.GetProposalsByState(proposalState,confId);
         }
 
         public IEnumerable<ProposalDTO> GetProposalsByState(int idUser, ProposalState proposalState)
@@ -372,9 +372,9 @@ namespace Server.ServicesImplementation
             return _userConferenceService.getPCMembersForConference(conferenceId);
         }
 
-        public void evaluateProposal(int id)
+        public ProposalState evaluateProposal(int id)
         {
-             _proposalService.evaluateProposal(id);
+             return _proposalService.evaluateProposal(id);
         }
 
         public IEnumerable<UserDTO> getPCMembersAvailableForSectionChair(int conferenId)
@@ -395,6 +395,21 @@ namespace Server.ServicesImplementation
         public ConferenceDTO updateConference(ConferenceDTO conferenceDTO)
         {
             return _userConferenceService.updateConference(conferenceDTO);
+        }
+
+        public IEnumerable<UserDTO> findUsersByAccountState(AccountState state)
+        {
+            return _userService.findUsersByAccountState(state);
+        }
+
+        public void updateUserRole(int userId, int confId, UserRole role)
+        {
+            _userConferenceService.updateUserRole(userId, confId, role);
+        }
+
+        public User_ConferenceDTO GetParticipationOfProposal(int proposalId)
+        {
+            return _userConferenceService.GetParticipationOfProposal(proposalId);
         }
     }
 }

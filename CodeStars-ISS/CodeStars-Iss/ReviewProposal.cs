@@ -30,13 +30,20 @@ namespace CodeStars_Iss
         {
             string mark = comboBox1.Text;
             string recomm = textBoxReview.Text;
-            var ok=ctrl.addReview(new ReviewDTO(0, mark, recomm, proposal.Id, reviewerId));
-            if(ok!=null)
+            try
             {
-                MessageBox.Show("Review added successfully");
-                ViewReviewsForProposal vrfpWindow = new ViewReviewsForProposal(this.ctrl, this.proposal.Id);
-                vrfpWindow.Show();
-                this.Close();
+                var ok = ctrl.addReview(new ReviewDTO(0, mark, recomm, proposal.Id, reviewerId));
+                if (ok != null)
+                {
+                    MessageBox.Show("Review added successfully");
+                    ViewReviewsForProposal vrfpWindow = new ViewReviewsForProposal(this.ctrl, this.proposal);
+                    vrfpWindow.Show();
+                    this.Close();
+                }
+            }
+            catch(Exception ee)
+            {
+                MessageBox.Show(ee.Message);
             }
         }
 
@@ -50,6 +57,11 @@ namespace CodeStars_Iss
             var marks = ctrl.getData<Mark>();
             comboBox1.DataSource = marks;
             comboBox1.DisplayMember = "Value";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

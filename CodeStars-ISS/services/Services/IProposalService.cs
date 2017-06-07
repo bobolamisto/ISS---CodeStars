@@ -29,9 +29,9 @@ namespace services.Services
 
         IEnumerable<ProposalDTO> GetUserProposals(int idUser);
         /// <summary>
-        /// Propunerile in functie de stadiu
+        /// Propunerile la o conferinta in functie de stadiu
         /// </summary>
-        IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState);
+        IEnumerable<ProposalDTO> GetProposalsByState(ProposalState proposalState,int confId);
 
         /// <summary>
         /// Propunerile unui user in functie de stadiu
@@ -45,8 +45,10 @@ namespace services.Services
         ProposalDTO getProposalById(int id);
         IEnumerable<ProposalDTO> getProposalsOutsideSections(int conferenceId);
 
-        void evaluateProposal(int id);
+        ProposalState evaluateProposal(int id);
 
         void addColaborator(string username, int id);
+
+        
     }
 }

@@ -33,10 +33,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.buttonUpdateAbstract = new System.Windows.Forms.Button();
             this.buttonUpdateFull = new System.Windows.Forms.Button();
+            this.dateTimePickerAbstract = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFullPaper = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -85,27 +85,11 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "New full paper deadline:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(134, 69);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 20);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(482, 69);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(182, 20);
-            this.textBox2.TabIndex = 6;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // buttonUpdateAbstract
             // 
             this.buttonUpdateAbstract.Location = new System.Drawing.Point(15, 95);
             this.buttonUpdateAbstract.Name = "buttonUpdateAbstract";
-            this.buttonUpdateAbstract.Size = new System.Drawing.Size(301, 23);
+            this.buttonUpdateAbstract.Size = new System.Drawing.Size(319, 23);
             this.buttonUpdateAbstract.TabIndex = 7;
             this.buttonUpdateAbstract.Text = "Update abstract deadline";
             this.buttonUpdateAbstract.UseVisualStyleBackColor = true;
@@ -115,21 +99,35 @@
             // 
             this.buttonUpdateFull.Location = new System.Drawing.Point(358, 95);
             this.buttonUpdateFull.Name = "buttonUpdateFull";
-            this.buttonUpdateFull.Size = new System.Drawing.Size(306, 23);
+            this.buttonUpdateFull.Size = new System.Drawing.Size(315, 23);
             this.buttonUpdateFull.TabIndex = 8;
             this.buttonUpdateFull.Text = "Update full paper deadline";
             this.buttonUpdateFull.UseVisualStyleBackColor = true;
             this.buttonUpdateFull.Click += new System.EventHandler(this.buttonUpdateFull_Click);
             // 
+            // dateTimePickerAbstract
+            // 
+            this.dateTimePickerAbstract.Location = new System.Drawing.Point(134, 69);
+            this.dateTimePickerAbstract.Name = "dateTimePickerAbstract";
+            this.dateTimePickerAbstract.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerAbstract.TabIndex = 9;
+            // 
+            // dateTimePickerFullPaper
+            // 
+            this.dateTimePickerFullPaper.Location = new System.Drawing.Point(473, 69);
+            this.dateTimePickerFullPaper.Name = "dateTimePickerFullPaper";
+            this.dateTimePickerFullPaper.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFullPaper.TabIndex = 10;
+            // 
             // UpdateDeadlines
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 128);
+            this.ClientSize = new System.Drawing.Size(687, 128);
+            this.Controls.Add(this.dateTimePickerFullPaper);
+            this.Controls.Add(this.dateTimePickerAbstract);
             this.Controls.Add(this.buttonUpdateFull);
             this.Controls.Add(this.buttonUpdateAbstract);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -150,9 +148,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button buttonUpdateAbstract;
         private System.Windows.Forms.Button buttonUpdateFull;
+        private System.Windows.Forms.DateTimePicker dateTimePickerAbstract;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFullPaper;
     }
 }

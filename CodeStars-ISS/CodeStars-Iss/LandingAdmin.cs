@@ -13,9 +13,6 @@ using System.Windows.Forms;
 
 namespace CodeStars_Iss
 {
-    //dataGridConferences
-    //dataGridUsers
-
     public partial class LandingAdmin : Form
     {
         private ClientController ctrl;
@@ -35,19 +32,15 @@ namespace CodeStars_Iss
        
         //Vezi users in pending
         private void buttonPendingUsers_Click(object sender, EventArgs e)
-        {
-            
-
+        {   
             panelAcceptDeclineUsers.Visible = true;
-
-            
+            reloadUsers(ctrl.findUsersByAccountState(AccountState.Waiting));
         }
 
 
         //vezi conferinte in pending
         private void buttonPendingConferences_Click(object sender, EventArgs e)
         {
-
             reloadConferences(ctrl.getFilteredConferences(ConferenceState.Proposed.ToString()));
             panelAcceptDeclineConferences.Visible = true;
         }
@@ -55,7 +48,6 @@ namespace CodeStars_Iss
         //review conferences
         private void buttonReviewConferences_Click(object sender, EventArgs e)
         {
-
             reloadConferences(ctrl.getFilteredConferences(ConferenceState.Declined.ToString()));
             panelAcceptDeclineConferences.Visible = false;
         }
@@ -106,14 +98,18 @@ namespace CodeStars_Iss
         {
             var selectedRow = dataGridUsers.SelectedRows[0];
             ctrl.validateAccount(selectedRow.Cells[0].Value.ToString(),selectedRow.Cells[1].Value.ToString(),selectedRow.Cells[2].Value.ToString());
-            reloadUsers(ctrl.getAllUsers());
+            reloadUsers(ctrl.findUsersByAccountState(AccountState.Validated));
         }
 
 
         //respinge un user
         private void buttonDeclineUser_Click(object sender, EventArgs e)
         {
-
+            var selectedRow = dataGridUsers.SelectedRows[0];
+            var userId = ctrl.findByUsername(selectedRow.Cells[0].Value.ToString());
+            var user = ctrl.findUser(userId);
+            ctrl.RejectNewUser(user);
+            reloadUsers(ctrl.findUsersByAccountState(AccountState.Unvalidated));
         }
 
         private void LandingAdmin_Load(object sender, EventArgs e)
@@ -132,7 +128,7 @@ namespace CodeStars_Iss
             users.Columns.Add("Username", typeof(string));
             users.Columns.Add("First Name", typeof(string));
             users.Columns.Add("Last Name", typeof(string));
-            var items2 = ctrl.getAllUsers();
+            var items2 = ctrl.findUsersByAccountState(AccountState.Validated);
             reloadUsers(items2);
         }
         private void reloadConferences(IEnumerable<ConferenceDTO> items)
@@ -183,16 +179,19 @@ namespace CodeStars_Iss
             window.Show();
             this.Close();
         }
+        
+        
 
-        private void buttonAllProposals_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            var window = new MyProposals(ctrl, user, OpenedFrom.AdminWindow);
-            window.Show();
+            panelAcceptDeclineUsers.Visible = false;
+            reloadUsers(ctrl.findUsersByAccountState(AccountState.Validated));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-
+            panelAcceptDeclineUsers.Visible = false;
+            reloadUsers(ctrl.findUsersByAccountState(AccountState.Unvalidated));
         }
     }
 }
