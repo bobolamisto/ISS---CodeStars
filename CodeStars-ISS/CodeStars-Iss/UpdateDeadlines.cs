@@ -35,31 +35,47 @@ namespace CodeStars_Iss
         {
             try
             {
-                _conf.AbstractDeadline = textBox1.Text;
-                _ctrl.updateConference(_conf);
+                var newDeadline = DateTime.Parse(textBox1.Text);
+                if (newDeadline >= DateTime.Parse(_conf.EndDate))
+                {
+                    throw new System.Exception("The deadline for abstracts submission must be before " + _conf.EndDate);
+                }
             }
             catch (System.Exception ex)
             {
                 HandleException(ex);
+                return;
             }
+            _conf.AbstractDeadline = textBox1.Text;
+            _ctrl.updateConference(_conf);
+            label2.Text = "Abstracts deadline: " + _conf.AbstractDeadline;
+            MessageBox.Show("The deadline for abstracts was successfully updated.");
         }
 
         private void buttonUpdateFull_Click(object sender, EventArgs e)
         {
             try
             {
-                _conf.FullPaperDeadline = textBox1.Text;
-                _ctrl.updateConference(_conf);
+                var newDeadline = DateTime.Parse(textBox2.Text);
+                if (newDeadline >= DateTime.Parse(_conf.EndDate))
+                {
+                    throw new System.Exception("The deadline for full papers submission must be before " + _conf.EndDate);
+                }
             }
             catch (System.Exception ex)
             {
                 HandleException(ex);
+                return;
             }
+            _conf.FullPaperDeadline = textBox2.Text;
+            _ctrl.updateConference(_conf);
+            label3.Text = "Full papers deadline: " + _conf.FullPaperDeadline;
+            MessageBox.Show("The deadline for full papers was successfully updated.");
         }
 
         private void HandleException(System.Exception ex)
         {
-            MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
         }
     }
 }
