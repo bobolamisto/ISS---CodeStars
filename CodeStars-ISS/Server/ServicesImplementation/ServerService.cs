@@ -374,7 +374,11 @@ namespace Server.ServicesImplementation
 
         public ProposalState evaluateProposal(int id)
         {
-             return _proposalService.evaluateProposal(id);
+             var state= _proposalService.evaluateProposal(id);
+            var part = this.GetParticipationOfProposal(id);
+            var user = this.findUser(part.UserId);
+            _emailService.SendEmail(user.Email, "Proposal accepted", "Your proposal was accepted. Now you are a speaker at the conference.");
+            return state;
         }
 
         public IEnumerable<UserDTO> getPCMembersAvailableForSectionChair(int conferenId)

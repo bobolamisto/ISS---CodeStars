@@ -30,8 +30,6 @@ namespace CodeStars_Iss
             label1.Text = _proposal.Title;
 
             _dataTable = new DataTable();
-
-            _dataTable.Columns.Add("Id", typeof(int));
             _dataTable.Columns.Add("Mark", typeof(string));
             _dataTable.Columns.Add("Recommendation", typeof(string));
             _dataTable.Columns.Add("Reviewer", typeof(string));
@@ -65,13 +63,15 @@ namespace CodeStars_Iss
                 MessageBox.Show("The proposal can't be automatically evaluated because it has conflicted marks.");
                 return;
             }
-            MessageBox.Show("The proposal was automatically" + proposalState.ToString()+"\n The user has become speaker.");
-            if (proposalState.Equals(ProposalState.Accepted))
+            
+            else if (proposalState.Equals(ProposalState.Accepted))
             {
                 var participation = _ctrl.GetParticipationOfProposal(this._proposal.Id);
                 _ctrl.updateUserRole(participation.UserId, participation.ConferenceId, UserRole.Speaker);
-
+                MessageBox.Show("The proposal was automatically " + proposalState.ToString() + "\n The user has become speaker.");
             }
+            else
+                MessageBox.Show("The proposal was automatically" + proposalState.ToString()+".");
         }
     }
 }

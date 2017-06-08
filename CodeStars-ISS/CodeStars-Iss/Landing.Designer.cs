@@ -51,6 +51,7 @@
             this.buttonUpdateDeadlines = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.PanelCoChair.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewConferinte)).BeginInit();
             this.panelAddProposal.SuspendLayout();
@@ -138,6 +139,7 @@
             // 
             this.GridViewConferinte.AllowUserToAddRows = false;
             this.GridViewConferinte.AllowUserToDeleteRows = false;
+            this.GridViewConferinte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.GridViewConferinte.BackgroundColor = System.Drawing.SystemColors.Control;
             this.GridViewConferinte.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GridViewConferinte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -147,7 +149,7 @@
             this.GridViewConferinte.ReadOnly = true;
             this.GridViewConferinte.RowHeadersVisible = false;
             this.GridViewConferinte.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridViewConferinte.Size = new System.Drawing.Size(734, 334);
+            this.GridViewConferinte.Size = new System.Drawing.Size(795, 334);
             this.GridViewConferinte.TabIndex = 9;
             this.GridViewConferinte.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewConferinte_CellContentClick);
             this.GridViewConferinte.Click += new System.EventHandler(this.GridViewConferinte_Click);
@@ -295,11 +297,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(12, 646);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(68, 38);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "Logout";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 726);
+            this.ClientSize = new System.Drawing.Size(1362, 707);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panelUpdateDeadlines);
@@ -359,6 +372,7 @@
         private System.Windows.Forms.Button buttonUpdateDeadlines;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

@@ -9,7 +9,7 @@ namespace Model.Domain
 {
     public enum ProposalState
     {
-        Accepted,
+        Accepted=1,
         Declined,
         Pending
     }

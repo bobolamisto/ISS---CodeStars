@@ -275,7 +275,7 @@ namespace CodeStars_Iss
             else
             {
                 buttonReviewProposal.Visible = false;
-            }*/
+            }
             if (updateAllowed(conf))
             {
                 buttonUpdateDeadlines.Visible = true;
@@ -283,8 +283,8 @@ namespace CodeStars_Iss
             else
             {
                 buttonUpdateDeadlines.Visible = false;
-            }
-            
+            }*/
+
         }
 
         //private void reloadProposals(IEnumerable<ProposalDTO> items)
@@ -448,6 +448,13 @@ namespace CodeStars_Iss
             }
             MyProposals window = new MyProposals(this.ctrl,this.user, OpenedFrom.AdminWindow, conf);
             window.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LogIn window = new LogIn(this.ctrl);
+            window.Show();
+            this.Close();
         }
     }
 }

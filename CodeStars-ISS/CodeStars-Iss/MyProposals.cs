@@ -142,6 +142,11 @@ namespace CodeStars_Iss
             var selectedRow = GridViewProposals.SelectedRows[0];
             var prop = _ctrl.FindProposal(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[4].Value.ToString());
 
+            if(prop.ProposalState!=ProposalState.Pending)
+            {
+                MessageBox.Show("You are allowed to make a review only to waiting proposals.");
+                return;
+            }
             if (allowReview(prop) == false)
             {
                 MessageBox.Show("You already made a review for this proposal.");

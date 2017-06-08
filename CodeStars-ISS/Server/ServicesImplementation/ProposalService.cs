@@ -61,7 +61,7 @@ namespace Server.ServicesImplementation
                 
                 foreach(Review r in reviews)
                 {
-                    if (r.Mark.Equals(Mark.Accept.ToString()) || r.Mark.Equals(Mark.StrongAccept.ToString()) || r.Mark.Equals(Mark.WeakAccept.ToString()))
+                    if (r.Mark.Equals(Mark.Accept) || r.Mark.Equals(Mark.StrongAccept) || r.Mark.Equals(Mark.WeakAccept)||r.Mark.Equals(Mark.BorderlinePaper))
                         okRejected = false;
                     else
                         okAccepted = false;
@@ -70,11 +70,11 @@ namespace Server.ServicesImplementation
             if (okAccepted == true)
               proposal.ProposalState = ProposalState.Accepted;
 
-            if (okRejected == false)
-                proposal.ProposalState = ProposalState.Declined;
+            else if (okRejected == false)
+                proposal.ProposalState = ProposalState.Pending;
 
             else
-                proposal.ProposalState = ProposalState.Pending;
+                proposal.ProposalState = ProposalState.Declined;
 
             this.UpdatePaper(proposal);
             return proposal.ProposalState;

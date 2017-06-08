@@ -193,5 +193,12 @@ namespace CodeStars_Iss
             panelAcceptDeclineUsers.Visible = false;
             reloadUsers(ctrl.findUsersByAccountState(AccountState.Unvalidated));
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LogIn window = new LogIn(this.ctrl);
+            window.Show();
+            this.Close();
+        }
     }
 }
