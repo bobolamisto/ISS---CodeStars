@@ -456,5 +456,19 @@ namespace CodeStars_Iss
             window.Show();
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (GridViewConferinte.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a conference!");
+                return;
+            }
+
+            var selectedRow = GridViewConferinte.SelectedRows[0];
+            var conf = ctrl.FindConference(selectedRow.Cells[2].Value.ToString(), selectedRow.Cells[3].Value.ToString());
+            ConferenceDetails window = new ConferenceDetails(this.ctrl, conf.Id);
+            window.Show();
+        }
     }
 }

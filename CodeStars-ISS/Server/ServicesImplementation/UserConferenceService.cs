@@ -204,5 +204,14 @@ namespace services.Services
                 return userCOnferenceConverter.convertToDTOModel(proposal.Participation);
             }
         }
+
+        public UserRole getRoleOfUserAtConference(int idConference, int idUser)
+        {
+            using(var uow=new UnitOfWork())
+            {
+                var part = uow.getRepository<User_Conference>().getAll().FirstOrDefault(p => p.UserId == idUser && p.ConferenceId == idConference);
+                return part.Role;
+            }
+        }
     }
 }

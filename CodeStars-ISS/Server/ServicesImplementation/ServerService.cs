@@ -415,5 +415,10 @@ namespace Server.ServicesImplementation
         {
             return _userConferenceService.GetParticipationOfProposal(proposalId);
         }
+
+        public UserRole getRoleOfUserAtConference(int idConference, int idUser)
+        {
+            return _userConferenceService.getRoleOfUserAtConference(idConference, idUser);
+        }
     }
 }

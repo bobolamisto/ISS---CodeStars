@@ -1,12 +1,18 @@
 ﻿using Model.Domain;
 using Model.DTOModels;
 using Persistence.Repository;
+using server.ServicesImplementation;
 using services.Services;
 
 namespace Server.ServicesImplementation
 {
     public class AdminUserCheckerService : IAdminUserChekerService
     {
+        private IUserService userService;
+        public AdminUserCheckerService()
+        {
+            userService = new UserService();
+        }
         public UserDTO AcceptNewUser(UserDTO userDto)
         {
             using (var uow = new UnitOfWork())
@@ -28,11 +34,9 @@ namespace Server.ServicesImplementation
             {
                 if (!userDto.Validation.Equals("Waiting"))
                     return null;
-                var userRepo = uow.getRepository<User>();
-                var user = userRepo.get(userDto.Id);
-                user.Validation = AccountState.Unvalidated;
+                userDto.Validation = AccountState.Unvalidated.ToString();
+                userService.updateAccount(userDto);
                 uow.saveChanges();
-                userDto.Validation = "Unvalidated";
                 return userDto;
             }
         }

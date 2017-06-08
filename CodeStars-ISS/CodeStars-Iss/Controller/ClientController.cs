@@ -267,7 +267,7 @@ namespace CodeStars_Iss.Controller
 
         public UserDTO RejectNewUser(UserDTO userDto)
         {
-            return _server.AcceptNewUser(userDto);
+            return _server.RejectNewUser(userDto);
         }
 
         public IEnumerable<UserDTO> findUsersByAccountState(AccountState state)
@@ -287,6 +287,11 @@ namespace CodeStars_Iss.Controller
         public User_ConferenceDTO GetParticipationOfProposal(int proposalId)
         {
             return _server.GetParticipationOfProposal(proposalId);
+        }
+
+        public UserRole getRoleOfUserAtConference(int idConference, int idUser)
+        {
+            return _server.getRoleOfUserAtConference(idConference, idUser);
         }
     }
 }

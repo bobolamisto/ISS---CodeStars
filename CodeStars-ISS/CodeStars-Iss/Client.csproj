@@ -94,6 +94,12 @@
     <Compile Include="AddSections.Designer.cs">
       <DependentUpon>AddSections.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConferenceDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConferenceDetails.Designer.cs">
+      <DependentUpon>ConferenceDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller\ClientController.cs" />
     <Compile Include="Landing.cs">
       <SubType>Form</SubType>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddSections.resx">
       <DependentUpon>AddSections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConferenceDetails.resx">
+      <DependentUpon>ConferenceDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Landing.resx">
       <DependentUpon>Landing.cs</DependentUpon>

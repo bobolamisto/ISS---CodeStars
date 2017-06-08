@@ -56,5 +56,6 @@ namespace services.Services
         void updateUserRole(int userId, int confId, UserRole role);
 
         User_ConferenceDTO GetParticipationOfProposal(int proposalId);
+        UserRole getRoleOfUserAtConference(int idConference, int idUser);
     }
 }
