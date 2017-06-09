@@ -108,7 +108,7 @@ namespace CodeStars_Iss
             var selectedRow = dataGridUsers.SelectedRows[0];
             var userId = ctrl.findByUsername(selectedRow.Cells[0].Value.ToString());
             var user = ctrl.findUser(userId);
-            ctrl.RejectNewUser(user);
+            ctrl.RejectNewUser(selectedRow.Cells[0].Value.ToString(), selectedRow.Cells[1].Value.ToString(), selectedRow.Cells[2].Value.ToString());
             reloadUsers(ctrl.findUsersByAccountState(AccountState.Unvalidated));
         }
 

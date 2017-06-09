@@ -420,5 +420,10 @@ namespace Server.ServicesImplementation
         {
             return _userConferenceService.getRoleOfUserAtConference(idConference, idUser);
         }
+
+        public void unvalidateAccount(string username, string firstname, string lastname)
+        {
+            _adminConferenceService.unvalidateAccount(username,firstname,lastname);
+        }
     }
 }

@@ -28,6 +28,6 @@ namespace services.Services
         IEnumerable<ConferenceDTO> GetFilteredConferences(ConferenceState conferenceState);
 
         void validateAccount(string username, string firstname, string lastname);
-
+        void unvalidateAccount(string username, string firstname, string lastname);
     }
 }

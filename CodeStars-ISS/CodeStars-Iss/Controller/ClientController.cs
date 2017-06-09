@@ -265,9 +265,9 @@ namespace CodeStars_Iss.Controller
             _server.updateSection(section);
         }
 
-        public UserDTO RejectNewUser(UserDTO userDto)
+        public void RejectNewUser(string username, string firstname, string lastname)
         {
-            return _server.RejectNewUser(userDto);
+            _server.unvalidateAccount(username,firstname,lastname);
         }
 
         public IEnumerable<UserDTO> findUsersByAccountState(AccountState state)
